@@ -3413,6 +3413,25 @@ function wireMapEvents() {
       mapClear();
     });
   }
+
+  // Category filter.
+  const cat = document.getElementById('mapCatFilter');
+  if (cat) {
+    cat.addEventListener('change', () => {
+      mapCategory = cat.value;
+      // If we're on a supplier that no longer matches the category, clear to idle.
+      if (mapMode === 'supplier' && mapSelectedSupplierIdx != null) {
+        const e = RAW[mapSelectedSupplierIdx];
+        if (mapCategory && !(e.cats || []).includes(mapCategory)) {
+          mapClear();
+          return;
+        }
+      }
+      // Re-render autocomplete if currently visible.
+      if (mapQuery) renderMapAutocomplete();
+      renderMap();
+    });
+  }
 }
 
 function mapSearch(q) {
