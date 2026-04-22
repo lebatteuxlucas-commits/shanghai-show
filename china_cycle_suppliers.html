@@ -3402,6 +3402,17 @@ function wireMapEvents() {
       setTimeout(hideMapAutocomplete, 120);    // delay so click on row registers
     });
   }
+
+  // Toolbar Clear button.
+  const clearBtn = document.getElementById('mapClearBtn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      mapCategory = '';
+      const sel = document.getElementById('mapCatFilter');
+      if (sel) sel.value = '';
+      mapClear();
+    });
+  }
 }
 
 function mapSearch(q) {
@@ -3510,6 +3521,10 @@ function mapClear() {
   mapSelectedHall = null;
   mapSelectedSupplierIdx = null;
   mapHallFilter = '';
+  mapQuery = '';
+  const input = document.getElementById('mapSearchInput');
+  if (input) input.value = '';
+  hideMapAutocomplete();
   renderMap();
 }
 
