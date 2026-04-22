@@ -967,6 +967,9 @@
     <button class="nav-tab" onclick="switchTab('catalogs')" id="tab-catalogs">
       Catalogs <span class="tab-count" id="tc-catalogs">0</span>
     </button>
+    <button class="nav-tab" onclick="switchTab('map')" id="tab-map">
+      Map <span class="tab-count" id="tc-map">13</span>
+    </button>
     <button class="nav-tab" onclick="switchTab('discover')" id="tab-discover">
       Discover
     </button>
@@ -1042,6 +1045,45 @@
 <div id="view-shortlist" style="display:none"></div>
 <div id="view-catalogs" style="display:none"></div>
 <div id="view-discover" style="display:none"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     VIEW: MAP
+     Spatial schematic of the 13 NECC Shanghai halls used by China Cycle.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div id="view-map" style="display:none">
+  <div class="map-shell">
+    <div class="map-toolbar">
+      <div class="map-search-wrap">
+        <span class="map-search-icon">🔍</span>
+        <input type="search" id="mapSearchInput" placeholder="Search supplier or hall code (e.g. E6)…" autocomplete="off">
+        <div class="map-autocomplete" id="mapAutocomplete" hidden></div>
+      </div>
+      <select id="mapCatFilter" class="map-cat">
+        <option value="">All categories</option>
+        <option>Complete Bikes</option>
+        <option>Frames, Forks &amp; Parts</option>
+        <option>Tires, Rims &amp; Parts</option>
+        <option>Transmissions &amp; Parts</option>
+        <option>Steering &amp; Components</option>
+        <option>Accessories</option>
+        <option>Machinery &amp; Tools</option>
+        <option>Cycling/Outdoor Products</option>
+        <option>Electric Bicycle</option>
+        <option>E-Bike Parts &amp; Accessories</option>
+        <option>Other</option>
+      </select>
+      <button type="button" class="map-clear" id="mapClearBtn">Clear</button>
+    </div>
+    <div class="map-body">
+      <div class="map-canvas" id="mapCanvas">
+        <!-- SVG injected by renderMap() -->
+      </div>
+      <aside class="map-panel" id="mapPanel">
+        <!-- Populated by renderMapSidePanel() -->
+      </aside>
+    </div>
+  </div>
+</div>
 
 <!-- ── Product detail panel ─────────────────────────────────────────────── -->
 <div class="overlay" id="productOverlay" onclick="closeProductPanel()" style="z-index:450"></div>
@@ -1328,7 +1370,7 @@ let currentTab = 'suppliers';
 
 function switchTab(tab) {
   currentTab = tab;
-  ['suppliers','products','shortlist','catalogs','discover'].forEach(t => {
+  ['suppliers','products','shortlist','catalogs','map','discover'].forEach(t => {
     const view = document.getElementById('view-' + t);
     const btn  = document.getElementById('tab-' + t);
     if (view) view.style.display = t === tab ? '' : 'none';
