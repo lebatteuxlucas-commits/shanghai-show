@@ -3482,7 +3482,19 @@ function mapClearSearch() {
   hideMapAutocomplete();
 }
 
-function mapPickSupplier(idx) { /* implemented in Task 7 */ }
+function mapPickSupplier(idx) {
+  if (idx == null || !RAW[idx]) return;
+  const e = RAW[idx];
+  if (!HALL_META[e.hall]) return; // supplier's hall is not in our known set; bail
+  mapMode = 'supplier';
+  mapSelectedSupplierIdx = idx;
+  mapSelectedHall = e.hall;
+  renderMap();
+  // Reflect in the search input for clarity.
+  const input = document.getElementById('mapSearchInput');
+  if (input) input.value = e.en;
+  hideMapAutocomplete();
+}
 
 function mapPickHall(code) {
   if (!HALL_META[code]) return;
