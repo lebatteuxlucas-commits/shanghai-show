@@ -3336,16 +3336,15 @@ function escSvg(s) {
 }
 
 function wireMapEvents() {
-  // Click on hall rect → enter hall mode.
+  // Hall click.
   document.querySelectorAll('.map-hall').forEach(g => {
     g.addEventListener('click', ev => {
       ev.stopPropagation();
-      const code = g.getAttribute('data-hall');
-      mapPickHall(code);
+      mapPickHall(g.getAttribute('data-hall'));
     });
   });
 
-  // Click on empty map background → clear.
+  // Background click → clear.
   const canvas = document.getElementById('mapCanvas');
   if (canvas) {
     canvas.addEventListener('click', ev => {
@@ -3354,6 +3353,133 @@ function wireMapEvents() {
       mapClear();
     });
   }
+
+  // Search input.
+  const input = document.getElementById('mapSearchInput');
+  if (input) {
+    input.addEventListener('input', () => {
+      mapQuery = input.value;
+      mapAcActive = -1;
+      renderMapAutocomplete();
+    });
+    input.addEventListener('keydown', ev => {
+      const rows = document.querySelectorAll('.map-ac-row');
+      if (ev.key === 'ArrowDown') {
+        ev.preventDefault();
+        if (rows.length) {
+          mapAcActive = (mapAcActive + 1) % rows.length;
+          highlightMapAcRow();
+        }
+      } else if (ev.key === 'ArrowUp') {
+        ev.preventDefault();
+        if (rows.length) {
+          mapAcActive = (mapAcActive - 1 + rows.length) % rows.length;
+          highlightMapAcRow();
+        }
+      } else if (ev.key === 'Enter') {
+        ev.preventDefault();
+        const q = mapQuery.trim().toUpperCase();
+        if (HALL_META[q]) {           // bare hall code → hall mode
+          hideMapAutocomplete();
+          input.value = '';
+          mapQuery = '';
+          mapPickHall(q);
+          return;
+        }
+        if (mapAcActive >= 0 && rows[mapAcActive]) {
+          rows[mapAcActive].click();
+        } else if (rows[0]) {
+          rows[0].click();
+        }
+      } else if (ev.key === 'Escape') {
+        input.value = '';
+        mapQuery = '';
+        hideMapAutocomplete();
+        if (mapMode === 'supplier') mapClear();
+      }
+    });
+    input.addEventListener('blur', () => {
+      setTimeout(hideMapAutocomplete, 120);    // delay so click on row registers
+    });
+  }
+}
+
+function mapSearch(q) {
+  const query = (q || '').trim();
+  if (!query) return [];
+  const qLc = query.toLowerCase();
+  const results = [];
+  for (const item of mapSearchIndex) {
+    if (mapCategory && !item.cats.includes(mapCategory)) continue;
+    let score = 0;
+    if (item.enLc === qLc)            score = 100;
+    else if (item.enLc.startsWith(qLc)) score = 80;
+    else if (item.cn.startsWith(query)) score = 75;
+    else if (item.enLc.includes(qLc))   score = 50;
+    else if (item.cn.includes(query))   score = 45;
+    else if (item.hall.toLowerCase().includes(qLc)) score = 20;
+    if (score > 0) results.push({ item, score });
+  }
+  results.sort((a, b) => b.score - a.score || a.item.enLc.localeCompare(b.item.enLc));
+  return results.slice(0, 8).map(r => r.item);
+}
+
+function renderMapAutocomplete() {
+  const ac = document.getElementById('mapAutocomplete');
+  if (!ac) return;
+  const q = mapQuery.trim();
+  if (!q) {
+    hideMapAutocomplete();
+    return;
+  }
+  // If the query is a bare hall code, offer a "Go to hall" row.
+  const upper = q.toUpperCase();
+  const hallShortcut = HALL_META[upper]
+    ? `<div class="map-ac-row" data-kind="hall" data-code="${upper}" onmousedown="mapPickHall('${upper}');mapClearSearch();">
+         <div>
+           <div class="ac-en">Go to hall ${upper}</div>
+           <div class="ac-cn">${esc(HALL_META[upper].en)}</div>
+         </div>
+         <span class="ac-hall">${HALL_COUNTS[upper]} suppliers</span>
+       </div>`
+    : '';
+
+  const results = mapSearch(q);
+  const rows = results.map(r => `
+    <div class="map-ac-row" data-kind="supplier" data-idx="${r.idx}" onmousedown="mapPickSupplier(${r.idx});mapClearSearch();">
+      <div>
+        <div class="ac-en">${esc(r.en)}</div>
+        ${r.cn ? `<div class="ac-cn">${esc(r.cn)}</div>` : ''}
+      </div>
+      <span class="ac-hall">${r.hall}</span>
+    </div>
+  `).join('');
+
+  const empty = (!hallShortcut && !rows) ? `<div class="map-ac-empty">No suppliers match "${esc(q)}"${mapCategory ? ` in ${esc(mapCategory)}` : ''}.</div>` : '';
+
+  ac.innerHTML = hallShortcut + rows + empty;
+  ac.hidden = false;
+}
+
+function highlightMapAcRow() {
+  const rows = document.querySelectorAll('.map-ac-row');
+  rows.forEach((r, i) => r.classList.toggle('active', i === mapAcActive));
+  if (mapAcActive >= 0 && rows[mapAcActive]) {
+    rows[mapAcActive].scrollIntoView({ block: 'nearest' });
+  }
+}
+
+function hideMapAutocomplete() {
+  const ac = document.getElementById('mapAutocomplete');
+  if (ac) { ac.hidden = true; ac.innerHTML = ''; }
+  mapAcActive = -1;
+}
+
+function mapClearSearch() {
+  const input = document.getElementById('mapSearchInput');
+  if (input) input.value = '';
+  mapQuery = '';
+  hideMapAutocomplete();
 }
 
 function mapPickSupplier(idx) { /* implemented in Task 7 */ }
