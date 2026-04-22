@@ -1296,6 +1296,46 @@ Object.entries(HALL_COLORS).forEach(([h, hc]) => {
 
 // Pre-compute O(1) index lookup and lowercase search fields once at startup
 const RAW_IDX = new Map(RAW.map((e, i) => [e, i]));
+
+// ── MAP DATA ──────────────────────────────────────────────────────────────
+// Hand-tuned positions approximating the NECC Shanghai hall layout for China Cycle.
+// viewBox is 800 × 540. W halls on the left (odd numbers outer column, even inner).
+// E halls on the right (odd outer column). N1 spans the top. Central atrium in the middle.
+const HALL_META = {
+  N1: { en: "International Brands",    cn: "两轮品牌馆",           wing: "N", x: 180, y:  25, w: 440, h: 55 },
+  W1: { en: "International brands",    cn: "国际品牌馆",           wing: "W", x:  30, y: 110, w: 110, h: 60 },
+  W2: { en: "Bicycles & accessories",  cn: "整车及零配件馆",       wing: "W", x: 150, y: 110, w: 110, h: 60 },
+  W3: { en: "Children's bikes",        cn: "童车馆",               wing: "W", x:  30, y: 180, w: 110, h: 60 },
+  W4: { en: "Cycling & outdoor",       cn: "户外骑行装备馆",       wing: "W", x: 150, y: 180, w: 110, h: 60 },
+  W5: { en: "Two-Wheel Brands",        cn: "品牌创新馆",           wing: "W", x:  30, y: 250, w: 230, h: 60 },
+  E1: { en: "Bicycles",                cn: "整车品牌馆",           wing: "E", x: 540, y: 110, w: 110, h: 55 },
+  E2: { en: "Accessories",             cn: "零配件馆",             wing: "E", x: 660, y: 110, w: 110, h: 55 },
+  E3: { en: "Accessories",             cn: "零配件馆",             wing: "E", x: 540, y: 175, w: 110, h: 55 },
+  E4: { en: "Tires & accessories",     cn: "轮胎及零配件馆",       wing: "E", x: 660, y: 175, w: 110, h: 55 },
+  E5: { en: "E-bikes accessories",     cn: "电动车零配件馆",       wing: "E", x: 540, y: 240, w: 110, h: 55 },
+  E6: { en: "E-bikes & accessories",   cn: "电动车及零配件馆",     wing: "E", x: 660, y: 240, w: 110, h: 55 },
+  E7: { en: "E-bike brands",           cn: "电动车品牌馆",         wing: "E", x: 540, y: 305, w: 230, h: 55 },
+};
+const HALL_CODES = Object.keys(HALL_META); // stable iteration order
+
+// Supplier counts per hall, computed once from RAW.
+const HALL_COUNTS = (() => {
+  const c = Object.fromEntries(HALL_CODES.map(h => [h, 0]));
+  for (const e of RAW) if (c.hasOwnProperty(e.hall)) c[e.hall]++;
+  return c;
+})();
+
+// Map module state (all in-memory, no URL persistence).
+let mapMode = 'idle';              // 'idle' | 'supplier' | 'hall'
+let mapSelectedHall = null;        // e.g. 'E6'
+let mapSelectedSupplierIdx = null; // index into RAW
+let mapQuery = '';
+let mapCategory = '';
+let mapHallFilter = '';            // in-hall filter text (Mode 3)
+let mapAcActive = -1;              // active autocomplete row index
+let mapSearchIndex = null;         // lazily built on first initMap()
+let mapInitialized = false;
+
 RAW.forEach(e => {
   e._en_lc    = (e.en   ||'').toLowerCase();
   e._scope_lc = (e.scope||'').toLowerCase();
