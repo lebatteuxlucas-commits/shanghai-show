@@ -1054,6 +1054,146 @@
   .map-body { flex-direction: column; }
   .map-panel { width: 100%; border-left: none; border-top: 1px solid var(--border); }
 }
+
+/* SVG hall rects */
+.map-hall { cursor: pointer; transition: opacity 0.18s ease; }
+.map-hall-rect {
+  fill: #BFE5D4;
+  stroke: #1A9A6F;
+  stroke-width: 2;
+  transition: fill 0.18s ease, stroke 0.18s ease;
+}
+.map-hall[data-wing="E"] .map-hall-rect { fill: #D3EFE1; }
+.map-hall[data-wing="W"] .map-hall-rect { fill: #C7EBDA; }
+.map-hall[data-wing="N"] .map-hall-rect { fill: #B0DDC7; }
+.map-hall:hover .map-hall-rect { fill: #9ED9BA; stroke-width: 3; }
+.map-hall-selected .map-hall-rect {
+  fill: #FEE4A6 !important;
+  stroke: #F59E0B;
+  stroke-width: 3;
+}
+.map-hall-dim { opacity: 0.28; }
+.map-hall-empty { opacity: 0.15; }
+
+.map-hall-code {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  fill: #0D0B09;
+  pointer-events: none;
+  user-select: none;
+}
+.map-hall-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  fill: #1C1A16;
+  pointer-events: none;
+  user-select: none;
+}
+.map-hall-count {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: #6E6A62;
+  pointer-events: none;
+  user-select: none;
+}
+.map-atrium-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  fill: #6E6A62;
+  letter-spacing: 1px;
+}
+.map-compass {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: #9A9689;
+  letter-spacing: 1px;
+}
+
+/* Side panel */
+.map-panel-section { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.map-panel-section:last-of-type { border-bottom: none; }
+.map-panel-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--mid);
+  margin-bottom: 6px;
+}
+.map-panel-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.3;
+}
+.map-panel-cn { color: var(--mid); font-size: 12px; margin-top: 2px; }
+.map-panel-sub { color: var(--mid); font-size: 11px; margin-top: 4px; }
+.map-panel-text { color: var(--dark); font-size: 12px; line-height: 1.5; }
+.map-panel-list { padding-left: 18px; color: var(--dark); font-size: 12px; line-height: 1.6; }
+.map-panel-list code {
+  font-family: var(--mono);
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+.map-panel-stats { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--dark); }
+.sw-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+.sw-n { background: #B0DDC7; }
+.sw-e { background: #D3EFE1; }
+.sw-w { background: #C7EBDA; }
+
+.map-hall-chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+.map-hall-chip strong { color: var(--teal); }
+
+.map-panel-cta {
+  width: 100%;
+  padding: 10px;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.map-panel-cta:hover { background: var(--teal-dark); }
+
+.map-hall-filter {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: inherit;
+  margin-bottom: 10px;
+  background: var(--bg);
+}
+.map-hall-list { display: flex; flex-direction: column; gap: 4px; }
+.map-hall-row {
+  padding: 7px 10px;
+  background: var(--bg);
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.map-hall-row:hover { border-color: var(--teal); background: var(--teal-light); }
+.map-hall-row-en { font-size: 12px; font-weight: 500; color: var(--black); }
+.map-hall-row-cn { font-size: 10px; color: var(--mid); margin-top: 1px; }
+.map-hall-empty-msg { color: var(--mid); font-size: 12px; padding: 8px; font-style: italic; }
 </style>
 </head>
 <body>
@@ -1531,6 +1671,7 @@ function switchTab(tab) {
   if (tab === 'products')  renderProducts();
   if (tab === 'shortlist') renderShortlist();
   if (tab === 'catalogs')  renderCatalogs();
+  if (tab === 'map')       initMap();
   if (tab === 'discover')  renderDiscover();
 }
 
@@ -3006,6 +3147,200 @@ Pipeline.Store.onChange(function() {
   }
   _splIntelIdx = null;
 });
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MAP MODULE
+// ═══════════════════════════════════════════════════════════════════════════
+
+function initMap() {
+  if (mapInitialized) return;
+  mapInitialized = true;
+
+  // Build search index once.
+  mapSearchIndex = RAW.map((e, i) => ({
+    idx: i,
+    en: e.en,
+    enLc: (e._en_lc || e.en.toLowerCase()),
+    cn: e.cn || '',
+    hall: e.hall,
+    cats: e.cats || [],
+  }));
+
+  renderMapSvg();
+  renderMap();
+  wireMapEvents();
+}
+
+function renderMapSvg() {
+  const halls = HALL_CODES.map(code => {
+    const m = HALL_META[code];
+    const count = HALL_COUNTS[code];
+    return `
+      <g class="map-hall" data-hall="${code}" data-wing="${m.wing}">
+        <rect class="map-hall-rect" x="${m.x}" y="${m.y}" width="${m.w}" height="${m.h}" rx="6"></rect>
+        <text class="map-hall-code" x="${m.x + m.w / 2}" y="${m.y + 22}" text-anchor="middle">${code}</text>
+        <text class="map-hall-name" x="${m.x + m.w / 2}" y="${m.y + 38}" text-anchor="middle">${escSvg(m.en)}</text>
+        <text class="map-hall-count" x="${m.x + m.w / 2}" y="${m.y + 52}" text-anchor="middle">${count} suppliers</text>
+      </g>
+    `;
+  }).join('');
+
+  const svg = `
+    <svg viewBox="0 0 800 540" xmlns="http://www.w3.org/2000/svg" aria-label="NECC Shanghai hall map">
+      <g id="mapHalls">${halls}</g>
+      <g id="mapAtrium">
+        <rect x="300" y="110" width="200" height="260" rx="6"
+              fill="#EEF0F4" stroke="#BFBBB2" stroke-dasharray="4 3"></rect>
+        <text x="400" y="235" text-anchor="middle" class="map-atrium-label">Central</text>
+        <text x="400" y="252" text-anchor="middle" class="map-atrium-label">Atrium</text>
+      </g>
+      <g id="mapCompass">
+        <text x="400" y="18"  text-anchor="middle" class="map-compass">NORTH ↑</text>
+        <text x="22"  y="380" text-anchor="start"  class="map-compass">WEST ↤</text>
+        <text x="778" y="380" text-anchor="end"    class="map-compass">↦ EAST</text>
+      </g>
+      <g id="mapPin" style="display:none">
+        <circle cx="0" cy="0" r="13" fill="#F59E0B" stroke="#FDFCF9" stroke-width="3"></circle>
+        <text x="0" y="5" text-anchor="middle" fill="#FDFCF9" font-size="14" font-weight="700">★</text>
+      </g>
+    </svg>
+  `;
+  document.getElementById('mapCanvas').innerHTML = svg;
+}
+
+function renderMap() {
+  // Apply mode class for CSS-driven styling.
+  const canvas = document.getElementById('mapCanvas');
+  if (!canvas) return;
+  canvas.classList.remove('map-mode-idle', 'map-mode-supplier', 'map-mode-hall');
+  canvas.classList.add('map-mode-' + mapMode);
+
+  // Selected/dim state per hall.
+  document.querySelectorAll('.map-hall').forEach(g => {
+    const code = g.getAttribute('data-hall');
+    g.classList.toggle('map-hall-selected', code === mapSelectedHall);
+    g.classList.toggle('map-hall-dim', mapMode === 'supplier' && code !== mapSelectedHall);
+
+    // Category-empty state (set by Task 9; safe to compute always).
+    const empty = mapCategory && !hallHasCategory(code, mapCategory);
+    g.classList.toggle('map-hall-empty', empty);
+  });
+
+  // Pin placement for supplier mode.
+  const pin = document.getElementById('mapPin');
+  if (pin) {
+    if (mapMode === 'supplier' && mapSelectedHall && HALL_META[mapSelectedHall]) {
+      const m = HALL_META[mapSelectedHall];
+      pin.setAttribute('transform', `translate(${m.x + m.w / 2}, ${m.y + m.h / 2 + 4})`);
+      pin.style.display = '';
+    } else {
+      pin.style.display = 'none';
+    }
+  }
+
+  renderMapSidePanel();
+}
+
+function renderMapSidePanel() {
+  const panel = document.getElementById('mapPanel');
+  if (!panel) return;
+
+  if (mapMode === 'supplier' && mapSelectedSupplierIdx != null) {
+    const e = RAW[mapSelectedSupplierIdx];
+    const hall = HALL_META[e.hall];
+    panel.innerHTML = `
+      <div class="map-panel-section">
+        <div class="map-panel-label">Supplier</div>
+        <div class="map-panel-title">${esc(e.en)}</div>
+        ${e.cn ? `<div class="map-panel-cn">${esc(e.cn)}</div>` : ''}
+      </div>
+      <div class="map-panel-section">
+        <div class="map-hall-chip"><strong>${e.hall}</strong> · ${esc(hall ? hall.en : e.hallEn || '')}</div>
+      </div>
+      ${e.scope ? `<div class="map-panel-section"><div class="map-panel-label">Business scope</div><div class="map-panel-text">${esc(e.scope)}</div></div>` : ''}
+      <button type="button" class="map-panel-cta" onclick="openPanel(${mapSelectedSupplierIdx})">
+        Open full supplier details →
+      </button>
+    `;
+    return;
+  }
+
+  if (mapMode === 'hall' && mapSelectedHall) {
+    const meta = HALL_META[mapSelectedHall];
+    const allRows = RAW
+      .map((e, i) => ({ e, i }))
+      .filter(x => x.e.hall === mapSelectedHall)
+      .filter(x => !mapCategory || (x.e.cats || []).includes(mapCategory));
+    const q = mapHallFilter.toLowerCase();
+    const rows = q
+      ? allRows.filter(x => (x.e._en_lc || '').includes(q) || (x.e.cn || '').includes(mapHallFilter))
+      : allRows;
+    const listHtml = rows.length
+      ? rows.map(x => `
+          <div class="map-hall-row" onclick="mapPickSupplier(${x.i})">
+            <div class="map-hall-row-en">${esc(x.e.en)}</div>
+            ${x.e.cn ? `<div class="map-hall-row-cn">${esc(x.e.cn)}</div>` : ''}
+          </div>
+        `).join('')
+      : `<div class="map-hall-empty-msg">No suppliers match the current filter.</div>`;
+    panel.innerHTML = `
+      <div class="map-panel-section">
+        <div class="map-panel-label">Hall</div>
+        <div class="map-panel-title">${mapSelectedHall} · ${esc(meta.en)}</div>
+        <div class="map-panel-cn">${esc(meta.cn)}</div>
+        <div class="map-panel-sub">${allRows.length} suppliers${mapCategory ? ` in "${esc(mapCategory)}"` : ''}</div>
+      </div>
+      <input type="search" class="map-hall-filter" placeholder="Filter within hall…"
+             value="${esc(mapHallFilter)}" oninput="mapSetHallFilter(this.value)">
+      <div class="map-hall-list">${listHtml}</div>
+    `;
+    return;
+  }
+
+  // Idle
+  const totalE = HALL_CODES.filter(h => h.startsWith('E')).reduce((s, h) => s + HALL_COUNTS[h], 0);
+  const totalW = HALL_CODES.filter(h => h.startsWith('W')).reduce((s, h) => s + HALL_COUNTS[h], 0);
+  const totalN = HALL_CODES.filter(h => h.startsWith('N')).reduce((s, h) => s + HALL_COUNTS[h], 0);
+  panel.innerHTML = `
+    <div class="map-panel-section">
+      <div class="map-panel-title">Shanghai venue map</div>
+      <div class="map-panel-sub">13 halls · ${RAW.length.toLocaleString()} suppliers</div>
+    </div>
+    <div class="map-panel-section">
+      <div class="map-panel-label">How to use</div>
+      <ul class="map-panel-list">
+        <li>Type a supplier name to highlight their hall.</li>
+        <li>Type a hall code (e.g. <code>E6</code>) and press Enter to browse it.</li>
+        <li>Click any hall on the map to see who exhibits there.</li>
+      </ul>
+    </div>
+    <div class="map-panel-section">
+      <div class="map-panel-label">By wing</div>
+      <div class="map-panel-stats">
+        <div><span class="sw-dot sw-n"></span>North — ${totalN.toLocaleString()}</div>
+        <div><span class="sw-dot sw-e"></span>East — ${totalE.toLocaleString()}</div>
+        <div><span class="sw-dot sw-w"></span>West — ${totalW.toLocaleString()}</div>
+      </div>
+    </div>
+  `;
+}
+
+function hallHasCategory(code, cat) {
+  if (!mapSearchIndex) return true;
+  return mapSearchIndex.some(x => x.hall === code && x.cats.includes(cat));
+}
+
+// Pared-down HTML escape — reuses existing `esc` for strings, adds SVG-safe for attributes/text.
+function escSvg(s) {
+  return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// Placeholder stubs — implemented in later tasks.
+function wireMapEvents() { /* Task 5+ */ }
+function mapPickSupplier(idx) { /* Task 7 */ }
+function mapPickHall(code) { /* Task 5 */ }
+function mapClear() { /* Task 8 */ }
+function mapSetHallFilter(v) { /* Task 10 */ }
 </script>
 </body>
 </html>
