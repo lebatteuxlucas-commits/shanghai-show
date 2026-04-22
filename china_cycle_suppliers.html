@@ -3335,12 +3335,50 @@ function escSvg(s) {
   return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// Placeholder stubs — implemented in later tasks.
-function wireMapEvents() { /* Task 5+ */ }
-function mapPickSupplier(idx) { /* Task 7 */ }
-function mapPickHall(code) { /* Task 5 */ }
-function mapClear() { /* Task 8 */ }
-function mapSetHallFilter(v) { /* Task 10 */ }
+function wireMapEvents() {
+  // Click on hall rect → enter hall mode.
+  document.querySelectorAll('.map-hall').forEach(g => {
+    g.addEventListener('click', ev => {
+      ev.stopPropagation();
+      const code = g.getAttribute('data-hall');
+      mapPickHall(code);
+    });
+  });
+
+  // Click on empty map background → clear.
+  const canvas = document.getElementById('mapCanvas');
+  if (canvas) {
+    canvas.addEventListener('click', ev => {
+      if (ev.target.closest('.map-hall')) return;
+      if (ev.target.closest('#mapPin')) return;
+      mapClear();
+    });
+  }
+}
+
+function mapPickSupplier(idx) { /* implemented in Task 7 */ }
+
+function mapPickHall(code) {
+  if (!HALL_META[code]) return;
+  mapMode = 'hall';
+  mapSelectedHall = code;
+  mapSelectedSupplierIdx = null;
+  mapHallFilter = '';
+  renderMap();
+}
+
+function mapClear() {
+  mapMode = 'idle';
+  mapSelectedHall = null;
+  mapSelectedSupplierIdx = null;
+  mapHallFilter = '';
+  renderMap();
+}
+
+function mapSetHallFilter(v) {
+  mapHallFilter = v || '';
+  renderMapSidePanel();
+}
 </script>
 </body>
 </html>
