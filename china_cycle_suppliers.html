@@ -1410,47 +1410,6 @@ RAW.forEach(e => {
   e._brand_lc = (e.brand||'').toLowerCase();
 });
 
-// One-shot migration: notes/statuses/catalogs were keyed by cn (or by
-// `cn || en|booth`) before stable ids existed. Re-key them to `id` so
-// they survive an edit of the cn field. Idempotent — guarded by a flag.
-(function migrateLegacyKeys() {
-  if (LS.get('migrated_cn_to_id_v1')) return;
-
-  // Build lookup tables. On collision (two RAW rows sharing the same cn or
-  // the same en+'|'+booth) we set the value to null so the legacy key falls
-  // through to the orphan branch — better to drop than to misattribute.
-  const byCn = new Map();
-  const byLegacy = new Map();
-  const allIds = new Set();
-  RAW.forEach(e => {
-    if (!e.id) return;
-    allIds.add(e.id);
-    if (e.cn) {
-      byCn.set(e.cn, byCn.has(e.cn) ? null : e.id);
-    }
-    const lk = e.en + '|' + (e.booth || '');
-    byLegacy.set(lk, byLegacy.has(lk) ? null : e.id);
-  });
-
-  function rekey(bucket) {
-    const old = LS.get(bucket) || {};
-    const next = {};
-    for (const [k, v] of Object.entries(old)) {
-      // Already migrated (key matches an existing id) — pass through. This
-      // makes the migration safe to re-run if it ever crashes mid-flight.
-      const id = allIds.has(k) ? k : (byCn.get(k) || byLegacy.get(k) || null);
-      if (id) next[id] = v;
-      // else: orphan — silently dropped
-    }
-    LS.set(bucket, next);
-  }
-
-  rekey('notes');
-  rekey('statuses');
-  rekey('catalogs');
-  LS.set('migrated_cn_to_id_v1', true);
-})();
-
 // Merge RAW[i] with any user override for the four editable fields.
 // Caller-safe: returns a new object, does not mutate RAW.
 function getDisplayEntry(i) {
@@ -1660,6 +1619,48 @@ const LS = {
   allOverrides: () => LS.get('overrides') || {},
   clearAllOverrides: () => LS.set('overrides', {}),
 };
+
+// One-shot migration: notes/statuses/catalogs were keyed by cn (or by
+// `cn || en|booth`) before stable ids existed. Re-key them to `id` so
+// they survive an edit of the cn field. Idempotent — guarded by a flag.
+// MUST run after `const LS` is declared above (TDZ).
+(function migrateLegacyKeys() {
+  if (LS.get('migrated_cn_to_id_v1')) return;
+
+  // Build lookup tables. On collision (two RAW rows sharing the same cn or
+  // the same en+'|'+booth) we set the value to null so the legacy key falls
+  // through to the orphan branch — better to drop than to misattribute.
+  const byCn = new Map();
+  const byLegacy = new Map();
+  const allIds = new Set();
+  RAW.forEach(e => {
+    if (!e.id) return;
+    allIds.add(e.id);
+    if (e.cn) {
+      byCn.set(e.cn, byCn.has(e.cn) ? null : e.id);
+    }
+    const lk = e.en + '|' + (e.booth || '');
+    byLegacy.set(lk, byLegacy.has(lk) ? null : e.id);
+  });
+
+  function rekey(bucket) {
+    const old = LS.get(bucket) || {};
+    const next = {};
+    for (const [k, v] of Object.entries(old)) {
+      // Already migrated (key matches an existing id) — pass through. This
+      // makes the migration safe to re-run if it ever crashes mid-flight.
+      const id = allIds.has(k) ? k : (byCn.get(k) || byLegacy.get(k) || null);
+      if (id) next[id] = v;
+      // else: orphan — silently dropped
+    }
+    LS.set(bucket, next);
+  }
+
+  rekey('notes');
+  rekey('statuses');
+  rekey('catalogs');
+  LS.set('migrated_cn_to_id_v1', true);
+})();
 
 // Stable supplier identifier for storage keys. CN name is the canonical
 // pick (used by the existing status system) and we fall back to EN+booth
