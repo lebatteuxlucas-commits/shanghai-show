@@ -1752,12 +1752,10 @@ function openPanel(idx) {
   document.getElementById('panel-name').textContent = e.en || '—';
   document.getElementById('panel-cn').textContent   = e.cn || '';
 
-  const brandWrap = document.getElementById('panel-brand-wrap');
-  const brandEl   = document.getElementById('panel-brand');
-  if (e.brand) {
-    brandEl.innerHTML = '<span class="co-brand">' + esc(e.brand) + '</span>';
-    brandWrap.style.display = '';
-  } else { brandWrap.style.display = 'none'; }
+  const brandEl = document.getElementById('panel-brand');
+  brandEl.innerHTML = e.brand
+    ? '<span class="co-brand">' + esc(e.brand) + '</span>'
+    : '<span class="no-val">—</span>';
 
   // Multi-hall: render every hall pill so the panel reflects reality.
   const hallList = (e.halls && e.halls.length) ? e.halls : (e.hall ? [e.hall] : []);
@@ -1772,15 +1770,13 @@ function openPanel(idx) {
 
   syncCatalogCta(e);
 
-  const boothWrap = document.getElementById('panel-booth-wrap');
-  const boothEl   = document.getElementById('panel-booth');
-  if (e.booth) {
-    // Split on comma so each booth code becomes its own copyable pill
-    boothEl.innerHTML = e.booth.split(',').map(b =>
-      '<code class="booth-code">'+esc(b.trim())+'</code>'
-    ).join(' ');
-    boothWrap.style.display = '';
-  } else { boothWrap.style.display = 'none'; }
+  const boothEl = document.getElementById('panel-booth');
+  boothEl.innerHTML = e.booth
+    ? e.booth.split(',').map(b => '<code class="booth-code">'+esc(b.trim())+'</code>').join(' ')
+    : '<span class="no-val">—</span>';
+
+  document.getElementById('panel-en').textContent          = e.en || '—';
+  document.getElementById('panel-cn-readonly').textContent = e.cn || '—';
 
   const siteWrap = document.getElementById('panel-site-wrap');
   const siteEl   = document.getElementById('panel-site');
@@ -1808,6 +1804,15 @@ function openPanel(idx) {
   statusSel.className = statusClass(status);
 
   document.getElementById('panel-notes').value = LS.getNote(raw.id);
+
+  // Toggle "✎ edited" badges based on which fields are overridden.
+  const ov = LS.getOverride(raw.id) || {};
+  for (const f of ['brand', 'booth', 'en', 'cn']) {
+    const badge = document.getElementById('panel-' + f + '-badge');
+    if (badge) badge.style.display = (f in ov) ? '' : 'none';
+  }
+  // Always start in read mode (in case the previous panel was closed mid-edit)
+  document.getElementById('detailPanel').classList.remove('editing');
 
   document.getElementById('detailPanel').classList.add('open');
   document.getElementById('overlay').classList.add('open');
