@@ -1808,6 +1808,12 @@ function openPanel(idx) {
 }
 
 function closePanel() {
+  if (panelEditing && panelEditDirty) {
+    if (!confirm('Unsaved changes. Close anyway?')) return;
+  }
+  document.getElementById('detailPanel').classList.remove('editing');
+  panelEditing = false;
+  panelEditDirty = false;
   document.getElementById('detailPanel').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
   panelIdx = -1;
@@ -1827,6 +1833,90 @@ function panelSaveNote() {
   const e = RAW[panelIdx];
   LS.setNote(e.id, document.getElementById('panel-notes').value.trim());
   showToast('Note saved');
+}
+
+// ── Side panel edit mode ────────────────────────────────────────────────────
+let panelEditing = false;
+let panelEditDirty = false;
+
+function panelEnterEditMode(focusField) {
+  if (panelIdx < 0) return;
+  const raw = RAW[panelIdx];
+  const e = getDisplayEntry(panelIdx) || raw;
+
+  document.getElementById('panel-brand-input').value = e.brand || '';
+  document.getElementById('panel-booth-input').value = e.booth || '';
+  document.getElementById('panel-en-input').value    = e.en    || '';
+  document.getElementById('panel-cn-input').value    = e.cn    || '';
+
+  document.getElementById('detailPanel').classList.add('editing');
+  panelEditing = true;
+  panelEditDirty = false;
+
+  // Track dirtiness so closePanel can prompt the user.
+  ['brand', 'booth', 'en', 'cn'].forEach(f => {
+    document.getElementById('panel-' + f + '-input').addEventListener('input', _markDirty);
+  });
+
+  const focusEl = document.getElementById('panel-' + (focusField || 'brand') + '-input');
+  if (focusEl) { focusEl.focus(); focusEl.select(); }
+}
+
+function _markDirty() { panelEditDirty = true; }
+
+function panelExitEditMode(saved) {
+  document.getElementById('detailPanel').classList.remove('editing');
+  panelEditing = false;
+  panelEditDirty = false;
+  ['brand', 'booth', 'en', 'cn'].forEach(f => {
+    document.getElementById('panel-' + f + '-input').removeEventListener('input', _markDirty);
+  });
+  if (!saved) return;
+  // Re-render the panel body to pick up the new values.
+  openPanel(panelIdx);
+  // Refresh the active list view (table / map) so changes propagate.
+  refreshCurrentView();
+}
+
+function _normaliseBoothString(s) {
+  return (s || '')
+    .split(',')
+    .map(p => p.trim())
+    .filter(Boolean)
+    .join(', ');
+}
+
+function panelSaveEdits() {
+  if (panelIdx < 0) return;
+  const raw = RAW[panelIdx];
+  const newVals = {
+    brand: document.getElementById('panel-brand-input').value.trim(),
+    booth: _normaliseBoothString(document.getElementById('panel-booth-input').value),
+    en:    document.getElementById('panel-en-input').value.trim(),
+    cn:    document.getElementById('panel-cn-input').value.trim(),
+  };
+  // Build the partial: only fields that differ from RAW are kept; fields that
+  // match RAW are sent as '' so setOverride drops them (revert behavior).
+  const partial = {};
+  for (const k of ['brand', 'booth', 'en', 'cn']) {
+    partial[k] = (newVals[k] === (raw[k] || '')) ? '' : newVals[k];
+  }
+  LS.setOverride(raw.id, partial);
+
+  // If the map search index has been built, rebuild the affected entry.
+  if (typeof mapSearchIndex !== 'undefined' && mapSearchIndex && mapSearchIndex[panelIdx]) {
+    const d = getDisplayEntry(panelIdx);
+    const boothCodes = (d.booth || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+    mapSearchIndex[panelIdx] = Object.assign({}, mapSearchIndex[panelIdx], {
+      en: d.en, enLc: (d.en || '').toLowerCase(),
+      cn: d.cn || '',
+      booth: d.booth || '', boothLc: (d.booth || '').toLowerCase(), boothCodes,
+      brand: d.brand || '', brandLc: (d.brand || '').toLowerCase(),
+    });
+  }
+
+  showToast('Changes saved');
+  panelExitEditMode(true);
 }
 
 // ── DISCOVER VIEW ─────────────────────────────────────────────────────────────
@@ -2183,6 +2273,19 @@ function applyFloorPlan() {
 }
 render();
 updateCatalogHeaderCounts();
+
+document.addEventListener('keydown', (ev) => {
+  if (!panelEditing) return;
+  if (ev.key === 'Escape') {
+    ev.preventDefault();
+    if (!panelEditDirty || confirm('Discard unsaved changes?')) {
+      panelExitEditMode(false);
+    }
+  } else if ((ev.metaKey || ev.ctrlKey) && ev.key === 'Enter') {
+    ev.preventDefault();
+    panelSaveEdits();
+  }
+});
 </script>
 
 <script>
