@@ -1321,19 +1321,29 @@ RAW.forEach(e => {
 (function migrateLegacyKeys() {
   if (LS.get('migrated_cn_to_id_v1')) return;
 
-  // Build cn → id and (en+'|'+booth) → id lookup tables
+  // Build lookup tables. On collision (two RAW rows sharing the same cn or
+  // the same en+'|'+booth) we set the value to null so the legacy key falls
+  // through to the orphan branch — better to drop than to misattribute.
   const byCn = new Map();
   const byLegacy = new Map();
+  const allIds = new Set();
   RAW.forEach(e => {
-    if (e.cn) byCn.set(e.cn, e.id);
-    byLegacy.set(e.en + '|' + (e.booth || ''), e.id);
+    if (!e.id) return;
+    allIds.add(e.id);
+    if (e.cn) {
+      byCn.set(e.cn, byCn.has(e.cn) ? null : e.id);
+    }
+    const lk = e.en + '|' + (e.booth || '');
+    byLegacy.set(lk, byLegacy.has(lk) ? null : e.id);
   });
 
   function rekey(bucket) {
     const old = LS.get(bucket) || {};
     const next = {};
     for (const [k, v] of Object.entries(old)) {
-      const id = byCn.get(k) || byLegacy.get(k) || (k.startsWith('official_') || k.startsWith('ocr_') ? k : null);
+      // Already migrated (key matches an existing id) — pass through. This
+      // makes the migration safe to re-run if it ever crashes mid-flight.
+      const id = allIds.has(k) ? k : (byCn.get(k) || byLegacy.get(k) || null);
       if (id) next[id] = v;
       // else: orphan — silently dropped
     }
