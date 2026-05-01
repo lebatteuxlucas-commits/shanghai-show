@@ -118,18 +118,32 @@
   h1 span { color: var(--teal); }
   .subtitle { color: var(--mid); font-size: 12px; margin-top: 5px; letter-spacing: 0.2px; }
 
-  .stats-row { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+  .stats-row {
+    display: flex; flex-wrap: wrap; gap: 36px;
+    margin-bottom: 18px;
+    padding: 6px 0 16px;
+    border-bottom: 1px solid var(--border);
+  }
   .stat {
-    display: flex; align-items: baseline; gap: 7px;
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 5px; padding: 8px 16px;
+    display: flex; flex-direction: column; gap: 6px;
+    padding-left: 12px;
+    border-left: 2px solid var(--teal);
   }
   .stat-num {
-    font-family: var(--mono);
-    font-weight: 500; font-size: 18px; color: var(--teal);
-    line-height: 1;
+    font-family: var(--display);
+    font-weight: 800; font-size: 36px;
+    color: var(--charcoal);
+    letter-spacing: -0.4px;
+    line-height: 0.95;
+    font-variant-numeric: tabular-nums;
   }
-  .stat-label { font-size: 11px; color: var(--mid); letter-spacing: 0.2px; }
+  .stat-label {
+    font-family: var(--display);
+    font-size: 10px; font-weight: 700;
+    color: var(--mid);
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
 
   /* ── CONTROLS ────────────────────────────────── */
   .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
