@@ -313,8 +313,14 @@ def main():
         rows = list(reader)
         fieldnames = reader.fieldnames
 
-    obj_by_id = {f"official_{i}": o for i, o in enumerate(objects[:1627])}
-    # Map by EN+booth signature for OCR-only entries.
+    if "Brand" not in fieldnames:
+        # Insert "Brand" right after "All Booths" if present
+        if "All Booths" in fieldnames:
+            i = fieldnames.index("All Booths") + 1
+            fieldnames = fieldnames[:i] + ["Brand"] + fieldnames[i:]
+        else:
+            fieldnames = fieldnames + ["Brand"]
+
     obj_by_sig = {(o["en"], o.get("booth","")): o for o in objects}
 
     for r in rows:
@@ -322,6 +328,8 @@ def main():
         o = obj_by_sig.get(sig)
         if o and "brand" in o:
             r["Brand"] = o["brand"]
+        else:
+            r.setdefault("Brand", "")
 
     with CSV.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames); w.writeheader(); w.writerows(rows)
