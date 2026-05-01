@@ -1315,6 +1315,37 @@ RAW.forEach(e => {
   e._brand_lc = (e.brand||'').toLowerCase();
 });
 
+// One-shot migration: notes/statuses/catalogs were keyed by cn (or by
+// `cn || en|booth`) before stable ids existed. Re-key them to `id` so
+// they survive an edit of the cn field. Idempotent — guarded by a flag.
+(function migrateLegacyKeys() {
+  if (LS.get('migrated_cn_to_id_v1')) return;
+
+  // Build cn → id and (en+'|'+booth) → id lookup tables
+  const byCn = new Map();
+  const byLegacy = new Map();
+  RAW.forEach(e => {
+    if (e.cn) byCn.set(e.cn, e.id);
+    byLegacy.set(e.en + '|' + (e.booth || ''), e.id);
+  });
+
+  function rekey(bucket) {
+    const old = LS.get(bucket) || {};
+    const next = {};
+    for (const [k, v] of Object.entries(old)) {
+      const id = byCn.get(k) || byLegacy.get(k) || (k.startsWith('official_') || k.startsWith('ocr_') ? k : null);
+      if (id) next[id] = v;
+      // else: orphan — silently dropped
+    }
+    LS.set(bucket, next);
+  }
+
+  rekey('notes');
+  rekey('statuses');
+  rekey('catalogs');
+  LS.set('migrated_cn_to_id_v1', true);
+})();
+
 // Merge RAW[i] with any user override for the four editable fields.
 // Caller-safe: returns a new object, does not mutate RAW.
 function getDisplayEntry(i) {
@@ -1483,10 +1514,10 @@ const LS = {
   _k: (key) => 'fm_' + key,
   get: (key) => { try { return JSON.parse(localStorage.getItem(LS._k(key)) || 'null'); } catch { return null; } },
   set: (key, val) => { try { localStorage.setItem(LS._k(key), JSON.stringify(val)); } catch {} },
-  getStatus: (cn) => { const s = LS.get('statuses') || {}; return s[cn] || ''; },
-  setStatus: (cn, v) => { const s = LS.get('statuses') || {}; if (v) s[cn] = v; else delete s[cn]; LS.set('statuses', s); },
-  getNote: (cn) => { const n = LS.get('notes') || {}; return n[cn] || ''; },
-  setNote: (cn, txt) => { const n = LS.get('notes') || {}; if (txt) n[cn] = txt; else delete n[cn]; LS.set('notes', n); },
+  getStatus: (id) => { const s = LS.get('statuses') || {}; return s[id] || ''; },
+  setStatus: (id, v) => { const s = LS.get('statuses') || {}; if (v) s[id] = v; else delete s[id]; LS.set('statuses', s); },
+  getNote: (id) => { const n = LS.get('notes') || {}; return n[id] || ''; },
+  setNote: (id, txt) => { const n = LS.get('notes') || {}; if (txt) n[id] = txt; else delete n[id]; LS.set('notes', n); },
   // ── Catalog collection state ─────────────────────────────────────────────
   // Tracks which suppliers' catalogs the user has physically picked up at
   // the show. Stored as { [key]: { at: ISO_date } } so we can show *when*
@@ -1530,7 +1561,7 @@ const LS = {
 // for entries with no Chinese name so every row is addressable.
 function supplierKey(e) {
   if (!e) return '';
-  return e.cn || (e.en + '|' + (e.booth || ''));
+  return e.id || e.cn || (e.en + '|' + (e.booth || ''));
 }
 
 // Toggle catalog state and refresh every UI surface that reflects it
@@ -1662,12 +1693,12 @@ function openPanel(idx) {
   } else { catsWrap.style.display = 'none'; }
 
   // Status & notes
-  const status = LS.getStatus(e.cn);
+  const status = LS.getStatus(raw.id);
   const statusSel = document.getElementById('panel-status');
   statusSel.value = status || '';
   statusSel.className = statusClass(status);
 
-  document.getElementById('panel-notes').value = LS.getNote(e.cn);
+  document.getElementById('panel-notes').value = LS.getNote(raw.id);
 
   document.getElementById('detailPanel').classList.add('open');
   document.getElementById('overlay').classList.add('open');
@@ -1683,7 +1714,7 @@ function panelSetStatus() {
   if (panelIdx < 0) return;
   const e = RAW[panelIdx];
   const val = document.getElementById('panel-status').value;
-  LS.setStatus(e.cn, val);
+  LS.setStatus(e.id, val);
   document.getElementById('panel-status').className = statusClass(val);
   refreshCurrentView();
 }
@@ -1691,7 +1722,7 @@ function panelSetStatus() {
 function panelSaveNote() {
   if (panelIdx < 0) return;
   const e = RAW[panelIdx];
-  LS.setNote(e.cn, document.getElementById('panel-notes').value.trim());
+  LS.setNote(e.id, document.getElementById('panel-notes').value.trim());
   showToast('Note saved');
 }
 
