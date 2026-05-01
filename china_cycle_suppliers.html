@@ -1329,6 +1329,16 @@ RAW.forEach(e => {
   e._brand_lc = (e.brand||'').toLowerCase();
 });
 
+// Merge RAW[i] with any user override for the four editable fields.
+// Caller-safe: returns a new object, does not mutate RAW.
+function getDisplayEntry(i) {
+  const e = RAW[i];
+  if (!e) return null;
+  const ov = LS.getOverride(e.id);
+  if (!ov) return e;
+  return Object.assign({}, e, ov);
+}
+
 let curHall='', curCat='', curQ='', sortKey='en', sortDir=1, page=1;
 const PAGE=50;
 
@@ -1421,14 +1431,15 @@ function render() {
       const siteLink=e.website
         ? '<div class="co-site"><a href="'+esc(normalizeUrl(e.website))+'" target="_blank" rel="noopener">🔗 '+esc(e.website.replace(/^https?:\/\//,'').split('/')[0])+'</a></div>'
         : '';
-      const boothCell = e.booth
-        ? '<code class="booth-code">'+esc(e.booth)+'</code>'
-        : '<span class="no-val">—</span>';
       const idx=RAW_IDX.get(e);
+      const d = getDisplayEntry(idx) || e;
+      const boothCell = d.booth
+        ? '<code class="booth-code">'+esc(d.booth)+'</code>'
+        : '<span class="no-val">—</span>';
       // Brand banner above the corporate name when present — easier to scan
       // than buried at the end of the row.
-      const brandLine = e.brand
-        ? '<div class="co-brand">'+esc(e.brand)+'</div>'
+      const brandLine = d.brand
+        ? '<div class="co-brand">'+esc(d.brand)+'</div>'
         : '';
       const catOn  = !!LS.getCatalog(supplierKey(e));
       const catChip = '<button type="button" class="cat-chip'+(catOn?' cat-on':'')+'" '+
@@ -1439,8 +1450,8 @@ function render() {
         '<td class="row-num">'+((page-1)*PAGE+i+1)+'</td>'+
         '<td>'+catChip+'</td>'+
         '<td>'+brandLine+
-          '<div class="co-en">'+esc(e.en||'—')+'</div>'+
-          (e.cn?'<div class="co-cn">'+esc(e.cn)+'</div>':'')+
+          '<div class="co-en">'+esc(d.en||'—')+'</div>'+
+          (d.cn?'<div class="co-cn">'+esc(d.cn)+'</div>':'')+
           siteLink+'</td>'+
         '<td>'+hallPills+
           '<div class="hall-sub">'+esc(e.hallEn||'Unassigned')+'</div></td>'+
@@ -1601,7 +1612,8 @@ let panelIdx = -1;
 
 function openPanel(idx) {
   panelIdx = idx;
-  const e = RAW[idx];
+  const raw = RAW[idx];
+  const e = getDisplayEntry(idx) || raw;
   const hc = HALL_COLORS[e.hall] || {bg:'#f0f0f0', c:'#9e9e9e'};
 
   document.getElementById('panel-name').textContent = e.en || '—';
@@ -2054,7 +2066,8 @@ function initMap() {
   // typing "0901" or "E5-0901". Brand names from the floor plan are also
   // included so a query like "DAHON" matches the company that displays the
   // DAHON logo on the venue floor.
-  mapSearchIndex = RAW.map((e, i) => {
+  mapSearchIndex = RAW.map((rawE, i) => {
+    const e = getDisplayEntry(i) || rawE;
     const boothLc = (e.booth || '').toLowerCase();
     const boothCodes = (e.booth || '')
       .split(',')
@@ -2063,7 +2076,7 @@ function initMap() {
     return {
       idx: i,
       en: e.en,
-      enLc: (e._en_lc || e.en.toLowerCase()),
+      enLc: (e.en || '').toLowerCase(),
       cn: e.cn || '',
       hall: e.hall,
       halls: e.halls || (e.hall ? [e.hall] : []),
