@@ -1738,6 +1738,12 @@ function updateTabCounts(supplierCount) {
 let panelIdx = -1;
 
 function openPanel(idx) {
+  // If switching to a different supplier mid-edit, prompt to discard so the
+  // user can't accidentally save panel A's input values onto panel B's id.
+  if (panelEditing && idx !== panelIdx) {
+    if (panelEditDirty && !confirm('Unsaved changes. Discard and open another supplier?')) return;
+    _resetEditState();
+  }
   panelIdx = idx;
   const raw = RAW[idx];
   const e = getDisplayEntry(idx) || raw;
@@ -1811,9 +1817,7 @@ function closePanel() {
   if (panelEditing && panelEditDirty) {
     if (!confirm('Unsaved changes. Close anyway?')) return;
   }
-  document.getElementById('detailPanel').classList.remove('editing');
-  panelEditing = false;
-  panelEditDirty = false;
+  _resetEditState();
   document.getElementById('detailPanel').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
   panelIdx = -1;
@@ -1839,8 +1843,29 @@ function panelSaveNote() {
 let panelEditing = false;
 let panelEditDirty = false;
 
+// Tear down edit-mode listeners and reset the editing class/flags. Idempotent.
+function _resetEditState() {
+  document.getElementById('detailPanel').classList.remove('editing');
+  if (panelEditing) {
+    ['brand', 'booth', 'en', 'cn'].forEach(f => {
+      const el = document.getElementById('panel-' + f + '-input');
+      if (el) el.removeEventListener('input', _markDirty);
+    });
+  }
+  panelEditing = false;
+  panelEditDirty = false;
+}
+
 function panelEnterEditMode(focusField) {
   if (panelIdx < 0) return;
+  // Re-entry guard: if already editing, just re-focus the requested field
+  // without re-prefilling inputs (would clobber the user's typed values) or
+  // resetting the dirty flag.
+  if (panelEditing) {
+    const focusEl = document.getElementById('panel-' + (focusField || 'brand') + '-input');
+    if (focusEl) { focusEl.focus(); focusEl.select(); }
+    return;
+  }
   const raw = RAW[panelIdx];
   const e = getDisplayEntry(panelIdx) || raw;
 
@@ -1865,12 +1890,7 @@ function panelEnterEditMode(focusField) {
 function _markDirty() { panelEditDirty = true; }
 
 function panelExitEditMode(saved) {
-  document.getElementById('detailPanel').classList.remove('editing');
-  panelEditing = false;
-  panelEditDirty = false;
-  ['brand', 'booth', 'en', 'cn'].forEach(f => {
-    document.getElementById('panel-' + f + '-input').removeEventListener('input', _markDirty);
-  });
+  _resetEditState();
   if (!saved) return;
   // Re-render the panel body to pick up the new values.
   openPanel(panelIdx);
