@@ -36,13 +36,17 @@ HALL_NAMES_CN = {
     "W3": "童车馆", "W4": "户外骑行装备馆", "W5": "品牌创新馆",
 }
 
+def _slug(name: str) -> str:
+    """Lowercase, alphanumerics + underscores, used for ocr_<slug> ids."""
+    return re.sub(r'[^a-z0-9]+', '_', (name or '').lower()).strip('_')
+
 def main():
     official = json.loads(OFF.read_text(encoding="utf-8"))
     print(f"Loaded {len(official)} official entries")
 
     # ── Build canonical RAW[] objects ───────────────────────────────
     raw = []
-    for o in official:
+    for off_idx, o in enumerate(official):
         booths = o["booths"]  # list of [hall, code]
         primary_hall = booths[0][0] if booths else ""
         # Combined booth string for display (multi-booth → join with ', ')
@@ -50,6 +54,7 @@ def main():
         # Halls list (deduped)
         halls = sorted({h for h, _ in booths}) if booths else []
         raw.append({
+            "id":    f"official_{off_idx}",
             "en":    o["name_en"],
             "cn":    o["name_cn"],
             "hall":  primary_hall,           # primary hall (drives chip filter)
@@ -82,6 +87,7 @@ def main():
         if en in official_en_set:
             continue
         raw.append({
+            "id":    f"ocr_{_slug(en)}",
             "en":    en,
             "cn":    cn,
             "hall":  hall,
