@@ -40,9 +40,56 @@ def _slug(name: str) -> str:
     """Lowercase, alphanumerics + underscores, used for ocr_<slug> ids."""
     return re.sub(r'[^a-z0-9]+', '_', (name or '').lower()).strip('_')
 
+def load_overrides(root: Path):
+    """Load overrides.json if it exists. Returns dict[id, dict[field, value]]."""
+    f = root / "overrides.json"
+    if not f.exists():
+        return {}
+    try:
+        data = json.loads(f.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"⚠ Could not parse overrides.json: {e}")
+        return {}
+    if not isinstance(data, dict):
+        print("⚠ overrides.json is not a JSON object — ignoring")
+        return {}
+    return data
+
+
+def _booth_str_to_pairs(s: str):
+    """'E1-0001, E1-0003' → [['E1','0001'], ['E1','0003']]."""
+    out = []
+    for chunk in (s or "").split(","):
+        c = chunk.strip()
+        if not c or "-" not in c:
+            continue
+        hall, code = c.split("-", 1)
+        out.append([hall.strip(), code.strip()])
+    return out
+
 def main():
     official = json.loads(OFF.read_text(encoding="utf-8"))
     print(f"Loaded {len(official)} official entries")
+
+    overrides = load_overrides(ROOT)
+    applied = 0
+    unmatched = []
+
+    for off_idx, o in enumerate(official):
+        ov = overrides.get(f"official_{off_idx}")
+        if not ov:
+            continue
+        if "en" in ov:
+            o["name_en"] = ov["en"]
+        if "cn" in ov:
+            o["name_cn"] = ov["cn"]
+        if "booth" in ov:
+            o["booths"] = _booth_str_to_pairs(ov["booth"])
+        # `brand` is a RAW-only field; we stash it on the official entry so
+        # the RAW build step can pick it up.
+        if "brand" in ov:
+            o["_override_brand"] = ov["brand"]
+        applied += 1
 
     # ── Build canonical RAW[] objects ───────────────────────────────
     raw = []
@@ -53,7 +100,7 @@ def main():
         booth_codes = ", ".join(f"{h}-{c}" for h, c in booths) if booths else ""
         # Halls list (deduped)
         halls = sorted({h for h, _ in booths}) if booths else []
-        raw.append({
+        entry = {
             "id":    f"official_{off_idx}",
             "en":    o["name_en"],
             "cn":    o["name_cn"],
@@ -64,7 +111,10 @@ def main():
             "website": "",
             "booth": booth_codes,            # NEW field, displayed in UI
             "halls": halls,                  # NEW field for multi-hall
-        })
+        }
+        if "_override_brand" in o:
+            entry["brand"] = o["_override_brand"]
+        raw.append(entry)
 
     # ── Add OCR-only brands the official portal doesn't list ────────
     plan = json.loads(PLAN.read_text(encoding="utf-8"))["halls"]
@@ -86,21 +136,49 @@ def main():
     for en, (hall, cn) in keep_ocr_only.items():
         if en in official_en_set:
             continue
-        raw.append({
-            "id":    f"ocr_{_slug(en)}",
-            "en":    en,
-            "cn":    cn,
-            "hall":  hall,
-            "hallEn": HALL_NAMES_EN.get(hall, ""),
+        ov_id = f"ocr_{_slug(en)}"
+        ov = overrides.get(ov_id)
+        if ov:
+            applied += 1
+            en_eff = ov.get("en", en)
+            cn_eff = ov.get("cn", cn)
+            booth_eff = ov.get("booth", "")
+            booths_pairs = _booth_str_to_pairs(booth_eff)
+            primary_hall = booths_pairs[0][0] if booths_pairs else hall
+            halls_eff = sorted({h for h, _ in booths_pairs}) if booths_pairs else [hall]
+        else:
+            en_eff, cn_eff, booth_eff = en, cn, ""
+            primary_hall = hall
+            halls_eff = [hall]
+        entry = {
+            "id":    ov_id,
+            "en":    en_eff,
+            "cn":    cn_eff,
+            "hall":  primary_hall,
+            "hallEn": HALL_NAMES_EN.get(primary_hall, ""),
             "scope": "",
             "cats":  [],
             "website": "",
-            "booth": "",
-            "halls": [hall],
+            "booth": booth_eff,
+            "halls": halls_eff,
             "_src":  "floor_plan_ocr_only",
-        })
+        }
+        if ov and "brand" in ov:
+            entry["brand"] = ov["brand"]
+        raw.append(entry)
         added_ocr += 1
     print(f"Added {added_ocr} OCR-only brands not in official portal")
+
+    # Detect unmatched override ids (exist in overrides.json but no matching RAW entry)
+    raw_ids = {r["id"] for r in raw}
+    for ov_id in overrides:
+        if ov_id not in raw_ids:
+            unmatched.append(ov_id)
+    if overrides:
+        print(f"Applied {applied} override(s) from overrides.json")
+        if unmatched:
+            print(f"⚠ {len(unmatched)} override id(s) had no matching RAW entry: {', '.join(unmatched[:5])}{'…' if len(unmatched) > 5 else ''}")
+        print("  (overrides.json was not deleted — remove it manually once edits are committed upstream)")
 
     # ── exhibitors.csv ──────────────────────────────────────────────
     with CSV.open("w", encoding="utf-8-sig", newline="") as f:
