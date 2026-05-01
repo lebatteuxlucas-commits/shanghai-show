@@ -641,6 +641,80 @@
     color:var(--teal); text-decoration:none;
   }
   .panel-site a:hover { text-decoration:underline; }
+
+  /* ── Edit mode (side panel) ───────────────────────────────────────────── */
+  .panel-edit-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--mid);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  .panel-edit-toggle:hover { color: var(--dark); border-color: var(--dark); }
+  .panel-edit-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--dark);
+  }
+  .panel-edit-input:focus { outline: none; border-color: var(--teal); }
+  .panel-edit-footer {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 12px 24px;
+    margin: 16px -24px -20px;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .panel-edit-save {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .panel-edit-save:hover { background: var(--teal-dark); }
+  .panel-edit-cancel {
+    background: transparent;
+    color: var(--mid);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .panel-edit-cancel:hover { color: var(--dark); border-color: var(--dark); }
+  .panel-edited-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: #fff7e0;
+    color: #8a6d00;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+  }
+  .panel-edited-badge:hover { background: #ffe9a0; }
+  /* When the panel is in edit mode, hide read-mode displays and show inputs */
+  .detail-panel.editing .panel-edit-readonly { display: none; }
+  .detail-panel:not(.editing) .panel-edit-input-wrap { display: none; }
+  .detail-panel:not(.editing) .panel-edit-footer { display: none; }
+  .detail-panel.editing .panel-edit-toggle { display: none; }
   .notes-area {
     width:100%; min-height:80px; padding:10px 12px;
     background:var(--bg); border:1px solid var(--border);
@@ -1149,6 +1223,7 @@
       <div class="panel-name" id="panel-name"></div>
       <div class="panel-cn" id="panel-cn"></div>
     </div>
+    <button class="panel-edit-toggle" type="button" onclick="panelEnterEditMode()">Modifier</button>
     <button class="panel-close" onclick="closePanel()">✕</button>
   </div>
   <div class="panel-body">
@@ -1157,17 +1232,29 @@
         🗂️ Mark catalog as collected
       </button>
     </div>
-    <div class="panel-section" id="panel-brand-wrap" style="display:none">
-      <div class="panel-section-title">Brand</div>
-      <div id="panel-brand"></div>
+    <div class="panel-section" id="panel-brand-wrap">
+      <div class="panel-section-title">Brand <span class="panel-edited-badge" id="panel-brand-badge" style="display:none" onclick="panelEnterEditMode('brand')">✎ modifié</span></div>
+      <div class="panel-edit-readonly" id="panel-brand"></div>
+      <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-brand-input"></div>
     </div>
     <div class="panel-section">
       <div class="panel-section-title">Hall</div>
       <div id="panel-hall"></div>
     </div>
-    <div class="panel-section" id="panel-booth-wrap" style="display:none">
-      <div class="panel-section-title">Booth</div>
-      <div id="panel-booth"></div>
+    <div class="panel-section" id="panel-booth-wrap">
+      <div class="panel-section-title">Booth <span class="panel-edited-badge" id="panel-booth-badge" style="display:none" onclick="panelEnterEditMode('booth')">✎ modifié</span></div>
+      <div class="panel-edit-readonly" id="panel-booth"></div>
+      <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-booth-input" placeholder="E1-0001, E1-0003"></div>
+    </div>
+    <div class="panel-section" id="panel-en-wrap">
+      <div class="panel-section-title">Official English name <span class="panel-edited-badge" id="panel-en-badge" style="display:none" onclick="panelEnterEditMode('en')">✎ modifié</span></div>
+      <div class="panel-edit-readonly" id="panel-en"></div>
+      <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-en-input"></div>
+    </div>
+    <div class="panel-section" id="panel-cn-wrap">
+      <div class="panel-section-title">Official Chinese name <span class="panel-edited-badge" id="panel-cn-badge" style="display:none" onclick="panelEnterEditMode('cn')">✎ modifié</span></div>
+      <div class="panel-edit-readonly" id="panel-cn-readonly"></div>
+      <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-cn-input"></div>
     </div>
     <div class="panel-section" id="panel-site-wrap" style="display:none">
       <div class="panel-section-title">Website</div>
@@ -1194,6 +1281,10 @@
       <div class="panel-section-title">Notes</div>
       <textarea class="notes-area" id="panel-notes" placeholder="Add sourcing notes…"></textarea>
       <button class="notes-save" onclick="panelSaveNote()">Save note</button>
+    </div>
+    <div class="panel-edit-footer">
+      <button type="button" class="panel-edit-cancel" onclick="panelExitEditMode(false)">Annuler</button>
+      <button type="button" class="panel-edit-save" onclick="panelSaveEdits()">Enregistrer</button>
     </div>
   </div>
 </div>
