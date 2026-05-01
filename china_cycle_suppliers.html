@@ -701,15 +701,17 @@
     display: inline-block;
     margin-left: 6px;
     padding: 1px 6px;
+    border: 0;
     border-radius: 3px;
     background: #fff7e0;
     color: #8a6d00;
+    font-family: inherit;
     font-size: 10px;
     font-weight: 600;
     cursor: pointer;
-    user-select: none;
   }
   .panel-edited-badge:hover { background: #ffe9a0; }
+  .panel-edited-badge:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
   /* When the panel is in edit mode, hide read-mode displays and show inputs */
   .detail-panel.editing .panel-edit-readonly { display: none; }
   .detail-panel:not(.editing) .panel-edit-input-wrap { display: none; }
@@ -1233,7 +1235,7 @@
       </button>
     </div>
     <div class="panel-section" id="panel-brand-wrap">
-      <div class="panel-section-title">Brand <span class="panel-edited-badge" id="panel-brand-badge" style="display:none" onclick="panelEnterEditMode('brand')">✎ modifié</span></div>
+      <div class="panel-section-title">Brand <button type="button" class="panel-edited-badge" id="panel-brand-badge" style="display:none" onclick="panelEnterEditMode('brand')">✎ modifié</button></div>
       <div class="panel-edit-readonly" id="panel-brand"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-brand-input"></div>
     </div>
@@ -1242,17 +1244,17 @@
       <div id="panel-hall"></div>
     </div>
     <div class="panel-section" id="panel-booth-wrap">
-      <div class="panel-section-title">Booth <span class="panel-edited-badge" id="panel-booth-badge" style="display:none" onclick="panelEnterEditMode('booth')">✎ modifié</span></div>
+      <div class="panel-section-title">Booth <button type="button" class="panel-edited-badge" id="panel-booth-badge" style="display:none" onclick="panelEnterEditMode('booth')">✎ modifié</button></div>
       <div class="panel-edit-readonly" id="panel-booth"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-booth-input" placeholder="E1-0001, E1-0003"></div>
     </div>
     <div class="panel-section" id="panel-en-wrap">
-      <div class="panel-section-title">Official English name <span class="panel-edited-badge" id="panel-en-badge" style="display:none" onclick="panelEnterEditMode('en')">✎ modifié</span></div>
+      <div class="panel-section-title">Official English name <button type="button" class="panel-edited-badge" id="panel-en-badge" style="display:none" onclick="panelEnterEditMode('en')">✎ modifié</button></div>
       <div class="panel-edit-readonly" id="panel-en"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-en-input"></div>
     </div>
     <div class="panel-section" id="panel-cn-wrap">
-      <div class="panel-section-title">Official Chinese name <span class="panel-edited-badge" id="panel-cn-badge" style="display:none" onclick="panelEnterEditMode('cn')">✎ modifié</span></div>
+      <div class="panel-section-title">Official Chinese name <button type="button" class="panel-edited-badge" id="panel-cn-badge" style="display:none" onclick="panelEnterEditMode('cn')">✎ modifié</button></div>
       <div class="panel-edit-readonly" id="panel-cn-readonly"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-cn-input"></div>
     </div>
