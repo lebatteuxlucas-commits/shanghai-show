@@ -1368,19 +1368,26 @@ function onSearch() { curQ=document.getElementById('searchInput').value.trim().t
 function onFilter() { curCat=document.getElementById('catFilter').value; page=1; render(); }
 
 function filtered() {
-  return RAW.filter(e=>{
+  return RAW.filter((e, i)=>{
     if(curHall && e.hall!==curHall) return false;
     if(curCat && !e.cats.includes(curCat)) return false;
     if(curQ){
-      if(!e._en_lc.includes(curQ)&&!e.cn.includes(curQ)&&
+      const d = getDisplayEntry(i) || e;
+      const enLc    = (d.en    || '').toLowerCase();
+      const boothLc = (d.booth || '').toLowerCase();
+      const brandLc = (d.brand || '').toLowerCase();
+      const cnVal   = d.cn || '';
+      if(!enLc.includes(curQ)&&!cnVal.includes(curQ)&&
          !e._scope_lc.includes(curQ)&&
          !e._hall_lc.includes(curQ)&&!e._hallEn_lc.includes(curQ)&&
-         !e._booth_lc.includes(curQ)&&
-         !e._brand_lc.includes(curQ)) return false;
+         !boothLc.includes(curQ)&&
+         !brandLc.includes(curQ)) return false;
     }
     return true;
   }).sort((a,b)=>{
-    const av=(a[sortKey]||'').toLowerCase(), bv=(b[sortKey]||'').toLowerCase();
+    const da = getDisplayEntry(RAW_IDX.get(a)) || a;
+    const db = getDisplayEntry(RAW_IDX.get(b)) || b;
+    const av=(da[sortKey]||'').toLowerCase(), bv=(db[sortKey]||'').toLowerCase();
     return av<bv?-sortDir:av>bv?sortDir:0;
   });
 }
@@ -1756,10 +1763,11 @@ function renderDashboard() {
         if (!halls.includes(dashHallFilter)) return false;
       }
       if (q) {
-        if (!(x.e._en_lc || '').includes(q)
-         && !(x.e.cn || '').includes(dashListQuery.trim())
-         && !(x.e._brand_lc || '').includes(q)
-         && !(x.e._booth_lc || '').includes(q)) return false;
+        const d = getDisplayEntry(x.i) || x.e;
+        if (!(d.en    || '').toLowerCase().includes(q)
+         && !(d.cn    || '').includes(dashListQuery.trim())
+         && !(d.brand || '').toLowerCase().includes(q)
+         && !(d.booth || '').toLowerCase().includes(q)) return false;
       }
       return true;
     })
@@ -1773,7 +1781,9 @@ function renderDashboard() {
       const aH = a.e.hall || 'Z';
       const bH = b.e.hall || 'Z';
       if (aH !== bH) return aH.localeCompare(bH);
-      return (a.e.booth || '').localeCompare(b.e.booth || '');
+      const ad = getDisplayEntry(a.i) || a.e;
+      const bd = getDisplayEntry(b.i) || b.e;
+      return (ad.booth || '').localeCompare(bd.booth || '');
     });
 
   view.innerHTML = `
@@ -1897,21 +1907,24 @@ function dashSetHallFilter(h) {
 
 function dashExportCsv() {
   const cats = LS.allCatalogs();
-  const rows = RAW.filter(e => {
-    const on = !!cats[supplierKey(e)];
-    if (dashListMode === 'missing'   &&  on) return false;
-    if (dashListMode === 'collected' && !on) return false;
-    if (dashHallFilter) {
-      const halls = (e.halls && e.halls.length) ? e.halls : [e.hall];
-      if (!halls.includes(dashHallFilter)) return false;
-    }
-    return true;
-  });
+  const rows = RAW
+    .map((e, i) => ({ e, i }))
+    .filter(({ e }) => {
+      const on = !!cats[supplierKey(e)];
+      if (dashListMode === 'missing'   &&  on) return false;
+      if (dashListMode === 'collected' && !on) return false;
+      if (dashHallFilter) {
+        const halls = (e.halls && e.halls.length) ? e.halls : [e.hall];
+        if (!halls.includes(dashHallFilter)) return false;
+      }
+      return true;
+    });
   const lines = [['Brand','Company (EN)','Company (CN)','Hall(s)','Booth','Status','Collected at'].join(',')];
-  for (const e of rows) {
+  for (const { e, i } of rows) {
+    const d = getDisplayEntry(i) || e;
     const cat = cats[supplierKey(e)];
     const halls = (e.halls && e.halls.length) ? e.halls.join('+') : (e.hall || '');
-    const csv = [e.brand || '', e.en || '', e.cn || '', halls, e.booth || '',
+    const csv = [d.brand || '', d.en || '', d.cn || '', halls, d.booth || '',
                  cat ? 'collected' : 'missing',
                  cat && cat.at ? cat.at.slice(0,10) : '']
       .map(v => `"${String(v).replace(/"/g, '""')}"`).join(',');
@@ -2169,7 +2182,8 @@ function renderMapSidePanel() {
   if (!panel) return;
 
   if (mapMode === 'supplier' && mapSelectedSupplierIdx != null) {
-    const e = RAW[mapSelectedSupplierIdx];
+    const raw = RAW[mapSelectedSupplierIdx];
+    const e = getDisplayEntry(mapSelectedSupplierIdx) || raw;
     const hall = HALL_META[e.hall];
     const hallList = (e.halls && e.halls.length) ? e.halls : (e.hall ? [e.hall] : []);
     const hallChips = hallList.map(h => {
@@ -2209,27 +2223,28 @@ function renderMapSidePanel() {
   if (mapMode === 'hall' && mapSelectedHall) {
     const meta = HALL_META[mapSelectedHall];
     const allRows = RAW
-      .map((e, i) => ({ e, i }))
+      .map((e, i) => ({ e, d: getDisplayEntry(i) || e, i }))
       .filter(x => x.e.hall === mapSelectedHall
         || (Array.isArray(x.e.halls) && x.e.halls.includes(mapSelectedHall)))
       .filter(x => !mapCategory || (x.e.cats || []).includes(mapCategory));
     const q = mapHallFilter.toLowerCase();
     const rows = q
-      ? allRows.filter(x => (x.e._en_lc || '').includes(q) || (x.e.cn || '').includes(mapHallFilter)
-          || ((x.e._booth_lc || '').includes(q)))
+      ? allRows.filter(x => (x.d.en || '').toLowerCase().includes(q)
+          || (x.d.cn || '').includes(mapHallFilter)
+          || (x.d.booth || '').toLowerCase().includes(q))
       : allRows;
     // Pull just the booth codes assigned to *this* hall — multi-hall exhibitors
     // would otherwise show codes from other halls in this list.
-    const boothForHall = (e) => {
-      if (!e.booth) return '';
-      return e.booth.split(',').map(s => s.trim())
+    const boothForHall = (booth) => {
+      if (!booth) return '';
+      return booth.split(',').map(s => s.trim())
         .filter(s => s.startsWith(mapSelectedHall + '-'))
         .join(', ');
     };
     const listHtml = rows.length
       ? rows.map(x => {
-          const b = boothForHall(x.e);
-          const brand = x.e.brand ? `<div class="co-brand" style="margin-bottom:2px">${esc(x.e.brand)}</div>` : '';
+          const b = boothForHall(x.d.booth);
+          const brand = x.d.brand ? `<div class="co-brand" style="margin-bottom:2px">${esc(x.d.brand)}</div>` : '';
           const catOn = !!LS.getCatalog(supplierKey(x.e));
           const catChip = `<button type="button" class="cat-chip${catOn?' cat-on':''}"
             data-cat-idx="${x.i}" aria-pressed="${catOn}"
@@ -2241,10 +2256,10 @@ function renderMapSidePanel() {
               <div style="flex:1">
                 ${brand}
                 <div class="map-hall-row-en">
-                  ${esc(x.e.en)}
+                  ${esc(x.d.en)}
                   ${b ? ` <code class="booth-code" style="margin-left:4px">${esc(b)}</code>` : ''}
                 </div>
-                ${x.e.cn ? `<div class="map-hall-row-cn">${esc(x.e.cn)}</div>` : ''}
+                ${x.d.cn ? `<div class="map-hall-row-cn">${esc(x.d.cn)}</div>` : ''}
               </div>
             </div>
           `;
@@ -2547,7 +2562,8 @@ function mapClearSearch() {
 
 function mapPickSupplier(idx) {
   if (idx == null || !RAW[idx]) return;
-  const e = RAW[idx];
+  const raw = RAW[idx];
+  const e = getDisplayEntry(idx) || raw;
   if (!HALL_META[e.hall]) return; // supplier's hall is not in our known set; bail
   mapMode = 'supplier';
   mapSelectedSupplierIdx = idx;
