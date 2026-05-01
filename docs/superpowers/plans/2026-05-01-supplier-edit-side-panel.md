@@ -561,7 +561,7 @@ Locate the `.panel-site a:hover` rule (around line 627) and append the following
   .detail-panel.editing .panel-edit-toggle { display: none; }
 ```
 
-- [ ] **Step 2: Add the "Modifier" button to the panel header**
+- [ ] **Step 2: Add the "Edit" button to the panel header**
 
 Locate the `panel-header` div (around line 1130). Replace:
 
@@ -583,7 +583,7 @@ with:
       <div class="panel-name" id="panel-name"></div>
       <div class="panel-cn" id="panel-cn"></div>
     </div>
-    <button class="panel-edit-toggle" type="button" onclick="panelEnterEditMode()">Modifier</button>
+    <button class="panel-edit-toggle" type="button" onclick="panelEnterEditMode()">Edit</button>
     <button class="panel-close" onclick="closePanel()">✕</button>
   </div>
 ```
@@ -607,7 +607,7 @@ with:
 
 ```html
 <div class="panel-section" id="panel-brand-wrap">
-      <div class="panel-section-title">Brand <span class="panel-edited-badge" id="panel-brand-badge" style="display:none" onclick="panelEnterEditMode('brand')">✎ modifié</span></div>
+      <div class="panel-section-title">Brand <span class="panel-edited-badge" id="panel-brand-badge" style="display:none" onclick="panelEnterEditMode('brand')">✎ edited</span></div>
       <div class="panel-edit-readonly" id="panel-brand"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-brand-input"></div>
     </div>
@@ -626,7 +626,7 @@ with:
 
 ```html
 <div class="panel-section" id="panel-booth-wrap">
-      <div class="panel-section-title">Booth <span class="panel-edited-badge" id="panel-booth-badge" style="display:none" onclick="panelEnterEditMode('booth')">✎ modifié</span></div>
+      <div class="panel-section-title">Booth <span class="panel-edited-badge" id="panel-booth-badge" style="display:none" onclick="panelEnterEditMode('booth')">✎ edited</span></div>
       <div class="panel-edit-readonly" id="panel-booth"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-booth-input" placeholder="E1-0001, E1-0003"></div>
     </div>
@@ -636,12 +636,12 @@ Add two new sections (EN and CN) directly *after* `panel-booth-wrap`:
 
 ```html
 <div class="panel-section" id="panel-en-wrap">
-      <div class="panel-section-title">Official English name <span class="panel-edited-badge" id="panel-en-badge" style="display:none" onclick="panelEnterEditMode('en')">✎ modifié</span></div>
+      <div class="panel-section-title">Official English name <span class="panel-edited-badge" id="panel-en-badge" style="display:none" onclick="panelEnterEditMode('en')">✎ edited</span></div>
       <div class="panel-edit-readonly" id="panel-en"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-en-input"></div>
     </div>
     <div class="panel-section" id="panel-cn-wrap">
-      <div class="panel-section-title">Official Chinese name <span class="panel-edited-badge" id="panel-cn-badge" style="display:none" onclick="panelEnterEditMode('cn')">✎ modifié</span></div>
+      <div class="panel-section-title">Official Chinese name <span class="panel-edited-badge" id="panel-cn-badge" style="display:none" onclick="panelEnterEditMode('cn')">✎ edited</span></div>
       <div class="panel-edit-readonly" id="panel-cn-readonly"></div>
       <div class="panel-edit-input-wrap"><input type="text" class="panel-edit-input" id="panel-cn-input"></div>
     </div>
@@ -655,14 +655,14 @@ Locate the closing `</div>` of `<div class="panel-body">` (around line 1170, jus
 
 ```html
 <div class="panel-edit-footer">
-      <button type="button" class="panel-edit-cancel" onclick="panelExitEditMode(false)">Annuler</button>
-      <button type="button" class="panel-edit-save" onclick="panelSaveEdits()">Enregistrer</button>
+      <button type="button" class="panel-edit-cancel" onclick="panelExitEditMode(false)">Cancel</button>
+      <button type="button" class="panel-edit-save" onclick="panelSaveEdits()">Save</button>
     </div>
 ```
 
 - [ ] **Step 5: Verify HTML is well-formed**
 
-Open `china_cycle_suppliers.html` in the browser. Click any supplier row → side panel opens, "Modifier" button visible in the header, footer not visible (because `.detail-panel.editing` class isn't applied). The page should render without console errors.
+Open `china_cycle_suppliers.html` in the browser. Click any supplier row → side panel opens, "Edit" button visible in the header, footer not visible (because `.detail-panel.editing` class isn't applied). The page should render without console errors.
 
 - [ ] **Step 6: Commit**
 
@@ -763,7 +763,7 @@ function panelSaveEdits() {
     });
   }
 
-  showToast('Modifications enregistrées');
+  showToast('Changes saved');
   panelExitEditMode(true);
 }
 ```
@@ -800,7 +800,7 @@ So the actual new body is:
 ```javascript
 function closePanel() {
   if (panelEditing && panelEditDirty) {
-    if (!confirm('Modifications non enregistrées. Fermer quand même ?')) return;
+    if (!confirm('Unsaved changes. Close anyway?')) return;
   }
   document.getElementById('detailPanel').classList.remove('editing');
   panelEditing = false;
@@ -820,7 +820,7 @@ document.addEventListener('keydown', (ev) => {
   if (!panelEditing) return;
   if (ev.key === 'Escape') {
     ev.preventDefault();
-    if (!panelEditDirty || confirm('Annuler les modifications non enregistrées ?')) {
+    if (!panelEditDirty || confirm('Discard unsaved changes?')) {
       panelExitEditMode(false);
     }
   } else if ((ev.metaKey || ev.ctrlKey) && ev.key === 'Enter') {
@@ -832,16 +832,16 @@ document.addEventListener('keydown', (ev) => {
 
 - [ ] **Step 4: Verify in browser**
 
-Open `china_cycle_suppliers.html`. Click the first row (JAK / LANXI JIEKE). Click "Modifier".
-- Inputs appear pre-filled with current values, footer visible, "Modifier" button hidden.
-- Change `brand` to `JAK_TEST`, click "Enregistrer". Toast appears, panel re-renders showing new brand. Reload page → new brand still shown.
-- Click "Modifier" again, revert brand to `JAK`, save. Reload → original shown, override key gone:
+Open `china_cycle_suppliers.html`. Click the first row (JAK / LANXI JIEKE). Click "Edit".
+- Inputs appear pre-filled with current values, footer visible, "Edit" button hidden.
+- Change `brand` to `JAK_TEST`, click "Save". Toast appears, panel re-renders showing new brand. Reload page → new brand still shown.
+- Click "Edit" again, revert brand to `JAK`, save. Reload → original shown, override key gone:
   ```javascript
   LS.getOverride('official_0');   // → null
   ```
-- Click "Modifier", change something, press Esc → confirm dialog, then exit edit mode without saving.
-- Click "Modifier", change something, press Cmd/Ctrl+Enter → saves.
-- Click "Modifier", change something, click ✕ → confirm dialog about unsaved changes.
+- Click "Edit", change something, press Esc → confirm dialog, then exit edit mode without saving.
+- Click "Edit", change something, press Cmd/Ctrl+Enter → saves.
+- Click "Edit", change something, click ✕ → confirm dialog about unsaved changes.
 
 - [ ] **Step 5: Commit**
 
@@ -852,7 +852,7 @@ git commit -m "Task 6: wire side panel edit mode (toggle, save, cancel, kbd)"
 
 ---
 
-## Task 7: Show "modifié" badges in read mode
+## Task 7: Show "edited" badges in read mode
 
 **Files:**
 - Modify: `china_cycle_suppliers.html` — extend `openPanel` to toggle the four badges based on the override state.
@@ -913,7 +913,7 @@ Just below that booth block, populate the new EN and CN read-only divs:
 Just before `document.getElementById('detailPanel').classList.add('open');` (around line 1590), insert the badge sync:
 
 ```javascript
-  // Toggle "✎ modifié" badges based on which fields are overridden.
+  // Toggle "✎ edited" badges based on which fields are overridden.
   const ov = LS.getOverride(raw.id) || {};
   for (const f of ['brand', 'booth', 'en', 'cn']) {
     const badge = document.getElementById('panel-' + f + '-badge');
@@ -925,13 +925,13 @@ Just before `document.getElementById('detailPanel').classList.add('open');` (aro
 
 - [ ] **Step 2: Verify in browser**
 
-Reload the page. Open any supplier panel. Click "Modifier", change `brand`, save. The Brand section title should now show the "✎ modifié" badge. Click the badge → re-enters edit mode focused on the brand input. Revert and save → badge disappears.
+Reload the page. Open any supplier panel. Click "Edit", change `brand`, save. The Brand section title should now show the "✎ edited" badge. Click the badge → re-enters edit mode focused on the brand input. Revert and save → badge disappears.
 
 - [ ] **Step 3: Commit**
 
 ```bash
 git add china_cycle_suppliers.html
-git commit -m "Task 7: show ✎ modifié badges for overridden fields"
+git commit -m "Task 7: show ✎ edited badges for overridden fields"
 ```
 
 ---
@@ -946,8 +946,8 @@ git commit -m "Task 7: show ✎ modifié badges for overridden fields"
 Locate the `<div class="controls">` block (around line 1024). After the closing `</div>` of `count-pill` and before the closing `</div>` of `controls`, append:
 
 ```html
-<button type="button" id="exportEditsBtn" class="map-clear" onclick="exportOverrides()" style="display:none">Exporter les modifications</button>
-    <button type="button" id="clearEditsBtn" class="map-clear" onclick="clearOverrides()" style="display:none" title="Efface toutes les modifications locales">Effacer les modifications locales</button>
+<button type="button" id="exportEditsBtn" class="map-clear" onclick="exportOverrides()" style="display:none">Export edits</button>
+    <button type="button" id="clearEditsBtn" class="map-clear" onclick="clearOverrides()" style="display:none" title="Remove all local edits">Clear local edits</button>
 ```
 
 (We reuse the existing `.map-clear` button class for visual consistency. The buttons start hidden; they appear when at least one override exists.)
@@ -964,7 +964,7 @@ function _syncEditButtons() {
   if (!exp || !clr) return;
   if (count > 0) {
     exp.style.display = '';
-    exp.textContent = `Exporter les modifications (${count})`;
+    exp.textContent = `Export edits (${count})`;
     clr.style.display = '';
   } else {
     exp.style.display = 'none';
@@ -983,17 +983,17 @@ function exportOverrides() {
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
-  showToast(`Exporté ${Object.keys(data).length} modification(s)`);
+  showToast(`Exported ${Object.keys(data).length} edit(s)`);
 }
 
 function clearOverrides() {
   const count = Object.keys(LS.allOverrides()).length;
   if (count === 0) return;
-  if (!confirm(`Effacer ${count} modification(s) locale(s) ? Cette action est irréversible.`)) return;
+  if (!confirm(`Clear ${count} local edit(s)? This cannot be undone.`)) return;
   LS.clearAllOverrides();
   _syncEditButtons();
   refreshCurrentView();
-  showToast('Modifications locales effacées');
+  showToast('Local edits cleared');
 }
 
 // Initial sync once the DOM is ready.
@@ -1011,7 +1011,7 @@ In `panelSaveEdits` (Task 6), at the very end (after `panelExitEditMode(true);`)
 So the function ends with:
 
 ```javascript
-  showToast('Modifications enregistrées');
+  showToast('Changes saved');
   panelExitEditMode(true);
   _syncEditButtons();
 }
@@ -1020,8 +1020,8 @@ So the function ends with:
 - [ ] **Step 4: Verify in browser**
 
 Reload. With no overrides, neither button should be visible.
-Open the first row, click "Modifier", change brand, save. The "Exporter les modifications (1)" and "Effacer…" buttons should appear in the header toolbar.
-Click "Exporter les modifications" → `overrides.json` is downloaded. Open it in a text editor — it should look like:
+Open the first row, click "Edit", change brand, save. The "Export edits (1)" and "Clear local edits" buttons should appear in the header toolbar.
+Click "Export edits" → `overrides.json` is downloaded. Open it in a text editor — it should look like:
 
 ```json
 {
@@ -1029,7 +1029,7 @@ Click "Exporter les modifications" → `overrides.json` is downloaded. Open it i
 }
 ```
 
-Click "Effacer les modifications locales" → confirm → buttons hide, brand reverts to original everywhere.
+Click "Clear local edits" → confirm → buttons hide, brand reverts to original everywhere.
 
 - [ ] **Step 5: Commit**
 
@@ -1225,12 +1225,12 @@ In the project root:
 # 1. Start clean
 rm -f overrides.json
 # 2. Open the page, edit any supplier (e.g. official_0: change brand to TEST_BRAND, booth to E1-9999, en to TEST_EN, cn to 测试)
-# 3. Click "Exporter les modifications" → moves overrides.json to repo root
+# 3. Click "Export edits" → moves overrides.json to repo root
 mv ~/Downloads/overrides.json .
 # 4. Re-run the build
 python3 rebuild_db.py
 # Expected: "Applied 1 override(s) from overrides.json" line in output.
-# 5. Reload the page. Click "Effacer les modifications locales" so local
+# 5. Reload the page. Click "Clear local edits" so local
 #    overrides don't double-apply.
 # 6. Open the same supplier — should show TEST_BRAND / E1-9999 / TEST_EN / 测试
 #    coming from RAW (no badge, since no local override).
@@ -1253,10 +1253,10 @@ git commit -m "Task 9: rebuild_db.py applies overrides.json to canonical source"
 This is a manual checklist. No code changes; if any item fails, file the bug as a follow-up commit on the appropriate task above.
 
 - [ ] **Step 1: Persistence across reloads**
-Edit `brand`, `booth`, `en`, `cn` for one supplier. Reload the page (Cmd+R). All four fields show the new values; "✎ modifié" badges appear next to all four section titles.
+Edit `brand`, `booth`, `en`, `cn` for one supplier. Reload the page (Cmd+R). All four fields show the new values; "✎ edited" badges appear next to all four section titles.
 
 - [ ] **Step 2: Notes survive a `cn` edit**
-Open a different supplier (`official_5`). Type a note ("important — call back"), Save note. Then click "Modifier", change `cn` to `测试 CN 2`, save. Reload. The note is still attached to the supplier, even though `cn` changed.
+Open a different supplier (`official_5`). Type a note ("important — call back"), Save note. Then click "Edit", change `cn` to `测试 CN 2`, save. Reload. The note is still attached to the supplier, even though `cn` changed.
 
 - [ ] **Step 3: Map view reflects edits**
 Switch to the Map tab. The map side panel for the edited supplier shows the new values. Type the new brand name in the map search → autocomplete finds it.
@@ -1269,22 +1269,22 @@ For one supplier, edit then revert all four fields back to their original values
 ```javascript
 LS.getOverride('<that-supplier-id>')   // → null
 ```
-The "Exporter les modifications (N)" count drops by one.
+The "Export edits (N)" count drops by one.
 
 - [ ] **Step 6: Export shape**
-Click "Exporter les modifications" → open the downloaded `overrides.json` in a text editor. It should be `{ id: { brand?, booth?, en?, cn? } }`, only with edited fields, no extras.
+Click "Export edits" → open the downloaded `overrides.json` in a text editor. It should be `{ id: { brand?, booth?, en?, cn? } }`, only with edited fields, no extras.
 
 - [ ] **Step 7: Reapply round-trip**
-Move `overrides.json` to the repo root, run `python3 rebuild_db.py`. The script prints `Applied N override(s)`. Reload the page, click "Effacer les modifications locales", confirm. The edited values are now the displayed values (because they came from RAW), and no badges show.
+Move `overrides.json` to the repo root, run `python3 rebuild_db.py`. The script prints `Applied N override(s)`. Reload the page, click "Clear local edits", confirm. The edited values are now the displayed values (because they came from RAW), and no badges show.
 
 - [ ] **Step 8: Edit a multi-booth entry**
 Find a supplier with multiple booth codes (e.g. one whose existing booth field contains `,`). Edit it: add a third code, save. Reload → all three pills appear. The booth string is normalised (single space after each comma, no trailing whitespace).
 
 - [ ] **Step 9: Cancel discards changes**
-Open a supplier, click "Modifier", change all four fields, click "Annuler". Panel returns to read mode, no override saved (`LS.getOverride(id)` is `null`).
+Open a supplier, click "Edit", change all four fields, click "Cancel". Panel returns to read mode, no override saved (`LS.getOverride(id)` is `null`).
 
 - [ ] **Step 10: Esc + Cmd+Enter**
-Open a supplier, click "Modifier", type something in the brand input, press `Esc` → confirm dialog, then exit. Click "Modifier" again, type something, press `Cmd+Enter` (Mac) or `Ctrl+Enter` (Linux/Win) → saves and exits edit mode.
+Open a supplier, click "Edit", type something in the brand input, press `Esc` → confirm dialog, then exit. Click "Edit" again, type something, press `Cmd+Enter` (Mac) or `Ctrl+Enter` (Linux/Win) → saves and exits edit mode.
 
 - [ ] **Step 11: Edit an OCR-only entry**
 Open one of the OCR-only entries (e.g. ROCKBROS — search for "ROCKBROS" in the directory). Its panel id should be `ocr_rockbros`. Edit `cn` to `洛克兄弟 改`, save. Confirm:
