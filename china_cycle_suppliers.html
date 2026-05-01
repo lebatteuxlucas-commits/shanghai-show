@@ -1130,6 +1130,8 @@
       <option>Other</option>
     </select>
     <div class="count-pill" id="countPill"><strong>2787</strong> results</div>
+    <button type="button" id="exportEditsBtn" class="map-clear" onclick="exportOverrides()" style="display:none">Export edits</button>
+    <button type="button" id="clearEditsBtn" class="map-clear" onclick="clearOverrides()" style="display:none" title="Remove all local edits">Clear local edits</button>
   </div>
 </header>
 
@@ -1942,6 +1944,46 @@ function panelSaveEdits() {
 
   showToast('Changes saved');
   panelExitEditMode(true);
+  _syncEditButtons();
+}
+
+function _syncEditButtons() {
+  const count = Object.keys(LS.allOverrides()).length;
+  const exp = document.getElementById('exportEditsBtn');
+  const clr = document.getElementById('clearEditsBtn');
+  if (!exp || !clr) return;
+  if (count > 0) {
+    exp.style.display = '';
+    exp.textContent = `Export edits (${count})`;
+    clr.style.display = '';
+  } else {
+    exp.style.display = 'none';
+    clr.style.display = 'none';
+  }
+}
+
+function exportOverrides() {
+  const data = LS.allOverrides();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'overrides.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast(`Exported ${Object.keys(data).length} edit(s)`);
+}
+
+function clearOverrides() {
+  const count = Object.keys(LS.allOverrides()).length;
+  if (count === 0) return;
+  if (!confirm(`Clear ${count} local edit(s)? This cannot be undone.`)) return;
+  LS.clearAllOverrides();
+  _syncEditButtons();
+  refreshCurrentView();
+  showToast('Local edits cleared');
 }
 
 // ── DISCOVER VIEW ─────────────────────────────────────────────────────────────
@@ -2298,6 +2340,7 @@ function applyFloorPlan() {
 }
 render();
 updateCatalogHeaderCounts();
+_syncEditButtons();
 
 document.addEventListener('keydown', (ev) => {
   if (!panelEditing) return;
