@@ -178,7 +178,9 @@ def main():
         print(f"Applied {applied} override(s) from overrides.json")
         if unmatched:
             print(f"⚠ {len(unmatched)} override id(s) had no matching RAW entry: {', '.join(unmatched[:5])}{'…' if len(unmatched) > 5 else ''}")
-        print("  (overrides.json was not deleted — remove it manually once edits are committed upstream)")
+        print("  Next: reload the page and click 'Clear local edits' so the badges")
+        print("  no longer flag fields as pending. Then delete overrides.json once")
+        print("  the regenerated RAW is committed upstream.")
 
     # ── exhibitors.csv ──────────────────────────────────────────────
     with CSV.open("w", encoding="utf-8-sig", newline="") as f:
