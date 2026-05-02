@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/china_cycle_suppliers.html" }
+  ]
+}
