@@ -1115,12 +1115,26 @@
 .fp-image-wrap {
   flex: 1; overflow: auto; background: var(--charcoal);
   display: flex; align-items: center; justify-content: center; padding: 16px;
+  position: relative;
 }
 .fp-image-wrap img {
   max-width: 100%; max-height: 100%; height: auto; cursor: zoom-in;
-  background: var(--white); transition: transform 0.18s ease;
+  background: var(--white); transition: transform 0.18s ease, opacity 0.18s ease;
   display: block;
 }
+/* Loading state — JS adds .fp-loading while the JPG is fetching, removes
+   on img.onload. Pulses a soft hint over the dark backdrop. */
+.fp-image-wrap.fp-loading::before {
+  content: 'Loading floor plan…';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 1.4px;
+  color: rgba(255,255,255,0.55); text-transform: uppercase;
+  animation: fp-pulse 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+.fp-image-wrap.fp-loading img { opacity: 0; }
+@keyframes fp-pulse { 0%,100% { opacity: 0.45; } 50% { opacity: 0.95; } }
 .fp-image-wrap.zoomed { align-items: flex-start; justify-content: flex-start; }
 .fp-image-wrap.zoomed img { max-width: none; max-height: none; cursor: zoom-out; }
 </style>
@@ -2391,7 +2405,11 @@ function applyFloorPlan() {
 
   const src = `assets/floorplans/${fpCurrentLang}/${fpCurrentHall}.jpg`;
   wrap.classList.remove('zoomed');
-  wrap.innerHTML = `<img src="${src}" alt="${fpCurrentHall} floor plan (${fpCurrentLang.toUpperCase()})" onclick="document.getElementById('fpImageWrap').classList.toggle('zoomed')">`;
+  // Mark loading state so the user gets feedback while the JPG fetches
+  // (even at ~400KB this can take a few seconds on cellular). The class
+  // is removed once the img fires onload.
+  wrap.classList.add('fp-loading');
+  wrap.innerHTML = `<img src="${src}" alt="${fpCurrentHall} floor plan (${fpCurrentLang.toUpperCase()})" decoding="async" onload="this.parentElement.classList.remove('fp-loading')" onerror="this.parentElement.classList.remove('fp-loading')" onclick="document.getElementById('fpImageWrap').classList.toggle('zoomed')">`;
 }
 render();
 updateCatalogHeaderCounts();
