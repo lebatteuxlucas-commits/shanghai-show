@@ -1,2 +1,20 @@
 .DS_Store
 .superpowers/
+
+# MCP / Playwright artefacts (local only)
+.playwright-mcp/
+
+# Pipeline scratch state — regenerated locally, not part of canonical data
+global_lookup_queue.json
+phase_b_queue.json
+website_lookup_queue.json
+website_lookups.json
+
+# Debug / review screenshots
+app-auth-mobile.png
+auth-screen.png
+cleaned-app.png
+cleaned-no-shortlist.png
+post-css-sweep.png
+post-css-sweep-map.png
+mobile-*.png
