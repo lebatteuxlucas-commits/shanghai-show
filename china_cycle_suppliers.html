@@ -205,7 +205,11 @@
   }
 
   /* ── TABLE ───────────────────────────────────── */
-  .table-wrap { padding: 20px 40px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* No overflow-x here on desktop: a horizontal scroll container would
+     break the sticky thead (sticky descendants get re-anchored to the
+     scroll parent, not the viewport). overflow-x:auto is added only
+     inside the <=700px media query. */
+  .table-wrap { padding: 20px 40px; }
   table {
     width: 100%; border-collapse: separate; border-spacing: 0;
     background: var(--white);
@@ -756,7 +760,7 @@
     header { padding: 14px 14px 12px; }
     .hall-chips { padding: 8px 14px; }
     .pagination { padding-left: 14px; padding-right: 14px; }
-    .table-wrap { padding: 12px 0; }
+    .table-wrap { padding: 12px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .dash-shell { padding: 16px 14px 60px; }
 
     h1 { font-size: 22px; }
