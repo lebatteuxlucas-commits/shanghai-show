@@ -756,7 +756,23 @@
   .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
   @media (max-width: 700px) {
-    nav { padding: 0 12px; gap: 10px; }
+    /* Lock the page width to the viewport so nothing can shove the
+       layout sideways. clip is preferred (doesn't establish a scroll
+       container, so it never breaks sticky); hidden is the fallback
+       for older Safari. */
+    html, body { overflow-x: hidden; overflow-x: clip; }
+
+    /* Nav: brand + 4 tabs don't fit on a phone, so make the nav itself
+       horizontally scrollable. Body stays at viewport width. */
+    nav {
+      padding: 0 12px; gap: 10px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    .nav-brand { flex-shrink: 0; }
+    .nav-tabs { margin-left: 8px; flex-shrink: 0; }
+    .nav-tab { padding: 0 12px; font-size: 12px; }
     header { padding: 14px 14px 12px; }
     .hall-chips { padding: 8px 14px; }
     .pagination { padding-left: 14px; padding-right: 14px; }
