@@ -760,7 +760,10 @@
     header { padding: 14px 14px 12px; }
     .hall-chips { padding: 8px 14px; }
     .pagination { padding-left: 14px; padding-right: 14px; }
-    .table-wrap { padding: 12px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    /* No overflow-x:auto here either — it would break the sticky thead
+       (sticky descendants get re-anchored to a scroll-axis parent).
+       With 3 columns hidden the 4 remaining cols fit in 390px. */
+    .table-wrap { padding: 12px 0; }
     .dash-shell { padding: 16px 14px 60px; }
 
     h1 { font-size: 22px; }
@@ -778,6 +781,10 @@
     table { border-radius: 0; border-left: none; border-right: none; }
     thead th { padding: 8px 10px; font-size: 10px; letter-spacing: 0.8px; }
     tbody td { padding: 10px 8px; }
+    /* Allow long supplier names to wrap inside the cell so the table
+       doesn't widen past the viewport (which would knock out the
+       sticky thead's anchor). */
+    .co-en, .co-cn { overflow-wrap: anywhere; }
     th:nth-child(1), td:nth-child(1),
     th:nth-child(6), td:nth-child(6),
     th:nth-child(7), td:nth-child(7) { display: none; }
