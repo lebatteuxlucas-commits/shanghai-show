@@ -205,7 +205,7 @@
   }
 
   /* ── TABLE ───────────────────────────────────── */
-  .table-wrap { padding: 20px 40px; }
+  .table-wrap { padding: 20px 40px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table {
     width: 100%; border-collapse: separate; border-spacing: 0;
     background: var(--white);
@@ -752,9 +752,37 @@
   .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
   @media (max-width: 700px) {
-    nav, header, .hall-chips, .table-wrap, .pagination { padding-left: 16px; padding-right: 16px; }
+    nav { padding: 0 12px; gap: 10px; }
+    header { padding: 14px 14px 12px; }
+    .hall-chips { padding: 8px 14px; }
+    .pagination { padding-left: 14px; padding-right: 14px; }
+    .table-wrap { padding: 12px 0; }
+    .dash-shell { padding: 16px 14px 60px; }
+
     h1 { font-size: 22px; }
-    .nav-tagline { display: none; }
+    .subtitle { display: none; }
+    .nav-tagline, .nav-label, .nav-divider { display: none; }
+    .header-row1 { gap: 10px; margin-bottom: 12px; }
+    .stats-row { gap: 6px; margin-bottom: 12px; }
+    .stat { padding: 6px 12px; }
+    .stat-num { font-size: 16px; }
+
+    /* Suppliers table: hide low-priority columns and tighten cells so
+       the catalog tap target and supplier identity stay readable on
+       a phone. # / Categories / Products are reachable from the side
+       panel when needed. */
+    table { border-radius: 0; border-left: none; border-right: none; }
+    thead th { padding: 8px 10px; font-size: 10px; letter-spacing: 0.8px; }
+    tbody td { padding: 10px 8px; }
+    th:nth-child(1), td:nth-child(1),
+    th:nth-child(6), td:nth-child(6),
+    th:nth-child(7), td:nth-child(7) { display: none; }
+    .scope-text { max-width: none; }
+
+    /* Detail panel is already max-width:92vw; tighten its inner padding */
+    .panel-header { padding: 14px 16px 12px; }
+    .panel-body   { padding: 14px 16px; }
+    .panel-edit-footer { padding: 10px 16px; margin: 14px -16px -14px; }
   }
 
 /* ── MAP TAB ─────────────────────────────────────────────────────────────── */
