@@ -60,12 +60,8 @@ export function rowHTML(e, idx, rowNum, { HALL_COLORS, CAT_COLORS, CAT_DEFAULT }
     : '';
   const boothCell = e.booth ? '<code class="booth-code">' + esc(e.booth) + '</code>' : '<span class="no-val">—</span>';
   const brandLine = e.brand ? '<div class="co-brand">' + esc(e.brand) + '</div>' : '';
-  // État « catalogue collecté » : propre à chaque navigateur, donc toujours décoché côté serveur.
-  const catChip = '<button type="button" class="cat-chip" data-cat-idx="' + idx + '" aria-pressed="false" ' +
-    'title="Mark catalog as collected" onclick="toggleCatalog(' + idx + ', event)">○</button>';
   return '<tr onclick="openPanel(' + idx + ')" style="cursor:pointer">' +
     '<td class="row-num">' + rowNum + '</td>' +
-    '<td>' + catChip + '</td>' +
     '<td>' + brandLine +
       '<div class="co-en">' + esc(e.en || '—') + '</div>' +
       (e.cn ? '<div class="co-cn">' + esc(e.cn) + '</div>' : '') +
