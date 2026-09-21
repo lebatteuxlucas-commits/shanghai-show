@@ -1,10 +1,18 @@
 {
+  "redirects": [
+    { "source": "/china_cycle_suppliers.html", "destination": "/", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/", "destination": "/china_cycle_suppliers.html" }
+    { "source": "/", "destination": "/api/render?page=home" },
+    { "source": "/privacy", "destination": "/api/render?page=privacy" }
   ],
   "functions": {
     "api/catalogue-request.js": {
       "includeFiles": "{china_cycle_suppliers.html,config/free-email-domains.json}"
+    },
+    "api/render.js": {
+      "includeFiles": "{china_cycle_suppliers.html,privacy.html}"
     }
   }
 }

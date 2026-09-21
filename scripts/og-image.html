@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  Gabarit de l'image OpenGraph (assets/og-image.png, 1200×630).
+  Régénérer : ouvrir ce fichier dans Chrome, fenêtre de 1200×630
+  (DevTools → mode appareil, dimensions 1200×630, zoom 100 %), puis
+  « Capture full size screenshot », et enregistrer sous assets/og-image.png.
+  Chiffres à mettre à jour si le nombre d'exposants ou de halls change.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative; background: #41535D; color: #fff;
+    font-family: 'DM Mono', 'Courier New', monospace;
+  }
+  /* Logo (monogramme + wordmark) passé intégralement en blanc */
+  .lockup { position: absolute; left: 80px; top: 72px; height: 58px; filter: brightness(0) invert(1); }
+  .mark {
+    position: absolute; right: -40px; top: 90px; height: 520px;
+    filter: brightness(0) invert(1); opacity: 0.07;
+  }
+  .kicker {
+    position: absolute; left: 80px; top: 214px;
+    font-size: 22px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: #3CC98F;
+  }
+  h1 {
+    position: absolute; left: 76px; top: 252px; width: 900px;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800;
+    font-size: 104px; line-height: 0.95; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .stats {
+    position: absolute; left: 80px; top: 496px;
+    font-size: 30px; letter-spacing: 0.5px; color: rgba(255,255,255,0.88);
+  }
+  .accent { position: absolute; left: 80px; top: 470px; width: 120px; height: 6px; background: #179064; }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: #179064; }
+</style>
+</head>
+<body>
+  <img class="mark" src="../assets/fm-monogram.png" alt="">
+  <img class="lockup" src="../assets/futuremotion-logo.png" alt="FutureMotion">
+  <div class="kicker">Curated by FutureMotion</div>
+  <h1>China Cycle 2026<br>Supplier Directory</h1>
+  <div class="accent"></div>
+  <div class="stats">1,633 exhibitors · 13 halls · China Cycle 2026</div>
+  <div class="bar"></div>
+</body>
+</html>

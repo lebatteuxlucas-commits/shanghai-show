@@ -1,0 +1,61 @@
+// Tests du rendu serveur (accueil + privacy) sur les vrais fichiers. Lancer : npm test
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { applySiteVars, defaultOrder, extractConst, renderHome, PAGE_SIZE } from '../api/_lib/home-render.js';
+import { parseRaw } from '../api/_lib/raw-data.js';
+
+const home = readFileSync(new URL('../china_cycle_suppliers.html', import.meta.url), 'utf8');
+const privacy = readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
+
+test('accueil : premières lignes du tableau, compteurs et nombre de résultats écrits dans le HTML', () => {
+  const html = renderHome(home, { contactEmail: 'contact@futuremotion.example' });
+  const tbody = html.slice(html.indexOf('<tbody id="tbody">'), html.indexOf('</tbody>'));
+  assert.equal((tbody.match(/<tr /g) || []).length, PAGE_SIZE);
+  const first = defaultOrder(parseRaw(home))[0].e;
+  assert.ok(tbody.includes(first.en.replace(/&/g, '&amp;')), 'première ligne = premier fournisseur par ordre alphabétique');
+  assert.match(html, /id="countPill"><strong>1,633<\/strong> results/);
+  assert.match(html, /id="statCatalogues">\d/);
+});
+
+test('email de contact injecté dans la meta et le pied de page', () => {
+  const html = renderHome(home, { contactEmail: 'contact@futuremotion.example' });
+  assert.ok(html.includes('<meta name="fm-contact" content="contact@futuremotion.example">'));
+  assert.ok(html.includes('<a class="site-footer-contact" href="mailto:contact@futuremotion.example">contact@futuremotion.example</a>'));
+  assert.ok(!html.includes('site-footer-contact" hidden'));
+});
+
+test('sans CONTACT_EMAIL : liens de contact laissés masqués', () => {
+  const html = renderHome(home, {});
+  assert.ok(html.includes('<meta name="fm-contact" content="">'));
+  assert.ok(html.includes('<a class="site-footer-contact" hidden href=""></a>'));
+});
+
+test('SITE_URL remplace le domaine par défaut dans les balises OpenGraph', () => {
+  const html = renderHome(home, { siteUrl: 'https://directory.futuremotion.example' });
+  assert.ok(html.includes('<meta property="og:image" content="https://directory.futuremotion.example/assets/og-image.png">'));
+  assert.ok(!html.includes('shanghai-show.vercel.app'));
+});
+
+test('métadonnées de partage présentes', () => {
+  for (const tag of ['<title>China Cycle 2026 Supplier Directory — FutureMotion</title>', 'name="description"',
+    'property="og:title"', 'property="og:image"', 'content="1200"', 'content="630"', 'name="twitter:card" content="summary_large_image"',
+    'rel="icon"']) {
+    assert.ok(home.includes(tag), tag);
+  }
+});
+
+test('privacy : email injecté dans le texte et le pied de page', () => {
+  const html = applySiteVars(privacy, { contactEmail: 'contact@futuremotion.example' });
+  assert.equal(html.split('href="mailto:contact@futuremotion.example"').length - 1, 2);
+});
+
+test('constantes lues dans le script de la page', () => {
+  assert.equal(extractConst(home, 'HALL_COLORS').E1.label, 'Bicycles');
+  assert.ok(extractConst(home, 'CAT_COLORS')['Complete Bikes'].bg);
+});
+
+test('email échappé (pas d’injection HTML via CONTACT_EMAIL)', () => {
+  const html = renderHome(home, { contactEmail: 'a"><script>x</script>@b.co' });
+  assert.ok(!html.includes('"><script>x</script>'));
+});

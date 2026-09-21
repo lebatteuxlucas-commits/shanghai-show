@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FutureMotion — China Cycle 2026 Supplier Directory</title>
+<title>China Cycle 2026 Supplier Directory — FutureMotion</title>
+<meta name="description" content="Searchable directory of the 1,633 exhibitors across 13 halls at China Cycle 2026 in Shanghai, with supplier catalogues on request, curated by FutureMotion.">
+<link rel="canonical" href="https://shanghai-show.vercel.app/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#41535D">
+<!-- Aperçus de lien (LinkedIn, Slack, X…) : URLs absolues, réécrites par le rendu serveur si SITE_URL est défini. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FutureMotion">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://shanghai-show.vercel.app/">
+<meta property="og:title" content="China Cycle 2026 Supplier Directory — FutureMotion">
+<meta property="og:description" content="Searchable directory of the 1,633 exhibitors across 13 halls at China Cycle 2026 in Shanghai, with supplier catalogues on request, curated by FutureMotion.">
+<meta property="og:image" content="https://shanghai-show.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="China Cycle 2026 Supplier Directory — 1,633 exhibitors · 13 halls — FutureMotion">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="China Cycle 2026 Supplier Directory — FutureMotion">
+<meta name="twitter:description" content="Searchable directory of the 1,633 exhibitors across 13 halls at China Cycle 2026 in Shanghai, with supplier catalogues on request, curated by FutureMotion.">
+<meta name="twitter:image" content="https://shanghai-show.vercel.app/assets/og-image.png">
+<!-- Email de contact injecté par le rendu serveur (CONTACT_EMAIL). Vide = boutons de contact masqués. -->
+<meta name="fm-contact" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -1240,6 +1263,28 @@
 }
 .catreq-done p { font-size: 14px; color: var(--charcoal); line-height: 1.55; margin-bottom: 16px; }
 @media (max-width: 700px) { .catreq-card { padding: 22px 16px 16px; } }
+
+/* ── CONTACT DEPUIS LA FICHE ─────────────────────────────────────────── */
+.ask-btn {
+  display: block; text-align: center; padding: 10px 14px; border-radius: 5px;
+  border: 1.5px solid var(--border); background: var(--white); color: var(--dark);
+  font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.15s ease;
+}
+.ask-btn:hover { border-color: var(--teal); color: var(--teal-dark); background: var(--teal-light); }
+
+/* ── PIED DE PAGE ─────────────────────────────────────────────────────── */
+.site-footer { background: var(--nav-bg); color: rgba(238,240,244,0.72); margin-top: 24px; }
+.site-footer-inner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 10px 24px; padding: 18px 40px; font-size: 12px;
+}
+.site-footer-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.site-footer a { color: #fff; text-decoration: none; font-family: var(--mono); font-size: 11px; }
+.site-footer a:hover { color: var(--teal); text-decoration: underline; }
+.site-footer a[hidden] { display: none; }
+@media (max-width: 700px) {
+  .site-footer-inner { padding: 16px 14px; flex-direction: column; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -1303,7 +1348,7 @@
       <option>Other</option>
     </select>
     <button type="button" id="catalogueToggle" class="map-clear catalogue-toggle" aria-pressed="false" onclick="toggleCatalogueFilter()" title="Show only suppliers whose catalogue was collected at the show">Has catalogue</button>
-    <div class="count-pill" id="countPill"><strong>2787</strong> results</div>
+    <div class="count-pill" id="countPill"><strong>1,633</strong> results</div>
     <button type="button" id="exportEditsBtn" class="map-clear" onclick="exportOverrides()" style="display:none">Export edits</button>
     <button type="button" id="clearEditsBtn" class="map-clear" onclick="clearOverrides()" style="display:none" title="Remove all local edits">Clear local edits</button>
   </div>
@@ -1380,6 +1425,17 @@
   </div>
 </div>
 
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="site-footer-org">FutureMotion Limited — Light-mobility solutions — Hong Kong</span>
+    <div class="site-footer-links">
+      <a href="https://www.futuremotionlimited.com" target="_blank" rel="noopener">futuremotionlimited.com</a>
+      <a class="site-footer-contact" hidden href=""></a>
+      <a href="/privacy">Privacy</a>
+    </div>
+  </div>
+</footer>
+
 <div class="fp-overlay" id="fpOverlay" onclick="if(event.target.id==='fpOverlay')closeFloorPlan()">
   <div class="fp-frame">
     <div class="fp-bar">
@@ -1417,6 +1473,9 @@
         <div class="catreq-text">FutureMotion collected this supplier's catalogue at the show. Request it and we'll email it to you.</div>
         <button type="button" class="catreq-btn" onclick="openCatalogueRequest(panelIdx)">Request catalogue</button>
       </div>
+    </div>
+    <div class="panel-section" id="panel-ask-wrap" hidden>
+      <a class="ask-btn" id="panel-ask" href="#">✉ Ask FutureMotion about this supplier</a>
     </div>
     <div class="panel-section" id="panel-catfiles-wrap" style="display:none">
       <div class="panel-section-title">Catalogue files <span class="internal-tag">internal</span></div>
@@ -1674,6 +1733,23 @@ function toggleCatalogueFilter() {
 // « Dossier / fichier » : format commun à la fiche interne et à l'export CSV.
 function catalogueFileLabel(f) {
   return (f.category_folder ? f.category_folder + '/' : '') + f.filename;
+}
+
+// ── Contact FutureMotion depuis la fiche (tous les fournisseurs) ─────────
+// L'adresse vient du rendu serveur (<meta name="fm-contact">, CONTACT_EMAIL) ;
+// absente (page statique ouverte en local), le bouton reste masqué.
+const CONTACT_EMAIL = (document.querySelector('meta[name="fm-contact"]') || {}).content || '';
+
+function renderPanelAsk(e) {
+  const wrap = document.getElementById('panel-ask-wrap');
+  if (!CONTACT_EMAIL) { wrap.hidden = true; return; }
+  // Même libellé et même format que l'objet des demandes de catalogue.
+  const name = e.brand && e.en ? e.brand + ' (' + e.en + ')' : (e.brand || e.en || e.cn || e.id);
+  const halls = (e.halls && e.halls.length) ? e.halls.join(' + ') : (e.hall || '—');
+  const subject = '[Directory] ' + name + ' — Hall ' + halls + ' / ' + (e.booth || '—');
+  document.getElementById('panel-ask').href =
+    'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject);
+  wrap.hidden = false;
 }
 
 function renderPanelCatalogue(e) {
@@ -2028,6 +2104,7 @@ function openPanel(idx) {
   document.getElementById('panel-name').textContent = e.en || '—';
   document.getElementById('panel-cn').textContent   = e.cn || '';
   renderPanelCatalogue(raw);
+  renderPanelAsk(raw);
   if (typeof sessionTrack === 'function') sessionTrack('suppliers', raw.id);
 
   const brandEl = document.getElementById('panel-brand');
