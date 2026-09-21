@@ -19,3 +19,7 @@ post-css-sweep.png
 post-css-sweep-map.png
 mobile-*.png
 .vercel
+
+# Dépendances et secrets locaux (vercel env pull)
+node_modules/
+.env*.local

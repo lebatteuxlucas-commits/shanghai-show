@@ -1,5 +1,10 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/china_cycle_suppliers.html" }
-  ]
+  ],
+  "functions": {
+    "api/catalogue-request.js": {
+      "includeFiles": "{china_cycle_suppliers.html,config/free-email-domains.json}"
+    }
+  }
 }

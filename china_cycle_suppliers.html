@@ -1162,6 +1162,84 @@
   font-family: var(--mono); font-size: 9px; letter-spacing: 0.6px; text-transform: uppercase;
   color: #8a6d00; background: #fff7e0; border-radius: 3px; padding: 1px 6px; margin-left: 6px;
 }
+
+/* ── DEMANDE DE CATALOGUE (bouton de fiche + modal) ────────────────────── */
+.catreq-box {
+  border: 1px solid rgba(31,168,118,0.35); background: var(--teal-light);
+  border-radius: 6px; padding: 14px 16px;
+}
+.catreq-text { font-size: 13px; color: var(--charcoal); line-height: 1.5; margin-bottom: 12px; }
+.catreq-btn {
+  background: var(--teal); color: #fff; border: none; border-radius: 4px;
+  padding: 9px 16px; font-family: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s;
+}
+.catreq-btn:hover { background: var(--teal-dark); }
+.catreq-btn:disabled { opacity: 0.6; cursor: default; }
+.catreq-btn.secondary { background: var(--white); color: var(--teal-dark); border: 1px solid rgba(31,168,118,0.45); }
+.catreq-btn.secondary:hover { background: var(--bg); }
+
+.catreq-overlay {
+  position: fixed; inset: 0; z-index: 600; background: rgba(31,42,53,0.62);
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.catreq-overlay[hidden] { display: none; }
+.catreq-card {
+  position: relative; background: var(--white); border-radius: 8px;
+  width: 100%; max-width: 440px; max-height: calc(100vh - 32px); overflow-y: auto;
+  padding: 26px 24px 20px; box-shadow: var(--shadow); border-top: 4px solid var(--teal);
+}
+.catreq-close {
+  position: absolute; top: 10px; right: 10px; background: none; border: none;
+  font-size: 17px; color: var(--mid); cursor: pointer; width: 30px; height: 30px; border-radius: 4px;
+}
+.catreq-close:hover { background: var(--border); color: var(--black); }
+.catreq-kicker {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--teal-dark);
+}
+.catreq-card h2 {
+  font-family: var(--display); font-size: 24px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.4px; color: var(--charcoal); line-height: 1.1; margin: 8px 0 6px;
+}
+.catreq-supplier { font-size: 13px; color: var(--mid); margin-bottom: 16px; overflow-wrap: anywhere; }
+.catreq-supplier strong { color: var(--charcoal); }
+.catreq-field { margin-bottom: 12px; }
+.catreq-field label {
+  display: block; font-family: var(--display); font-size: 10px; font-weight: 700;
+  letter-spacing: 1.3px; text-transform: uppercase; color: var(--mid); margin-bottom: 5px;
+}
+.catreq-field input[type="text"], .catreq-field input[type="email"], .catreq-field textarea {
+  width: 100%; padding: 9px 11px; font-size: 14px; font-family: inherit;
+  border: 1.5px solid var(--border); border-radius: 5px; background: var(--bg);
+  color: var(--black); outline: none;
+}
+.catreq-field textarea { min-height: 72px; resize: vertical; }
+.catreq-field input:focus, .catreq-field textarea:focus { border-color: var(--teal); background: var(--white); }
+.catreq-field.invalid input[type="text"], .catreq-field.invalid input[type="email"] { border-color: #D92D20; }
+/* Spécificité supérieure à « .catreq-field label » : la phrase de consentement
+   se lit comme du texte courant, pas comme une étiquette de champ. */
+.catreq-field label.catreq-consent {
+  display: flex; gap: 9px; align-items: flex-start; margin: 4px 0 14px; cursor: pointer;
+  font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.45;
+  letter-spacing: normal; text-transform: none; color: var(--charcoal);
+}
+.catreq-consent input { margin-top: 2px; accent-color: var(--teal); width: 15px; height: 15px; flex-shrink: 0; }
+.catreq-field.invalid label.catreq-consent { color: #B42318; }
+.catreq-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.catreq-card .catreq-btn { width: 100%; padding: 11px 16px; font-size: 14px; }
+.catreq-error {
+  font-size: 12px; color: #B42318; background: #FEF3F2; border: 1px solid #FECDCA;
+  border-radius: 4px; padding: 8px 10px; margin-top: 10px;
+}
+.catreq-error:empty { display: none; }
+.catreq-done { text-align: center; padding: 10px 0 4px; }
+.catreq-done-icon {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--teal-light); color: var(--teal-dark);
+  display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 12px;
+}
+.catreq-done p { font-size: 14px; color: var(--charcoal); line-height: 1.55; margin-bottom: 16px; }
+@media (max-width: 700px) { .catreq-card { padding: 22px 16px 16px; } }
 </style>
 </head>
 <body>
@@ -1333,6 +1411,13 @@
         🗂️ Mark catalog as collected
       </button>
     </div>
+    <div class="panel-section" id="panel-catreq-wrap" style="display:none">
+      <div class="panel-section-title">Supplier catalogue</div>
+      <div class="catreq-box">
+        <div class="catreq-text">FutureMotion collected this supplier's catalogue at the show. Request it and we'll email it to you.</div>
+        <button type="button" class="catreq-btn" onclick="openCatalogueRequest(panelIdx)">Request catalogue</button>
+      </div>
+    </div>
     <div class="panel-section" id="panel-catfiles-wrap" style="display:none">
       <div class="panel-section-title">Catalogue files <span class="internal-tag">internal</span></div>
       <ul class="catfile-list" id="panel-catfiles"></ul>
@@ -1390,6 +1475,51 @@
     <div class="panel-edit-footer">
       <button type="button" class="panel-edit-cancel" onclick="panelExitEditMode(false)">Cancel</button>
       <button type="button" class="panel-edit-save" onclick="panelSaveEdits()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="catreq-overlay" id="catreqOverlay" hidden onclick="if(event.target.id==='catreqOverlay')closeCatalogueRequest()">
+  <div class="catreq-card" role="dialog" aria-modal="true" aria-labelledby="catreqTitle">
+    <button type="button" class="catreq-close" onclick="closeCatalogueRequest()" aria-label="Close">✕</button>
+    <div class="catreq-kicker">FutureMotion · Catalogue request</div>
+    <h2 id="catreqTitle">Request catalogue</h2>
+    <div class="catreq-supplier" id="catreqSupplier"></div>
+    <form id="catreqForm" onsubmit="submitCatalogueRequest(event)" novalidate>
+      <div class="catreq-field" data-field="email">
+        <label for="catreqEmail">Work email *</label>
+        <input id="catreqEmail" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="name@company.com" required>
+      </div>
+      <div class="catreq-field" data-field="company">
+        <label for="catreqCompany">Company *</label>
+        <input id="catreqCompany" type="text" autocomplete="organization" maxlength="150" required>
+      </div>
+      <div class="catreq-field" data-field="name">
+        <label for="catreqName">Name</label>
+        <input id="catreqName" type="text" autocomplete="name" maxlength="100">
+      </div>
+      <div class="catreq-field" data-field="message">
+        <label for="catreqMessage">Message</label>
+        <textarea id="catreqMessage" maxlength="2000" placeholder="What are you looking for?"></textarea>
+      </div>
+      <div class="catreq-field" data-field="consent">
+        <label class="catreq-consent" for="catreqConsent">
+          <input id="catreqConsent" type="checkbox" required>
+          <span>I agree to be contacted by FutureMotion about this request and sourcing in China *</span>
+        </label>
+      </div>
+      <!-- Pot de miel anti-robots : invisible pour un humain, doit rester vide. -->
+      <div class="catreq-hp" aria-hidden="true">
+        <label for="catreqWebsite">Website</label>
+        <input id="catreqWebsite" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="catreq-btn" id="catreqSubmit">Send request</button>
+      <div class="catreq-error" id="catreqError" role="alert"></div>
+    </form>
+    <div class="catreq-done" id="catreqDone" hidden>
+      <div class="catreq-done-icon">✓</div>
+      <p>Request sent — you'll receive the catalogue by email within one business day.</p>
+      <button type="button" class="catreq-btn secondary" onclick="closeCatalogueRequest()">Close</button>
     </div>
   </div>
 </div>
@@ -1549,6 +1679,7 @@ function catalogueFileLabel(f) {
 function renderPanelCatalogue(e) {
   const on = hasCatalogue(e);
   document.getElementById('panel-catalogue-badge').hidden = !on;
+  document.getElementById('panel-catreq-wrap').style.display = on ? '' : 'none';
   const wrap = document.getElementById('panel-catfiles-wrap');
   if (!on || !INTERNAL_MODE) { wrap.style.display = 'none'; return; }
   document.getElementById('panel-catfiles').innerHTML = e.catalogues.map(f =>
@@ -1583,7 +1714,10 @@ function setSort(k, el) {
 }
 
 function onSearch() { curQ=document.getElementById('searchInput').value.trim().toLowerCase(); page=1; render(); }
-function onFilter() { curCat=document.getElementById('catFilter').value; page=1; render(); }
+function onFilter() {
+  curCat=document.getElementById('catFilter').value; page=1; render();
+  if (curCat && typeof sessionTrack === 'function') sessionTrack('categories', curCat);
+}
 
 function filtered() {
   return RAW.filter((e, i)=>{
@@ -1894,6 +2028,7 @@ function openPanel(idx) {
   document.getElementById('panel-name').textContent = e.en || '—';
   document.getElementById('panel-cn').textContent   = e.cn || '';
   renderPanelCatalogue(raw);
+  if (typeof sessionTrack === 'function') sessionTrack('suppliers', raw.id);
 
   const brandEl = document.getElementById('panel-brand');
   brandEl.innerHTML = e.brand
@@ -2413,6 +2548,11 @@ function showToast(msg) {
 updateTabCounts();
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
+  // La modal de demande passe devant la fiche : on la ferme d'abord.
+  if (!document.getElementById('catreqOverlay').hidden) {
+    closeCatalogueRequest();
+    return;
+  }
   if (document.getElementById('fpOverlay')?.classList.contains('open')) {
     closeFloorPlan();
     return;
@@ -3044,6 +3184,170 @@ function mapSetHallFilter(v) {
     input.focus();
     const end = input.value.length;
     try { input.setSelectionRange(end, end); } catch (_) { /* type=search ignores it on some browsers */ }
+  }
+}
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// DEMANDE DE CATALOGUE
+// Bouton « Request catalogue » sur les fiches ayant un catalogue (champ
+// `catalogues` non vide) → modal → POST /api/catalogue-request. Le serveur
+// relit fournisseur, hall et fichiers dans ses propres données : le
+// navigateur n'envoie que l'id et les champs saisis.
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ── Contexte de session : catégories filtrées et fournisseurs consultés ───
+// Tenu en sessionStorage (repli en mémoire si indisponible), envoyé avec la demande.
+const SESSION_KEY = 'fm_session_ctx';
+const SESSION_MAX = { categories: 15, suppliers: 30 };
+let _sessionMem = { categories: [], suppliers: [] };
+
+function sessionRead() {
+  try {
+    const v = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null');
+    if (v && Array.isArray(v.categories) && Array.isArray(v.suppliers)) return v;
+  } catch {}
+  return _sessionMem;
+}
+
+function sessionTrack(kind, value) {
+  if (!value) return;
+  const ctx = sessionRead();
+  // Déplacé en fin de liste s'il est déjà présent : l'ordre reflète la consultation.
+  ctx[kind] = ctx[kind].filter(v => v !== value).concat(value).slice(-SESSION_MAX[kind]);
+  _sessionMem = ctx;
+  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(ctx)); } catch {}
+}
+
+// Le filtre catégorie de la carte compte aussi (écouteur ajouté sans toucher au module carte).
+document.getElementById('mapCatFilter').addEventListener('change', (ev) => {
+  if (ev.target.value) sessionTrack('categories', ev.target.value);
+});
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+let catreqIdx = -1;
+let freeEmailConfig = null;   // config/free-email-domains.json, pour un retour immédiat
+
+const CATREQ_ERRORS = {
+  free_email:     'Please use your company email',
+  invalid_fields: 'Please fill in the required fields.',
+  consent:        'Please tick the consent box to send your request.',
+  rate_limited:   'Too many requests in a short time. Please try again in a few minutes.',
+  send_failed:    "We couldn't send your request. Please try again in a moment.",
+  forbidden:      'Request blocked. Please reload the page and try again.',
+};
+
+function loadFreeEmailConfig() {
+  if (freeEmailConfig) return;
+  fetch('config/free-email-domains.json').then(r => r.ok ? r.json() : null)
+    .then(c => { if (c) freeEmailConfig = c; }).catch(() => {});
+}
+
+function isFreeEmailClient(email) {
+  if (!freeEmailConfig) return false;          // le serveur tranche de toute façon
+  const domain = email.slice(email.lastIndexOf('@') + 1);
+  return (freeEmailConfig.domains || []).includes(domain)
+      || (freeEmailConfig.prefixes || []).some(p => domain.startsWith(p));
+}
+
+function openCatalogueRequest(idx) {
+  const e = RAW[idx];
+  if (!e || !hasCatalogue(e)) return;
+  catreqIdx = idx;
+  loadFreeEmailConfig();
+  const d = getDisplayEntry(idx) || e;
+  const where = [e.hall && 'Hall ' + e.hall, d.booth].filter(Boolean).join(' · ');
+  document.getElementById('catreqSupplier').innerHTML =
+    'Supplier: <strong>' + esc([d.brand, d.en].filter(Boolean).join(' — ')) + '</strong>' +
+    (where ? '<br>' + esc(where) : '');
+  document.getElementById('catreqMessage').value = '';
+  document.getElementById('catreqConsent').checked = false;
+  document.getElementById('catreqWebsite').value = '';
+  catreqMarkInvalid([]);
+  document.getElementById('catreqError').textContent = '';
+  document.getElementById('catreqForm').hidden = false;
+  document.getElementById('catreqDone').hidden = true;
+  document.getElementById('catreqOverlay').hidden = false;
+  setTimeout(() => {
+    const email = document.getElementById('catreqEmail');
+    (email.value ? document.getElementById('catreqMessage') : email).focus();
+  }, 30);
+}
+
+function closeCatalogueRequest() {
+  document.getElementById('catreqOverlay').hidden = true;
+}
+
+function catreqMarkInvalid(fields) {
+  document.querySelectorAll('#catreqForm .catreq-field').forEach(f =>
+    f.classList.toggle('invalid', fields.includes(f.getAttribute('data-field'))));
+}
+
+// Le champ signalé redevient normal dès qu'il est corrigé, et le message d'erreur disparaît.
+document.getElementById('catreqForm').addEventListener('input', (ev) => {
+  const field = ev.target.closest('.catreq-field');
+  if (field) field.classList.remove('invalid');
+  document.getElementById('catreqError').textContent = '';
+});
+
+async function submitCatalogueRequest(ev) {
+  ev.preventDefault();
+  const e = RAW[catreqIdx];
+  if (!e) return;
+  const val = id => document.getElementById(id).value.trim();
+  const payload = {
+    supplierId: e.id,
+    email: val('catreqEmail'),
+    company: val('catreqCompany'),
+    name: val('catreqName'),
+    message: val('catreqMessage'),
+    consent: document.getElementById('catreqConsent').checked,
+    website: document.getElementById('catreqWebsite').value,
+    session: sessionRead(),
+  };
+  const errEl = document.getElementById('catreqError');
+
+  // Contrôles immédiats ; le serveur revalide tout.
+  const missing = [];
+  if (!/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(payload.email)) missing.push('email');
+  if (!payload.company) missing.push('company');
+  if (!payload.consent) missing.push('consent');
+  catreqMarkInvalid(missing);
+  if (missing.length) {
+    errEl.textContent = missing.length === 1 && missing[0] === 'consent' ? CATREQ_ERRORS.consent : CATREQ_ERRORS.invalid_fields;
+    return;
+  }
+  if (isFreeEmailClient(payload.email.toLowerCase())) {
+    catreqMarkInvalid(['email']);
+    errEl.textContent = CATREQ_ERRORS.free_email;
+    return;
+  }
+
+  const btn = document.getElementById('catreqSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  errEl.textContent = '';
+  try {
+    const res = await fetch('/api/catalogue-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    let data = {};
+    try { data = await res.json(); } catch {}
+    if (!res.ok) {
+      if (data.fields) catreqMarkInvalid(data.fields);
+      errEl.textContent = CATREQ_ERRORS[data.error] || CATREQ_ERRORS.send_failed;
+      return;
+    }
+    document.getElementById('catreqForm').hidden = true;
+    document.getElementById('catreqDone').hidden = false;
+  } catch {
+    errEl.textContent = CATREQ_ERRORS.send_failed;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send request';
   }
 }
 </script>
