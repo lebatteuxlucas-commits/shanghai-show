@@ -1,0 +1,10 @@
+{
+  "name": "shanghai-show",
+  "private": true,
+  "type": "module",
+  "description": "FutureMotion — China Cycle 2026 Supplier Directory (HTML statique)",
+  "scripts": {
+    "import:catalogues": "node scripts/import-catalogue-matches.ts",
+    "test": "node --test tests/*.test.ts"
+  }
+}
