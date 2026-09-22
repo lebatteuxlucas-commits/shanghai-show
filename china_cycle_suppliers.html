@@ -458,6 +458,15 @@
     color: var(--dark); cursor: pointer;
   }
   .dash-pill-btn:hover { border-color: var(--teal); color: var(--teal-dark); }
+  /* Tableau de bord des catalogues : pastilles compactes + barre de couverture */
+  .dash-hero-compact { flex-direction: column; gap: 14px; }
+  .dash-hero-compact .stats-row { margin-bottom: 0; }
+  .dash-hero-compact .dash-progress { flex: none; min-width: 0; }
+  .dash-row-nochip { grid-template-columns: 1fr auto auto; }
+  .dash-row-files {
+    font-family: var(--mono); font-size: 10px; color: var(--mid);
+    margin-top: 4px; line-height: 1.5; overflow-wrap: anywhere;
+  }
   /* Multi-booth — comma-separated codes wrap nicely */
   td .booth-code { word-break: break-word; }
 
@@ -2007,43 +2016,10 @@ function supplierKey(e) {
   return e.id || e.cn || (e.en + '|' + (e.booth || ''));
 }
 
-// Toggle catalog state and refresh every UI surface that reflects it
-// (table row, detail panel, map side panel, dashboard if open).
-function toggleCatalog(idx, ev) {
-  if (ev && ev.stopPropagation) ev.stopPropagation();
-  const sup = RAW[idx];
-  const key = supplierKey(sup);
-  const wasOn = !!LS.getCatalog(key);
-  LS.setCatalog(key, !wasOn);
-
-  document.querySelectorAll('.cat-chip[data-cat-idx="'+idx+'"]').forEach(el => {
-    el.classList.toggle('cat-on', !wasOn);
-    el.setAttribute('aria-pressed', String(!wasOn));
-    el.setAttribute('title', !wasOn ? 'Catalog collected — click to unmark'
-                                     : 'Mark catalog as collected');
-    el.textContent = !wasOn ? '✓' : '○';
-  });
-  if (typeof panelIdx !== 'undefined' && panelIdx === idx) syncCatalogCta(sup);
-  if (currentTab === 'dashboard') renderDashboard();
-  // Header counters
-  updateCatalogHeaderCounts();
-}
-
-function syncCatalogCta(e) {
-  const cta = document.getElementById('panel-catalog-cta');
-  if (!cta) return;
-  const on = !!LS.getCatalog(supplierKey(e));
-  cta.classList.toggle('cat-on', on);
-  cta.innerHTML = on
-    ? '<span style="font-size:14px">✓</span> Catalog collected <span style="opacity:0.7;font-weight:400">(click to unmark)</span>'
-    : '<span style="font-size:14px">🗂️</span> Mark catalog as collected';
-}
-
+// Compteur de l'onglet Dashboard : fournisseurs ayant au moins un catalogue.
 function updateCatalogHeaderCounts() {
-  const collected = Object.keys(LS.allCatalogs()).length;
-  const total     = RAW.length;
   const tcDash = document.getElementById('tc-dashboard');
-  if (tcDash) tcDash.textContent = collected + '/' + total;
+  if (tcDash) tcDash.textContent = RAW.filter(hasCatalogue).length + '/' + RAW.length;
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
@@ -2337,7 +2313,9 @@ const DISCOVER_PRESETS = [
 ];
 
 // ── DASHBOARD ─────────────────────────────────────────────────────────────────
-let dashListMode = 'missing';   // 'missing' | 'collected'
+// Tableau de bord des catalogues : couverture calculée depuis les données
+// (champ `catalogues`), plus depuis le suivi personnel en localStorage.
+let dashListMode = 'with';      // 'with' | 'without' (avec / sans catalogue)
 let dashListQuery = '';
 let dashHallFilter = '';        // '' = all halls
 
@@ -2345,35 +2323,35 @@ function renderDashboard() {
   const view = document.getElementById('view-dashboard');
   if (!view) return;
 
-  const cats = LS.allCatalogs();
   const total = RAW.length;
-  const collected = RAW.filter(e => cats[supplierKey(e)]).length;
-  const missing = total - collected;
-  const pct = total ? Math.round(collected * 100 / total) : 0;
+  const withCat = RAW.filter(hasCatalogue).length;
+  const withoutCat = total - withCat;
+  const fileCount = RAW.reduce((n, e) => n + (e.catalogues || []).length, 0);
+  const pct = total ? Math.round(withCat * 100 / total) : 0;
 
-  // Per-hall stats
+  // Couverture par hall
   const HALL_ORDER = ['E1','E2','E3','E4','E5','E6','E7','N1','W1','W2','W3','W4','W5'];
   const hallStats = {};
   for (const code of HALL_ORDER) {
-    hallStats[code] = { total: 0, collected: 0 };
+    hallStats[code] = { total: 0, withCat: 0 };
   }
   for (const e of RAW) {
     const halls = (e.halls && e.halls.length) ? e.halls : (e.hall ? [e.hall] : []);
-    const isCollected = !!cats[supplierKey(e)];
+    const on = hasCatalogue(e);
     for (const h of halls) {
       if (!hallStats[h]) continue;
       hallStats[h].total++;
-      if (isCollected) hallStats[h].collected++;
+      if (on) hallStats[h].withCat++;
     }
   }
 
   // Filter list rows
   const q = dashListQuery.toLowerCase().trim();
   const visibleRows = RAW
-    .map((e, i) => ({ e, d: getDisplayEntry(i) || e, i, on: !!cats[supplierKey(e)] }))
+    .map((e, i) => ({ e, d: getDisplayEntry(i) || e, i, on: hasCatalogue(e) }))
     .filter(x => {
-      if (dashListMode === 'collected' && !x.on) return false;
-      if (dashListMode === 'missing'   &&  x.on) return false;
+      if (dashListMode === 'with'    && !x.on) return false;
+      if (dashListMode === 'without' &&  x.on) return false;
       if (dashHallFilter) {
         const halls = (x.e.halls && x.e.halls.length) ? x.e.halls : [x.e.hall];
         if (!halls.includes(dashHallFilter)) return false;
@@ -2387,12 +2365,7 @@ function renderDashboard() {
       return true;
     })
     .sort((a, b) => {
-      // Collected: most recent first; Missing: by hall+booth
-      if (dashListMode === 'collected') {
-        const aT = (cats[supplierKey(a.e)] || {}).at || '';
-        const bT = (cats[supplierKey(b.e)] || {}).at || '';
-        return bT.localeCompare(aT);
-      }
+      // Par hall puis par stand : l'ordre de visite sur le salon.
       const aH = a.e.hall || 'Z';
       const bH = b.e.hall || 'Z';
       if (aH !== bH) return aH.localeCompare(bH);
@@ -2403,22 +2376,16 @@ function renderDashboard() {
 
   view.innerHTML = `
     <div class="dash-shell">
-      <div class="dash-hero">
-        <div class="dash-stat">
-          <span class="dash-stat-num dash-collected">${collected.toLocaleString()}</span>
-          <span class="dash-stat-label">Collected</span>
-        </div>
-        <div class="dash-stat">
-          <span class="dash-stat-num dash-missing">${missing.toLocaleString()}</span>
-          <span class="dash-stat-label">Missing</span>
-        </div>
-        <div class="dash-stat">
-          <span class="dash-stat-num">${total.toLocaleString()}</span>
-          <span class="dash-stat-label">Total exhibitors</span>
+      <div class="dash-hero dash-hero-compact">
+        <div class="stats-row">
+          <div class="stat"><span class="stat-num">${withCat.toLocaleString()}</span><span class="stat-label">With catalogue</span></div>
+          <div class="stat"><span class="stat-num">${withoutCat.toLocaleString()}</span><span class="stat-label">Without catalogue</span></div>
+          <div class="stat"><span class="stat-num">${fileCount.toLocaleString()}</span><span class="stat-label">Catalogue files</span></div>
+          <div class="stat"><span class="stat-num">${total.toLocaleString()}</span><span class="stat-label">Exhibitors</span></div>
         </div>
         <div class="dash-progress">
           <div class="dash-progress-bar"><div class="dash-progress-fill" style="width:${pct}%"></div></div>
-          <div class="dash-progress-pct">${pct}% of catalogs collected</div>
+          <div class="dash-progress-pct">${pct}% of exhibitors with a catalogue</div>
         </div>
       </div>
 
@@ -2432,7 +2399,7 @@ function renderDashboard() {
           ${HALL_ORDER.map(code => {
             const s = hallStats[code];
             const meta = HALL_META[code] || { en: '', cn: '' };
-            const hallPct = s.total ? Math.round(s.collected * 100 / s.total) : 0;
+            const hallPct = s.total ? Math.round(s.withCat * 100 / s.total) : 0;
             const isFilter = dashHallFilter === code;
             return `
               <div class="dash-hall-card${isFilter ? ' dash-hall-card-active' : ''}"
@@ -2441,7 +2408,7 @@ function renderDashboard() {
                   <span class="dash-hall-code">${code}</span>
                   <span class="dash-hall-en">${esc(meta.en || '')}</span>
                 </div>
-                <div class="dash-hall-count"><strong>${s.collected}</strong> / ${s.total} (${hallPct}%)</div>
+                <div class="dash-hall-count"><strong>${s.withCat}</strong> / ${s.total} with catalogue (${hallPct}%)</div>
                 <div class="dash-hall-bar"><div class="dash-hall-bar-fill" style="width:${hallPct}%"></div></div>
               </div>
             `;
@@ -2450,46 +2417,43 @@ function renderDashboard() {
       </div>
 
       <div class="dash-section">
-        <h3>${dashListMode === 'missing' ? 'Missing' : 'Collected'}
+        <h3>${dashListMode === 'with' ? 'With catalogue' : 'Without catalogue'}
           ${dashHallFilter ? ` · ${esc(dashHallFilter)}` : ''}
           <span class="dash-section-actions">
-            <button class="dash-pill-btn" onclick="dashExportCsv()">Export ${dashListMode} as CSV</button>
+            <button class="dash-pill-btn" onclick="dashExportCsv()">Export as CSV</button>
           </span>
         </h3>
         <div class="dash-list-toolbar">
           <input type="search" placeholder="Filter by name, brand, or booth…"
                  value="${esc(dashListQuery)}" oninput="dashSetQuery(this.value)">
           <div class="dash-list-tabs">
-            <button class="dash-list-tab${dashListMode==='missing'?' active':''}" onclick="dashSetMode('missing')">Missing (${missing})</button>
-            <button class="dash-list-tab${dashListMode==='collected'?' active':''}" onclick="dashSetMode('collected')">Collected (${collected})</button>
+            <button class="dash-list-tab${dashListMode==='with'?' active':''}" onclick="dashSetMode('with')">With catalogue (${withCat})</button>
+            <button class="dash-list-tab${dashListMode==='without'?' active':''}" onclick="dashSetMode('without')">Without catalogue (${withoutCat})</button>
           </div>
         </div>
         ${visibleRows.length === 0
-          ? `<div class="dash-empty">${dashListMode === 'collected'
-              ? 'No catalogs collected yet — start marking on the Suppliers or Map view.'
-              : (collected === total ? '🎉 All catalogs collected for this scope.' : 'No matching exhibitors.')}</div>`
+          ? `<div class="dash-empty">No matching exhibitors.</div>`
           : visibleRows.slice(0, 500).map(x => {
-              const cat = cats[supplierKey(x.e)];
-              const when = cat && cat.at ? new Date(cat.at).toLocaleDateString() : '';
               const halls = (x.e.halls && x.e.halls.length) ? x.e.halls.join(',') : (x.e.hall || '');
               const brandPill = x.d.brand ? `<span class="co-brand">${esc(x.d.brand)}</span>` : '';
+              const n = (x.e.catalogues || []).length;
+              // Noms de fichiers : usage interne uniquement (?internal=1).
+              const files = INTERNAL_MODE && n
+                ? `<div class="dash-row-files">${x.e.catalogues.map(f => esc(catalogueFileLabel(f))).join('<br>')}</div>`
+                : '';
               return `
-                <div class="dash-row" onclick="openPanel(${x.i})">
-                  <button class="cat-chip${x.on?' cat-on':''}"
-                          data-cat-idx="${x.i}" aria-pressed="${x.on}"
-                          onclick="toggleCatalog(${x.i}, event)">
-                    ${x.on ? '✓' : '○'}
-                  </button>
+                <div class="dash-row dash-row-nochip" onclick="openPanel(${x.i})">
                   <div>
                     ${brandPill}
                     <div class="dash-row-name">${esc(x.d.en || '—')}</div>
                     ${x.d.cn ? `<div class="dash-row-cn">${esc(x.d.cn)}</div>` : ''}
+                    ${files}
                   </div>
                   <div class="dash-row-meta">
                     <div>${esc(halls)}</div>
                     ${x.d.booth ? `<div style="margin-top:2px"><code class="booth-code">${esc(x.d.booth)}</code></div>` : ''}
                   </div>
-                  <div class="dash-row-time">${when ? '✓ ' + esc(when) : ''}</div>
+                  <div class="dash-row-time">${n ? `<span class="co-catalogue">${n} file${n > 1 ? 's' : ''}</span>` : ''}</div>
                 </div>
               `;
             }).join('') + (visibleRows.length > 500
@@ -2520,37 +2484,36 @@ function dashSetHallFilter(h) {
   renderDashboard();
 }
 
+// Export de la liste affichée (onglet + filtre de hall), noms de fichiers compris.
 function dashExportCsv() {
-  const cats = LS.allCatalogs();
   const rows = RAW
     .map((e, i) => ({ e, i }))
     .filter(({ e }) => {
-      const on = !!cats[supplierKey(e)];
-      if (dashListMode === 'missing'   &&  on) return false;
-      if (dashListMode === 'collected' && !on) return false;
+      const on = hasCatalogue(e);
+      if (dashListMode === 'with'    && !on) return false;
+      if (dashListMode === 'without' &&  on) return false;
       if (dashHallFilter) {
         const halls = (e.halls && e.halls.length) ? e.halls : [e.hall];
         if (!halls.includes(dashHallFilter)) return false;
       }
       return true;
     });
-  const lines = [['Brand','Company (EN)','Company (CN)','Hall(s)','Booth','Status','Collected at','Has catalogue','Catalogue files'].join(',')];
+  const lines = [['Brand','Company (EN)','Company (CN)','Hall(s)','Booth','Has catalogue','Files','Catalogue files'].join(',')];
   for (const { e, i } of rows) {
     const d = getDisplayEntry(i) || e;
-    const cat = cats[supplierKey(e)];
     const halls = (e.halls && e.halls.length) ? e.halls.join('+') : (e.hall || '');
     const csv = [d.brand || '', d.en || '', d.cn || '', halls, d.booth || '',
-                 cat ? 'collected' : 'missing',
-                 cat && cat.at ? cat.at.slice(0,10) : '',
                  hasCatalogue(e) ? 'yes' : 'no',
+                 (e.catalogues || []).length,
                  (e.catalogues || []).map(catalogueFileLabel).join(' | ')]
       .map(v => `"${String(v).replace(/"/g, '""')}"`).join(',');
     lines.push(csv);
   }
-  const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+  // BOM UTF-8 : Excel affiche correctement les noms chinois.
+  const blob = new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `catalogs-${dashListMode}${dashHallFilter ? '-' + dashHallFilter : ''}-${new Date().toISOString().slice(0,10)}.csv`;
+  a.download = `catalogues-${dashListMode}${dashHallFilter ? '-' + dashHallFilter : ''}-${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
   URL.revokeObjectURL(a.href);
 }

@@ -110,6 +110,8 @@ export function renderHome(template, { contactEmail, siteUrl } = {}) {
   html = replaceOnce(html, '<tbody id="tbody"></tbody>', `<tbody id="tbody">${rows}</tbody>`);
   html = replaceOnce(html, '<span class="stat-num" id="statCatalogues">0</span>',
     `<span class="stat-num" id="statCatalogues">${catalogueCount.toLocaleString('en-US')}</span>`);
+  html = replaceOnce(html, '<span class="tab-count" id="tc-dashboard">0/1633</span>',
+    `<span class="tab-count" id="tc-dashboard">${catalogueCount}/${raw.length}</span>`);
   html = replaceOnce(html, '<div class="count-pill" id="countPill"><strong>1,633</strong> results</div>',
     `<div class="count-pill" id="countPill"><strong>${raw.length.toLocaleString('en-US')}</strong> results</div>`);
   return applySiteVars(html, { contactEmail, siteUrl });
