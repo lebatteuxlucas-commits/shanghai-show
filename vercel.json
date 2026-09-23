@@ -5,7 +5,8 @@
   ],
   "rewrites": [
     { "source": "/", "destination": "/api/render?page=home" },
-    { "source": "/privacy", "destination": "/api/render?page=privacy" }
+    { "source": "/privacy", "destination": "/api/render?page=privacy" },
+    { "source": "/admin", "destination": "/api/admin" }
   ],
   "functions": {
     "api/catalogue-request.js": {

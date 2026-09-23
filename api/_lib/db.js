@@ -32,6 +32,27 @@ export async function isRateLimited({ ipHash, email }) {
   return (ipHash && r.by_ip >= RATE_LIMIT.perIp) || r.by_email >= RATE_LIMIT.perEmail;
 }
 
+// ── Back-office (/admin) ───────────────────────────────────────────────────
+export async function listRequests({ status = 'new', limit = 200 } = {}) {
+  return status === 'all'
+    ? sql()`select * from catalogue_requests order by created_at desc limit ${limit}`
+    : sql()`select * from catalogue_requests where status = ${status} order by created_at desc limit ${limit}`;
+}
+
+export async function countByStatus() {
+  const rows = await sql()`select status, count(*)::int as n from catalogue_requests group by status`;
+  return Object.fromEntries(rows.map(r => [r.status, r.n]));
+}
+
+// « traité le » est posé quand la demande quitte l'état « new ».
+export async function setRequestStatus(id, status) {
+  await sql()`
+    update catalogue_requests
+    set status = ${status},
+        processed_at = ${status === 'new' ? null : new Date().toISOString()}
+    where id = ${id}`;
+}
+
 export async function saveRequest(d, { ipHash, consentText }) {
   const [row] = await sql()`
     insert into catalogue_requests

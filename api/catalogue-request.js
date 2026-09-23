@@ -42,32 +42,32 @@ export async function POST(request) {
   const d = parsed.data;
 
   const contact = process.env.CONTACT_EMAIL;
-  if (!contact) {
-    console.error('CONTACT_EMAIL manquant');
-    return json({ error: 'send_failed' }, 500);
-  }
-
   const ip = (request.headers.get('x-forwarded-for') || '').split(',')[0].trim() || request.headers.get('x-real-ip');
   const ipHash = hashIp(ip);
   if (await isRateLimited({ ipHash, email: d.email })) return json({ error: 'rate_limited' }, 429);
 
-  // Enregistrement d'abord : si l'envoi échoue, la demande n'est pas perdue.
+  // L'enregistrement fait foi : une demande enregistrée est une demande reçue,
+  // que l'email parte ou non. Elle est traitée depuis le back-office (/admin).
   await saveRequest(d, { ipHash, consentText: CONSENT_TEXT });
 
-  const internal = composeInternalEmail(d);
-  try {
-    await sendEmail({ to: contact, subject: internal.subject, text: internal.text, replyTo: d.email });
-  } catch (err) {
-    console.error('Email interne non envoyé (demande enregistrée) :', err);
-    return json({ error: 'send_failed' }, 502);
-  }
-
-  // L'accusé de réception n'est pas bloquant : la demande est déjà transmise.
-  const ack = composeAcknowledgement(d);
-  try {
-    await sendEmail({ to: d.email, subject: ack.subject, text: ack.text, replyTo: contact });
-  } catch (err) {
-    console.error('Accusé de réception non envoyé :', err);
+  // Les emails sont un confort en plus : leur échec ne doit pas renvoyer une
+  // erreur au visiteur (tant que le domaine d'envoi n'est pas vérifié, ils
+  // échouent tous les deux, et les demandes s'affichent quand même dans /admin).
+  if (contact) {
+    const internal = composeInternalEmail(d);
+    try {
+      await sendEmail({ to: contact, subject: internal.subject, text: internal.text, replyTo: d.email });
+    } catch (err) {
+      console.error('Email interne non envoyé (demande enregistrée, visible dans /admin) :', err);
+    }
+    const ack = composeAcknowledgement(d);
+    try {
+      await sendEmail({ to: d.email, subject: ack.subject, text: ack.text, replyTo: contact });
+    } catch (err) {
+      console.error('Accusé de réception non envoyé :', err);
+    }
+  } else {
+    console.error('CONTACT_EMAIL manquant : demande enregistrée, aucun email envoyé');
   }
   return json({ ok: true });
 }
