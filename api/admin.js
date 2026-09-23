@@ -59,7 +59,7 @@ function card(r) {
         <div class="supplier">${esc(r.supplier_name)}</div>
         <div class="muted">${esc(r.hall || '')} ${esc(r.booth || '')} · ${esc(r.supplier_id)}</div>
       </div>
-      <div class="when">${esc(when)}<span class="badge">${esc(r.status)}</span></div>
+      <div class="when">${esc(when)}<span class="badge">${esc(r.status)}</span>${r.email_sent ? '' : '<span class="badge warnbadge">email non parti</span>'}</div>
     </div>
 
     <div class="files"><strong>Fichier(s) à envoyer</strong><ul>${files}</ul></div>
@@ -85,7 +85,7 @@ function card(r) {
   </article>`;
 }
 
-function page(rows, counts, status, emailReady) {
+function page(rows, counts, status, emailFailing) {
   const tab = (key, label) => `<a class="tab${status === key ? ' active' : ''}" href="/admin?status=${key}">${label} <b>${counts[key] ?? 0}</b></a>`;
   return `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,6 +111,7 @@ function page(rows, counts, status, emailReady) {
   .supplier { font-weight:600; overflow-wrap:anywhere; }
   .when { font-family:var(--mono); font-size:11px; color:var(--mid); text-align:right; white-space:nowrap; }
   .badge { display:inline-block; margin-left:8px; background:var(--teal-light); color:var(--teal-dark); border-radius:3px; padding:1px 6px; }
+  .warnbadge { background:#fff7e0; color:#8a6d00; }
   .muted { color:var(--mid); }
   .small { font-size:12px; }
   .files { background:var(--teal-light); border-radius:6px; padding:10px 12px; margin-bottom:10px; font-size:13px; }
@@ -129,7 +130,7 @@ function page(rows, counts, status, emailReady) {
   <h1>Demandes de catalogue</h1>
   <div class="tabs">${tab('new', 'À traiter')}${tab('sent', 'Envoyées')}${tab('closed', 'Closes')}${tab('all', 'Toutes')}</div>
 </header>
-${emailReady ? '' : '<div class="warn">Envoi d’emails inactif : le domaine d’envoi n’est pas encore vérifié chez Resend. Les demandes arrivent ici, mais ni vous ni le demandeur ne recevez d’email. Répondez depuis cette page.</div>'}
+${emailFailing ? '<div class="warn">Des emails ne sont pas partis (domaine d’envoi non vérifié chez Resend, ou panne). Les demandes arrivent bien ici, mais ni vous ni le demandeur ne recevez d’email : répondez depuis cette page.</div>' : ''}
 <main>${rows.length ? rows.map(card).join('') : '<div class="empty">Aucune demande dans cette vue.</div>'}</main>
 </body></html>`;
 }
@@ -139,8 +140,10 @@ export async function GET(request) {
   const status = new URL(request.url).searchParams.get('status') || 'new';
   const [rows, counts] = await Promise.all([listRequests({ status }), countByStatus()]);
   counts.all = Object.values(counts).reduce((a, b) => a + b, 0);
-  const emailReady = !!(process.env.RESEND_API_KEY && process.env.CONTACT_EMAIL && process.env.FROM_EMAIL);
-  return html(page(rows, counts, status, emailReady));
+  // Avertissement fondé sur les faits : au moins une demande affichée dont
+  // l'email n'est pas parti (plutôt que sur la seule présence des variables).
+  const emailFailing = rows.some(r => !r.email_sent);
+  return html(page(rows, counts, status, emailFailing));
 }
 
 export async function POST(request) {

@@ -65,3 +65,8 @@ export async function saveRequest(d, { ipHash, consentText }) {
     returning id, created_at`;
   return row;
 }
+
+// L'email interne est-il bien parti pour cette demande ?
+export async function markEmailSent(id) {
+  await sql()`update catalogue_requests set email_sent = true where id = ${id}`;
+}

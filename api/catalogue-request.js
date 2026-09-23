@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { CONSENT_TEXT, composeAcknowledgement, composeInternalEmail, parseRequest } from './_lib/catalogue-request.js';
-import { hashIp, isRateLimited, saveRequest } from './_lib/db.js';
+import { hashIp, isRateLimited, markEmailSent, saveRequest } from './_lib/db.js';
 import { sendEmail } from './_lib/mailer.js';
 import { suppliersById } from './_lib/raw-data.js';
 
@@ -48,7 +48,7 @@ export async function POST(request) {
 
   // L'enregistrement fait foi : une demande enregistrée est une demande reçue,
   // que l'email parte ou non. Elle est traitée depuis le back-office (/admin).
-  await saveRequest(d, { ipHash, consentText: CONSENT_TEXT });
+  const saved = await saveRequest(d, { ipHash, consentText: CONSENT_TEXT });
 
   // Les emails sont un confort en plus : leur échec ne doit pas renvoyer une
   // erreur au visiteur (tant que le domaine d'envoi n'est pas vérifié, ils
@@ -57,6 +57,7 @@ export async function POST(request) {
     const internal = composeInternalEmail(d);
     try {
       await sendEmail({ to: contact, subject: internal.subject, text: internal.text, replyTo: d.email });
+      await markEmailSent(saved.id);
     } catch (err) {
       console.error('Email interne non envoyé (demande enregistrée, visible dans /admin) :', err);
     }

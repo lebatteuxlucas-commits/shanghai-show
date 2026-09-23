@@ -22,3 +22,7 @@ create index if not exists catalogue_requests_created_idx on catalogue_requests 
 create index if not exists catalogue_requests_status_idx  on catalogue_requests (status, created_at desc);
 create index if not exists catalogue_requests_ip_idx      on catalogue_requests (ip_hash, created_at desc);
 create index if not exists catalogue_requests_email_idx   on catalogue_requests (email, created_at desc);
+
+-- Suivi de l'envoi : une demande peut être enregistrée sans que l'email parte
+-- (domaine d'envoi non vérifié, panne Resend). Le back-office le signale.
+alter table catalogue_requests add column if not exists email_sent boolean not null default false;
