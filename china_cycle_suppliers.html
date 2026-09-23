@@ -1181,6 +1181,13 @@
 }
 .panel-catalogue-badge { margin-top: 8px; }
 .panel-catalogue-badge .co-catalogue { margin-top: 0; }
+/* Fiche issue de la collecte de catalogues, pas de la liste officielle. */
+.panel-origin {
+  margin-top: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.3px;
+  color: #8a6d00; background: #fff7e0; border-radius: 3px; padding: 2px 7px; display: inline-block;
+}
+/* display:inline-block l'emporterait sur l'attribut hidden sans cette règle. */
+.panel-origin[hidden] { display: none; }
 .catalogue-toggle.active { background: var(--teal); border-color: var(--teal); color: var(--white); }
 .catalogue-toggle.active:hover { background: var(--teal-dark); }
 .catfile-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
@@ -1465,6 +1472,7 @@
       <div class="panel-name" id="panel-name"></div>
       <div class="panel-cn" id="panel-cn"></div>
       <div class="panel-catalogue-badge" id="panel-catalogue-badge" hidden><span class="co-catalogue">Catalogue</span></div>
+      <div class="panel-origin" id="panel-origin" hidden>Added from on-site catalogue collection</div>
     </div>
     <button class="panel-edit-toggle" type="button" onclick="panelEnterEditMode()">Edit</button>
     <button class="panel-close" onclick="closePanel()">✕</button>
@@ -1742,6 +1750,12 @@ function catalogueFileLabel(f) {
 // L'adresse vient du rendu serveur (<meta name="fm-contact">, CONTACT_EMAIL) ;
 // absente (page statique ouverte en local), le bouton reste masqué.
 const CONTACT_EMAIL = (document.querySelector('meta[name="fm-contact"]') || {}).content || '';
+
+// Fiches « added_* » : ajoutées depuis un catalogue collecté sur le salon,
+// elles ne viennent pas de la liste officielle des exposants.
+function renderPanelOrigin(e) {
+  document.getElementById('panel-origin').hidden = !(e && typeof e.id === 'string' && e.id.startsWith('added_'));
+}
 
 function renderPanelAsk(e) {
   const wrap = document.getElementById('panel-ask-wrap');
@@ -2068,6 +2082,7 @@ function openPanel(idx) {
   document.getElementById('panel-name').textContent = e.en || '—';
   document.getElementById('panel-cn').textContent   = e.cn || '';
   renderPanelCatalogue(raw);
+  renderPanelOrigin(raw);
   renderPanelAsk(raw);
   if (typeof sessionTrack === 'function') sessionTrack('suppliers', raw.id);
 

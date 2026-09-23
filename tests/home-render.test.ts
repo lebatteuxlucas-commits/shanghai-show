@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applySiteVars, defaultOrder, extractConst, renderHome, PAGE_SIZE } from '../api/_lib/home-render.js';
+import { applySiteVars, defaultOrder, extractConst, renderHome, replaceById, PAGE_SIZE } from '../api/_lib/home-render.js';
 import { parseRaw } from '../api/_lib/raw-data.js';
 
 const home = readFileSync(new URL('../china_cycle_suppliers.html', import.meta.url), 'utf8');
@@ -58,4 +58,11 @@ test('constantes lues dans le script de la page', () => {
 test('email échappé (pas d’injection HTML via CONTACT_EMAIL)', () => {
   const html = renderHome(home, { contactEmail: 'a"><script>x</script>@b.co' });
   assert.ok(!html.includes('"><script>x</script>'));
+});
+
+test('replaceById gère les balises imbriquées et reste stable', () => {
+  const h = '<div class="count-pill" id="countPill"><strong>1,633</strong> results</div>';
+  const once = replaceById(h, 'countPill', '<strong>1,700</strong> results');
+  assert.equal(once, '<div class="count-pill" id="countPill"><strong>1,700</strong> results</div>');
+  assert.equal(replaceById(once, 'countPill', '<strong>1,700</strong> results'), once);
 });

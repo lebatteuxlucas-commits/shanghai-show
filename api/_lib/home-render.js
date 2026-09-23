@@ -83,6 +83,29 @@ function replaceOnce(html, search, replacement) {
   return html.slice(0, i) + replacement + html.slice(i + search.length);
 }
 
+// Remplace le contenu d'un élément repéré par son id, quel que soit son
+// contenu actuel : les compteurs changent quand des exposants sont ajoutés.
+// La balise fermante est cherchée par son nom (le contenu peut lui-même
+// contenir des balises, ex. « <strong>1,633</strong> results »).
+export function replaceById(html, id, inner) {
+  const at = html.indexOf(`id="${id}"`);
+  if (at < 0) throw new Error(`Élément « ${id} » introuvable`);
+  const tagStart = html.lastIndexOf('<', at);
+  const tag = (html.slice(tagStart + 1).match(/^[a-zA-Z0-9-]+/) || [])[0];
+  const open = html.indexOf('>', at);
+  if (!tag || open < 0) throw new Error(`Élément « ${id} » mal formé`);
+  let i = open + 1, depth = 1;
+  while (i < html.length) {
+    const nextOpen = html.indexOf('<' + tag, i);
+    const nextClose = html.indexOf('</' + tag, i);
+    if (nextClose < 0) break;
+    if (nextOpen >= 0 && nextOpen < nextClose) { depth++; i = nextOpen + 1; continue; }
+    if (--depth === 0) return html.slice(0, open + 1) + inner + html.slice(nextClose);
+    i = nextClose + 1;
+  }
+  throw new Error(`Élément « ${id} » : balise fermante introuvable`);
+}
+
 // Remplacements communs à toutes les pages : email de contact et URL du site.
 export function applySiteVars(html, { contactEmail, siteUrl }) {
   let out = html;
@@ -108,11 +131,9 @@ export function renderHome(template, { contactEmail, siteUrl } = {}) {
 
   let html = template;
   html = replaceOnce(html, '<tbody id="tbody"></tbody>', `<tbody id="tbody">${rows}</tbody>`);
-  html = replaceOnce(html, '<span class="stat-num" id="statCatalogues">0</span>',
-    `<span class="stat-num" id="statCatalogues">${catalogueCount.toLocaleString('en-US')}</span>`);
-  html = replaceOnce(html, '<span class="tab-count" id="tc-dashboard">0/1633</span>',
-    `<span class="tab-count" id="tc-dashboard">${catalogueCount}/${raw.length}</span>`);
-  html = replaceOnce(html, '<div class="count-pill" id="countPill"><strong>1,633</strong> results</div>',
-    `<div class="count-pill" id="countPill"><strong>${raw.length.toLocaleString('en-US')}</strong> results</div>`);
+  html = replaceById(html, 'statCatalogues', catalogueCount.toLocaleString('en-US'));
+  html = replaceById(html, 'tc-dashboard', `${catalogueCount}/${raw.length}`);
+  html = replaceById(html, 'tc-suppliers', raw.length.toLocaleString('en-US'));
+  html = replaceById(html, 'countPill', `<strong>${raw.length.toLocaleString('en-US')}</strong> results`);
   return applySiteVars(html, { contactEmail, siteUrl });
 }
