@@ -6,3 +6,8 @@ tests/
 docs/
 .playwright-mcp/
 *.py
+
+# Outils d’agent installés par « vercel integration add » (jamais servis au public)
+.claude/
+.agents/
+skills-lock.json
