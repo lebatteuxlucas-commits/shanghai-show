@@ -2,20 +2,34 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applySiteVars, defaultOrder, extractConst, renderHome, replaceById, PAGE_SIZE } from '../api/_lib/home-render.js';
+import { applySiteVars, defaultHall, defaultOrder, extractConst, renderHome, replaceById, PAGE_SIZE } from '../api/_lib/home-render.js';
 import { parseRaw } from '../api/_lib/raw-data.js';
 
 const home = readFileSync(new URL('../china_cycle_suppliers.html', import.meta.url), 'utf8');
 const privacy = readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
 
-test('accueil : premières lignes du tableau, compteurs et nombre de résultats écrits dans le HTML', () => {
+test('accueil : vue d’arrivée (hall le mieux doté), lignes et compteurs écrits dans le HTML', () => {
+  const raw = parseRaw(home);
+  const hall = defaultHall(raw);
   const html = renderHome(home, { contactEmail: 'contact@futuremotion.example' });
   const tbody = html.slice(html.indexOf('<tbody id="tbody">'), html.indexOf('</tbody>'));
-  assert.equal((tbody.match(/<tr /g) || []).length, PAGE_SIZE);
-  const first = defaultOrder(parseRaw(home))[0].e;
-  assert.ok(tbody.includes(first.en.replace(/&/g, '&amp;')), 'première ligne = premier fournisseur par ordre alphabétique');
-  assert.match(html, /id="countPill"><strong>1,633<\/strong> results/);
+  const visible = defaultOrder(raw).filter(({ e }) => e.hall === hall);
+  assert.equal((tbody.match(/<tr /g) || []).length, Math.min(PAGE_SIZE, visible.length));
+  assert.ok(tbody.includes(visible[0].e.en.replace(/&/g, '&amp;')), 'première ligne = premier exposant du hall, par ordre alphabétique');
+  // Le compteur reflète la vue affichée, comme après le premier rendu du client.
+  assert.ok(html.includes(`id="countPill"><strong>${visible.length.toLocaleString('en-US')}</strong> results`));
+  assert.ok(html.includes(`id="tc-suppliers">${visible.length.toLocaleString('en-US')}<`));
   assert.match(html, /id="statCatalogues">\d/);
+});
+
+test('hall d’arrivée : celui qui a le plus de catalogues (hall principal)', () => {
+  assert.equal(defaultHall([
+    { id: 'a', hall: 'E1', catalogues: [] },
+    { id: 'b', hall: 'W4', catalogues: [{ filename: 'x', category_folder: '' }] },
+    { id: 'c', hall: 'W4', catalogues: [] },
+  ] as any), 'W4');
+  // Aucune donnée de catalogue : pas de hall imposé, on reste sur « All Halls ».
+  assert.equal(defaultHall([{ id: 'a', hall: 'E1', catalogues: [] }] as any), '');
 });
 
 test('email de contact injecté dans la meta et le pied de page', () => {

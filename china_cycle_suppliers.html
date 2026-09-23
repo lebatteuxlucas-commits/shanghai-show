@@ -214,6 +214,22 @@
   .chip:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
   .chip.active { background: var(--nav-bg); color: var(--white); border-color: var(--nav-bg); }
   .chip-all.active { background: var(--charcoal); border-color: var(--charcoal); color: var(--white); }
+  .hall-hint {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 9px 40px; background: var(--teal-light);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px; color: var(--teal-dark);
+  }
+  .hall-hint[hidden] { display: none; }
+  .hall-hint strong { font-weight: 600; }
+  .hall-hint button {
+    background: var(--white); border: 1px solid rgba(31,168,118,0.45); border-radius: 4px;
+    padding: 4px 10px; font-family: inherit; font-size: 11px; font-weight: 600;
+    color: var(--teal-dark); cursor: pointer;
+  }
+  .hall-hint button:hover { background: var(--bg); }
+  @media (max-width: 700px) { .hall-hint { padding: 8px 14px; } }
+
   .chip-wing {
     display: inline-flex; align-items: center;
     font-family: var(--display);
@@ -1374,6 +1390,8 @@
 <div class="hall-chips" id="hallChips">
   <div class="chip chip-all active" onclick="setHall('')" data-hall="">All Halls</div>
 </div>
+<!-- Bandeau d'arrivée : explique la vue filtrée et propose la liste complète. -->
+<div class="hall-hint" id="hallHint" hidden></div>
 
 <div class="table-wrap">
   <table>
@@ -1729,6 +1747,26 @@ let curHall='', curCat='', curQ='', sortKey='en', sortDir=1, page=1;
 // interne : affichés dans la fiche uniquement avec ?internal=1.
 const INTERNAL_MODE = new URLSearchParams(location.search).get('internal') === '1';
 const hasCatalogue = (e) => Array.isArray(e.catalogues) && e.catalogues.length > 0;
+
+// Hall d'arrivée : celui qui a le plus de catalogues, calculé depuis les
+// données (et non figé) pour rester juste quand la collecte s'enrichit.
+// Même règle que le filtre : on compte le hall principal (e.hall).
+// Le rendu serveur applique le même calcul (api/_lib/home-render.js).
+function bestCatalogueHall() {
+  const stats = {};
+  for (const e of RAW) {
+    if (!e.hall) continue;
+    const s = stats[e.hall] || (stats[e.hall] = { n: 0, cat: 0 });
+    s.n++;
+    if (hasCatalogue(e)) s.cat++;
+  }
+  const ranked = Object.entries(stats).sort((a, b) =>
+    b[1].cat - a[1].cat || b[1].n - a[1].n || a[0].localeCompare(b[0]));
+  return ranked.length && ranked[0][1].cat ? ranked[0][0] : '';
+}
+const DEFAULT_HALL = bestCatalogueHall();
+curHall = DEFAULT_HALL;
+let hallChosenByUser = false;   // vrai dès que l'utilisateur clique une pastille de hall
 let curCatalogueOnly = false;  // filtre « Has catalogue »
 document.getElementById('statCatalogues').textContent = RAW.filter(hasCatalogue).length.toLocaleString();
 
@@ -1738,6 +1776,7 @@ function toggleCatalogueFilter() {
   btn.classList.toggle('active', curCatalogueOnly);
   btn.setAttribute('aria-pressed', String(curCatalogueOnly));
   page = 1;
+  if (curCatalogueOnly && leaveDefaultHall()) return;   // tout le salon, pas le seul hall d'arrivée
   render();
 }
 
@@ -1784,8 +1823,11 @@ function renderPanelCatalogue(e) {
 }
 const PAGE=50;
 
-function setHall(h) {
+// fromUser=false pour la vue d'arrivée : le hall par défaut n'est pas un choix
+// de l'utilisateur, une recherche doit donc porter sur tout le salon.
+function setHall(h, fromUser=true) {
   curHall=h; page=1;
+  if (fromUser) hallChosenByUser = true;
   document.querySelectorAll('.chip').forEach(c=>{
     const isActive = c.getAttribute('data-hall')===h;
     c.classList.toggle('active', isActive);
@@ -1806,9 +1848,22 @@ function setSort(k, el) {
   page=1; render();
 }
 
-function onSearch() { curQ=document.getElementById('searchInput').value.trim().toLowerCase(); page=1; render(); }
+// Rechercher ou filtrer depuis la vue d'arrivée sort du hall par défaut :
+// sinon « dahon » ne renverrait rien parce que DAHON n'expose pas dans ce hall.
+function leaveDefaultHall() {
+  if (hallChosenByUser || !DEFAULT_HALL || curHall !== DEFAULT_HALL) return false;
+  setHall('', false);
+  return true;
+}
+
+function onSearch() {
+  curQ=document.getElementById('searchInput').value.trim().toLowerCase(); page=1;
+  if (curQ && leaveDefaultHall()) return;   // setHall a déjà rendu la vue
+  render();
+}
 function onFilter() {
-  curCat=document.getElementById('catFilter').value; page=1; render();
+  curCat=document.getElementById('catFilter').value; page=1;
+  if (!(curCat && leaveDefaultHall())) render();
   if (curCat && typeof sessionTrack === 'function') sessionTrack('categories', curCat);
 }
 
@@ -1858,6 +1913,7 @@ function render() {
 
   document.getElementById('countPill').innerHTML='<strong>'+total.toLocaleString()+'</strong> result'+(total!==1?'s':'');
   updateTabCounts(total);
+  renderHallHint();
   const tbody=document.getElementById('tbody');
   const emptyEl=document.getElementById('empty');
 
@@ -1910,6 +1966,21 @@ function render() {
     }).join('');
   }
   renderPagination(pages, total);
+}
+
+// Bandeau visible uniquement sur la vue d'arrivée (hall par défaut, sans
+// recherche ni autre filtre) : il disparaît dès que l'utilisateur agit.
+function renderHallHint() {
+  const el = document.getElementById('hallHint');
+  if (!el) return;
+  const onDefault = DEFAULT_HALL && curHall === DEFAULT_HALL && !curQ && !curCat && !curCatalogueOnly;
+  el.hidden = !onDefault;
+  if (!onDefault) return;
+  const meta = HALL_META[DEFAULT_HALL] || { en: '' };
+  const n = RAW.filter(e => e.hall === DEFAULT_HALL && hasCatalogue(e)).length;
+  el.innerHTML = 'Starting in <strong>' + esc(DEFAULT_HALL) + (meta.en ? ' · ' + esc(meta.en) : '') +
+    '</strong> — the hall with the most catalogues (' + n + ').' +
+    ' <button type="button" onclick="setHall(\'\')">Show all ' + RAW.length.toLocaleString() + ' exhibitors</button>';
 }
 
 function renderPagination(pages, total) {
@@ -2665,7 +2736,7 @@ function applyFloorPlan() {
   wrap.classList.add('fp-loading');
   wrap.innerHTML = `<img src="${src}" alt="${fpCurrentHall} floor plan (${fpCurrentLang.toUpperCase()})" decoding="async" onload="this.parentElement.classList.remove('fp-loading')" onerror="this.parentElement.classList.remove('fp-loading')" onclick="document.getElementById('fpImageWrap').classList.toggle('zoomed')">`;
 }
-render();
+setHall(DEFAULT_HALL, false);   // vue d'arrivée : hall le mieux doté en catalogues
 updateCatalogHeaderCounts();
 _syncEditButtons();
 

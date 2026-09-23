@@ -32,6 +32,22 @@ export function esc(s) {
 const normalizeUrl = (u) => (u && !/^https?:\/\//i.test(u)) ? 'https://' + u : (u || '');
 const hasCatalogue = (e) => Array.isArray(e.catalogues) && e.catalogues.length > 0;
 
+// Vue d'arrivée : hall le mieux doté en catalogues. Même calcul que le client
+// (bestCatalogueHall dans china_cycle_suppliers.html) et même règle de filtre
+// que `filtered()`, qui compare le hall principal.
+export function defaultHall(raw) {
+  const stats = {};
+  for (const e of raw) {
+    if (!e.hall) continue;
+    const s = stats[e.hall] || (stats[e.hall] = { n: 0, cat: 0 });
+    s.n++;
+    if (hasCatalogue(e)) s.cat++;
+  }
+  const ranked = Object.entries(stats).sort((a, b) =>
+    b[1].cat - a[1].cat || b[1].n - a[1].n || a[0].localeCompare(b[0]));
+  return ranked.length && ranked[0][1].cat ? ranked[0][0] : '';
+}
+
 // Tri par défaut du client (nom anglais, ordre croissant, comparaison < / >).
 export function defaultOrder(raw) {
   return raw.map((e, idx) => ({ e, idx })).sort((a, b) => {
@@ -125,7 +141,9 @@ export function renderHome(template, { contactEmail, siteUrl } = {}) {
     CAT_COLORS: extractConst(template, 'CAT_COLORS'),
     CAT_DEFAULT: extractConst(template, 'CAT_DEFAULT'),
   };
-  const rows = defaultOrder(raw).slice(0, PAGE_SIZE)
+  const hall = defaultHall(raw);
+  const visible = defaultOrder(raw).filter(({ e }) => !hall || e.hall === hall);
+  const rows = visible.slice(0, PAGE_SIZE)
     .map(({ e, idx }, i) => rowHTML(e, idx, i + 1, consts)).join('');
   const catalogueCount = raw.filter(hasCatalogue).length;
 
@@ -133,7 +151,9 @@ export function renderHome(template, { contactEmail, siteUrl } = {}) {
   html = replaceOnce(html, '<tbody id="tbody"></tbody>', `<tbody id="tbody">${rows}</tbody>`);
   html = replaceById(html, 'statCatalogues', catalogueCount.toLocaleString('en-US'));
   html = replaceById(html, 'tc-dashboard', `${catalogueCount}/${raw.length}`);
-  html = replaceById(html, 'tc-suppliers', raw.length.toLocaleString('en-US'));
-  html = replaceById(html, 'countPill', `<strong>${raw.length.toLocaleString('en-US')}</strong> results`);
+  // Comme le client après son premier rendu : les compteurs reflètent la vue affichée.
+  html = replaceById(html, 'tc-suppliers', visible.length.toLocaleString('en-US'));
+  html = replaceById(html, 'countPill',
+    `<strong>${visible.length.toLocaleString('en-US')}</strong> result${visible.length !== 1 ? 's' : ''}`);
   return applySiteVars(html, { contactEmail, siteUrl });
 }
