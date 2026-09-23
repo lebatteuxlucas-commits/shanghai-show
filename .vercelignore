@@ -1,0 +1,8 @@
+# Fichiers de travail : présents dans le dépôt, jamais déployés (tout fichier
+# envoyé à Vercel est téléchargeable publiquement).
+data/
+scripts/
+tests/
+docs/
+.playwright-mcp/
+*.py

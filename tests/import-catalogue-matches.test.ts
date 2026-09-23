@@ -16,6 +16,19 @@ test('CSV : colonnes dans le désordre, lignes incomplètes ignorées, colonne m
   assert.throws(() => readMatches('supplier_id,filename\nx,y\n'), /category_folder/);
 });
 
+test('format « revue » : seules les lignes avec id_retenu sont retenues', () => {
+  const csv = 'fichier,dossier,cle,statut,id_1,cand_1,id_retenu\n'
+    + 'a.pdf,All Catalogues 220926,AAA,auto,official_1,X,official_1\n'
+    + 'b.pdf,All Catalogues 220926,BBB,aucun,,,\n'
+    + 'c.pdf,Suppliers Catalogues,CCC,à valider,official_2,Y,\n';
+  const { bySupplier, read, skipped, format } = readMatches(csv);
+  assert.equal(format, 'revue');
+  assert.equal(read, 3);
+  assert.equal(skipped, 2);
+  assert.deepEqual(bySupplier.get('official_1'), [{ filename: 'a.pdf', category_folder: 'All Catalogues 220926' }]);
+  assert.equal(bySupplier.size, 1);
+});
+
 test('fusion sans doublon et ordre stable', () => {
   const a = { filename: 'a.pdf', category_folder: 'Kids' };
   const b = { filename: 'b.pdf', category_folder: 'E-bike' };
