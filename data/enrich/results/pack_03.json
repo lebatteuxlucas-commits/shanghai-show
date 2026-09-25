@@ -1,0 +1,660 @@
+{
+ "official_160": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Plastic components and accessories for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_161": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Outdoor and cycling lifestyle products.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_162": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_163": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Cycling and outdoor sports equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_164": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_165": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Precision machined metal components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_166": {
+  "cats": [
+   "Steering & Components"
+  ],
+  "scope": "Bicycle disc and rim brakes, levers and brake components.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_167": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_168": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_169": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle components and parts.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_170": {
+  "cats": [
+   "Frames, Forks & Parts",
+   "Complete Bikes",
+   "Electric Bicycle"
+  ],
+  "scope": "Bicycle frames, front forks and complete bikes including road, MTB and e-bikes.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_171": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_172": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Metal hardware components for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_173": {
+  "cats": [
+   "Frames, Forks & Parts",
+   "Steering & Components"
+  ],
+  "scope": "Suspension forks, rear shocks and seatposts for bicycles.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_174": {
+  "cats": [
+   "Transmissions & Parts"
+  ],
+  "scope": "Bicycle chains and drivetrain components under the CIONLI brand.",
+  "scope_source": "brand",
+  "confidence": "medium"
+ },
+ "official_175": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Precision machinery and optical equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_176": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_177": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_178": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Machinery and industrial equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_179": {
+  "cats": [
+   "Tires, Rims & Parts",
+   "Transmissions & Parts",
+   "Steering & Components"
+  ],
+  "scope": "Bicycle hubs, wheelsets, cassette bodies and brake pads.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_180": {
+  "cats": [
+   "Frames, Forks & Parts"
+  ],
+  "scope": "Suspension front forks for bicycles under the RST brand.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_181": {
+  "cats": [
+   "Accessories",
+   "Steering & Components",
+   "Tires, Rims & Parts"
+  ],
+  "scope": "Bicycle and e-bike rims, mudguards, carriers, handlebars, stems and seatposts.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_182": {
+  "cats": [
+   "Tires, Rims & Parts"
+  ],
+  "scope": "Bicycle hubs, axles and quick-release skewers.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_183": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_184": {
+  "cats": [
+   "Accessories",
+   "Steering & Components"
+  ],
+  "scope": "Mudguards, grips, baskets, reflectors, bells and other bicycle accessories.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_185": {
+  "cats": [
+   "Steering & Components"
+  ],
+  "scope": "Bicycle and e-bike saddles.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_186": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle decals, head badges, printed graphics and small branding accessories.",
+  "scope_source": "official",
+  "confidence": "medium"
+ },
+ "official_187": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Cycling and outdoor sports equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_188": {
+  "cats": [
+   "Tires, Rims & Parts"
+  ],
+  "scope": "Bicycle and e-bike hubs.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_189": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_190": {
+  "cats": [
+   "Transmissions & Parts",
+   "Steering & Components"
+  ],
+  "scope": "Control cables and wire ropes for bicycles and e-bikes.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_191": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Metal hardware components for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_192": {
+  "cats": [
+   "Steering & Components"
+  ],
+  "scope": "Hydraulic tubing and fittings for bicycle and e-bike brake systems.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_193": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_194": {
+  "cats": [
+   "Steering & Components",
+   "Tires, Rims & Parts"
+  ],
+  "scope": "Handlebars, stems, seatposts and quick releases for bicycles and e-bikes.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_195": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Functional pre-coating services for fasteners: thread locking, sealing, anti-seize.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_196": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle chain guards and chain cases.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_197": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_198": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_199": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_200": {
+  "cats": [
+   "Complete Bikes",
+   "Cycling/Outdoor Products",
+   "Tires, Rims & Parts"
+  ],
+  "scope": "Distributor of bicycles, wheels, brakes, helmets and outdoor riding gear.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_201": {
+  "cats": [
+   "Transmissions & Parts"
+  ],
+  "scope": "Precision bearings for headsets, hubs and bottom brackets.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_202": {
+  "cats": [
+   "Steering & Components",
+   "Transmissions & Parts"
+  ],
+  "scope": "Disc brake pads, rotors, chains, chainrings and bicycle tools.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_203": {
+  "cats": [
+   "Frames, Forks & Parts"
+  ],
+  "scope": "Bicycle frame and fork components including dropouts, head tubes and cold-forged parts.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_204": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle reflectors and mirrors.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_205": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_206": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_207": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_208": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and sports equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_209": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_210": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Custom-built carbon fiber folding bicycles.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_211": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_212": {
+  "cats": [
+   "Steering & Components"
+  ],
+  "scope": "Stems, handlebars, seatposts and suspension components for bicycles and e-bikes.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_213": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_214": {
+  "cats": [
+   "Steering & Components",
+   "Frames, Forks & Parts"
+  ],
+  "scope": "Handlebars, stems, front forks and seatposts for bicycles.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_215": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Metal hardware components for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_216": {
+  "cats": [
+   "Steering & Components",
+   "Transmissions & Parts"
+  ],
+  "scope": "Bicycle saddles and pedals for cruiser, kids, MTB and touring bikes.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_217": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_218": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_219": {
+  "cats": [
+   "Transmissions & Parts",
+   "Steering & Components"
+  ],
+  "scope": "Control cables for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_220": {
+  "cats": [
+   "Transmissions & Parts"
+  ],
+  "scope": "Precision bearings for headsets, hubs, bottom brackets and suspension.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_221": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_222": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Cycling and outdoor sports equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_223": {
+  "cats": [
+   "Steering & Components"
+  ],
+  "scope": "Bicycle and e-bike brakes: disc, V-brake, drum, caliper and cantilever systems.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_224": {
+  "cats": [
+   "Transmissions & Parts"
+  ],
+  "scope": "Ceramic bearings, bottom bracket kits and pulleys for bicycles.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_225": {
+  "cats": [
+   "Tires, Rims & Parts"
+  ],
+  "scope": "Tubeless valves and tire repair kits for bicycles.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_226": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_227": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_228": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_229": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Raw materials and new material solutions for bicycle manufacturing.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_230": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle chain guards and baskets.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_231": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_232": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_233": {
+  "cats": [
+   "Steering & Components",
+   "Transmissions & Parts"
+  ],
+  "scope": "Brake grips/levers and pedals for bicycles and children's bikes.",
+  "scope_source": "official",
+  "confidence": "high"
+ },
+ "official_234": {
+  "cats": [
+   "Complete Bikes",
+   "Electric Bicycle"
+  ],
+  "scope": "Complete bicycles and e-bikes under the Moma Bikes brand: MTB, folding, fat bikes.",
+  "scope_source": "website",
+  "confidence": "high"
+ },
+ "official_235": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Cycling and outdoor sports equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_236": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_237": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Printing and decal services for bicycle branding.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_238": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_239": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Cycling and outdoor sports equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ }
+}

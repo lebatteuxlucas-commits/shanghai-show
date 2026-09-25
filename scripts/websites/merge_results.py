@@ -58,8 +58,9 @@ if OFFICIAL.exists():
         (official_store if STOREFRONT.search(w) else official)[e["id"]] = w
 print(f"couche 0 : {len(official)} sites déclarés rapprochés (+{len(official_store)} vitrines Alibaba/1688 déclarées)")
 
+# On ne conserve de l'ancien fichier que les entrées saisies à la main : tout le reste est recalculé.
 prev = json.loads(OUT.read_text())["lookups"] if OUT.exists() else {}
-out = dict(prev); review = {}
+out = {k: v for k, v in prev.items() if v.get("source") == "manual"}; review = {}
 stats = {"official": 0, "guess_high": 0, "agent": 0, "guess_medium": 0, "storefront_only": 0, "none": 0}
 for eid in set(guess) | set(agent) | set(official) | set(official_store):
     g = guess.get(eid); a = agent.get(eid) or {}
@@ -80,6 +81,15 @@ for eid in set(guess) | set(agent) | set(official) | set(official_store):
         stats["storefront_only"] += 1
     else:
         stats["none"] += 1
+BLOCK = ROOT / "data/websites/blocklist.json"
+if BLOCK.exists():
+    blocked = {k: v for k, v in json.loads(BLOCK.read_text()).items() if not k.startswith("_")}
+    def host(u): return re.sub(r"^https?://(www\.)?", "", (u or "").lower()).rstrip("/").split("/")[0]
+    for eid, b in blocked.items():
+        if eid in out and host(out[eid].get("url")) == host(b["url"]):
+            out.pop(eid); review.pop(eid, None); stats["blocked"] = stats.get("blocked", 0) + 1
+        elif eid in review and host(review[eid]["url"]) == host(b["url"]):
+            review.pop(eid); stats["blocked"] = stats.get("blocked", 0) + 1
 OUT.write_text(json.dumps({"_meta": {"method": "domain_guess (scripts/websites/guess_domains.py) + agents WebSearch (.claude/agents/website-finder.md)",
                                       "key": "id exposant (RAW[].id)"}, "lookups": out}, ensure_ascii=False, indent=1))
 REVIEW = ROOT / "data/websites/to_review.csv"

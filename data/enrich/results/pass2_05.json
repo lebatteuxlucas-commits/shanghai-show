@@ -1,0 +1,563 @@
+{
+ "official_827": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_829": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_830": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_831": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_838": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_841": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_842": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_843": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_847": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_850": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_839": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sports and outdoor cycling equipment.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_846": {
+  "cats": [
+   "Electric Bicycle"
+  ],
+  "scope": "Electric bicycles or e-mobility products.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_855": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_856": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_868": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_872": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_878": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_882": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_884": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_895": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_896": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_900": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_901": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_902": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_904": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_909": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_913": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_915": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_918": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_921": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_923": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_926": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_927": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_929": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_932": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_936": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_938": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_939": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_941": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_943": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_945": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_948": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_949": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_950": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_952": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_953": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_956": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_959": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_960": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_961": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_963": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_965": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_971": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_976": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_977": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_853": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods for cycling and outdoor activities.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_861": {
+  "cats": [
+   "E-Bike Parts & Accessories"
+  ],
+  "scope": "Power and drive technology components, likely for e-bikes.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_863": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods for cycling and outdoor activities.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_880": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Bicycle manufacturer under the Winluck brand.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_887": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Plastic injection moulding for bicycle components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_890": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sports and outdoor technology products.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_891": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods and cycling products.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_898": {
+  "cats": [
+   "Frames, Forks & Parts"
+  ],
+  "scope": "Metal tubing for bicycle frames.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_907": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle lights under the Light Shark brand.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_930": {
+  "cats": [
+   "E-Bike Parts & Accessories"
+  ],
+  "scope": "Power and energy technology components, likely motors or batteries for e-bikes.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_954": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods for cycling and outdoor activities.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_970": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Light alloy precision forming for bicycle metal components.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_978": {
+  "cats": [
+   "Electric Bicycle",
+   "Complete Bikes"
+  ],
+  "scope": "Leisure vehicles and bicycles, member of Zhejiang leisure vehicle industry association.",
+  "scope_source": "official",
+  "confidence": "medium"
+ },
+ "official_980": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Optoelectronic components, likely LED lights for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_981": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sports and outdoor equipment products.",
+  "scope_source": "name",
+  "confidence": "medium"
+ }
+}

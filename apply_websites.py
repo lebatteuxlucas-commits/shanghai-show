@@ -58,7 +58,7 @@ def main():
 
     v2 = json.loads(LOOKUPS_V2.read_text(encoding="utf-8"))["lookups"] if LOOKUPS_V2.exists() else {}
 
-    matched = 0; matched_v2 = 0
+    matched = 0; matched_v2 = 0; removed = 0
     for o in objects:
         url = resolve(o.get("brand", ""))
         if url:
@@ -70,9 +70,12 @@ def main():
             o["website"] = hit["url"]
             o["website_source"] = hit.get("source", "v2")
             matched_v2 += 1
+        elif o.get("website_source") in ("domain_guess", "websearch", "official_api", "v2"):
+            # site retiré des correspondances (rétrogradé en revue) : on le retire aussi de l'annuaire
+            o.pop("website", None); o.pop("website_source", None); removed += 1
         elif "website" in o and not o["website"]:
             del o["website"]
-    print(f"Populated website for {matched_v2} entries from website_lookups_v2.json (by id)")
+    print(f"Populated website for {matched_v2} entries from website_lookups_v2.json (by id), removed {removed} stale")
     print(f"Populated website for {matched} entries")
 
     new_array = ",".join(json.dumps(o, ensure_ascii=False) for o in objects)

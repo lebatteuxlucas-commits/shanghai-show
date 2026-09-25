@@ -29,3 +29,6 @@ node_modules/
 data/websites/batches/
 data/websites/*.log
 data/websites/official_details.json
+
+# Enrichissement catégories/scope — packs régénérables
+data/enrich/packs/

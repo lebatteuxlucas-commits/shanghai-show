@@ -1,0 +1,563 @@
+{
+ "official_1195": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods and cycling-related products.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1202": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1210": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1211": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1213": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1222": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1223": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1239": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1242": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1248": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1252": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1253": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1260": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1270": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1276": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1281": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1287": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting and cycling equipment manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1288": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Bicycle parts manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1291": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Metal hardware and bicycle parts.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1293": {
+  "cats": [
+   "Machinery & Tools"
+  ],
+  "scope": "Metal hardware and bicycle parts.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1294": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Bicycle parts manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1296": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and accessories manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1300": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1310": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Bicycle manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1325": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1328": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1330": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1332": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1335": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1338": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and accessories manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1343": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1359": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1361": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1362": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1365": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1386": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1393": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1395": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1396": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Plastic components and accessories for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1402": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting and cycling equipment manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1409": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting and cycling equipment manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1410": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Plastic components and accessories for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1416": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods manufacturer for cycling and outdoor use.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1417": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1427": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Bicycle and electronic accessories manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1430": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1431": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1448": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1455": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods manufacturer for cycling and outdoor use.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1462": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods manufacturer for cycling and outdoor use.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1469": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1470": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Bicycle manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1480": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1481": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Outdoor products manufacturer for cycling and outdoor activities.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1482": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1483": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1486": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1488": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods manufacturer for cycling and outdoor use.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1489": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods manufacturer for cycling and outdoor use.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1491": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Bicycle parts and accessories manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1492": {
+  "cats": [
+   "Machinery & Tools",
+   "Accessories"
+  ],
+  "scope": "Metal hardware and plastic components for bicycles.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1495": {
+  "cats": [
+   "Accessories"
+  ],
+  "scope": "Vehicle racks and accessories, including bicycle carriers.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1500": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1507": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting and cycling equipment manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1512": {
+  "cats": [
+   "Complete Bikes"
+  ],
+  "scope": "Children's bicycles and ride-on toys.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1515": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting goods manufacturer for cycling and outdoor use.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1517": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1520": {
+  "cats": [
+   "Other"
+  ],
+  "scope": "",
+  "scope_source": "name",
+  "confidence": "low"
+ },
+ "official_1521": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting and cycling equipment manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ },
+ "official_1523": {
+  "cats": [
+   "Cycling/Outdoor Products"
+  ],
+  "scope": "Sporting and cycling equipment manufacturer.",
+  "scope_source": "name",
+  "confidence": "medium"
+ }
+}

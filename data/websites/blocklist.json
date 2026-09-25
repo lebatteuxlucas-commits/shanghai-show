@@ -1,0 +1,7 @@
+{
+ "_meta": "Sites exclus à la main (homonymes, domaines détournés). Clé = id exposant. Appliqué par scripts/websites/merge_results.py.",
+ "official_1393": {"url": "https://sunrisebicycle.com", "reason": "homonyme : cadreur artisanal du Maine (US), pas SHANGHAI SUNRISE TRADING"},
+ "official_1598": {"url": "http://www.king-serry.com", "reason": "domaine détourné (contenu casino)"},
+ "official_638":  {"url": "https://firstbike.com", "reason": "homonyme : draisiennes FIRST, pas SHENZHEN FIRST POWER ENERGY (batteries)"},
+ "official_1385": {"url": "http://www.shxpj.com", "reason": "site déclaré mais domaine détourné (paris sportifs)"}
+}
