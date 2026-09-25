@@ -149,5 +149,11 @@
   "source": "manual",
   "confidence": "high",
   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1050": {
+  "url": "https://riduck.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "vérifié par l'agent website-verifier : Meta description du site : \"Riduck — cycling training analytics platform. Track FTP, training load, power profile...\" — correspond mot pour mot au scope (FTP, power, training load) et à la marque RIDUCK"
  }
 }

@@ -57,10 +57,15 @@ def main():
     print(f"Loaded {len(objects)} entries")
 
     v2 = json.loads(LOOKUPS_V2.read_text(encoding="utf-8"))["lookups"] if LOOKUPS_V2.exists() else {}
+    BLOCK = ROOT / "data/websites/blocklist.json"
+    blocked = {k: v["url"] for k, v in json.loads(BLOCK.read_text(encoding="utf-8")).items() if not k.startswith("_")} if BLOCK.exists() else {}
+    def host(u): return re.sub(r"^https?://(www\.)?", "", (u or "").lower()).rstrip("/").split("/")[0]
 
     matched = 0; matched_v2 = 0; removed = 0
     for o in objects:
         url = resolve(o.get("brand", ""))
+        if url and host(blocked.get(o.get("id", ""))) == host(url):
+            url = ""   # site de la phase A exclu à la main (blocklist.json)
         if url:
             o["website"] = url
             o["website_source"] = "auto_search"

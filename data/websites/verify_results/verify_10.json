@@ -1,0 +1,5 @@
+{
+  "official_86": { "verdict": "mismatch", "reason": "novich.com est le site personnel de Chadd Novich (voyages à moto, apiculture Knox Cellars), aucun lien avec un fabricant de machines pour vélos", "site_company": "Chadd Novich (site personnel)" },
+  "official_902": { "verdict": "mismatch", "reason": "honor.com est le site officiel de la marque de smartphones/électronique HONOR, vend téléphones, laptops, tablettes, audio ; aucun lien avec un exposant chinois du secteur vélo/e-bike", "site_company": "HONOR (荣耀)" },
+  "official_994": { "verdict": "mismatch", "reason": "evic.cn est un portail d'annonces/comparateur de prix de véhicules électriques (titre : 【电车信息网】电车最新报价_电车价格查询), pas le site de la société 惠州市亿瑞科电子有限公司", "site_company": "电车信息网 (portail, éditeur non identifié)" }
+}

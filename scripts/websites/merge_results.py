@@ -50,10 +50,11 @@ if OFFICIAL.exists():
     for d in det.values():
         w = norm_site(d.get("website"))
         if not w: continue
-        by_cn.setdefault((d.get("name") or "").strip(), w)
-        by_en.setdefault((d.get("nameEn") or "").strip().upper(), w)
+        if (d.get("name") or "").strip(): by_cn.setdefault(d["name"].strip(), w)
+        if (d.get("nameEn") or "").strip(): by_en.setdefault(d["nameEn"].strip().upper(), w)
     for e in load_raw():
-        w = by_cn.get((e.get("cn") or "").strip()) or by_en.get((e.get("en") or "").strip().upper())
+        cn = (e.get("cn") or "").strip(); en = (e.get("en") or "").strip().upper()
+        w = (by_cn.get(cn) if cn else None) or (by_en.get(en) if en else None)
         if not w: continue
         (official_store if STOREFRONT.search(w) else official)[e["id"]] = w
 print(f"couche 0 : {len(official)} sites déclarés rapprochés (+{len(official_store)} vitrines Alibaba/1688 déclarées)")

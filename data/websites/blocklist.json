@@ -1,7 +1,211 @@
 {
  "_meta": "Sites exclus à la main (homonymes, domaines détournés). Clé = id exposant. Appliqué par scripts/websites/merge_results.py.",
- "official_1393": {"url": "https://sunrisebicycle.com", "reason": "homonyme : cadreur artisanal du Maine (US), pas SHANGHAI SUNRISE TRADING"},
- "official_1598": {"url": "http://www.king-serry.com", "reason": "domaine détourné (contenu casino)"},
- "official_638":  {"url": "https://firstbike.com", "reason": "homonyme : draisiennes FIRST, pas SHENZHEN FIRST POWER ENERGY (batteries)"},
- "official_1385": {"url": "http://www.shxpj.com", "reason": "site déclaré mais domaine détourné (paris sportifs)"}
+ "official_1393": {
+  "url": "https://sunrisebicycle.com",
+  "reason": "homonyme : cadreur artisanal du Maine (US), pas SHANGHAI SUNRISE TRADING"
+ },
+ "official_1598": {
+  "url": "http://www.king-serry.com",
+  "reason": "domaine détourné (contenu casino)"
+ },
+ "official_638": {
+  "url": "https://firstbike.com",
+  "reason": "homonyme : draisiennes FIRST, pas SHENZHEN FIRST POWER ENERGY (batteries)"
+ },
+ "official_1385": {
+  "url": "http://www.shxpj.com",
+  "reason": "site déclaré mais domaine détourné (paris sportifs)"
+ },
+ "official_10": {
+  "url": "http://hzfxcy.cn",
+  "reason": "mismatch (website-verifier) : Le site hzfxcy.cn appartient à 湖州方星车业有限公司 (Huzhou Fangxing Vehicle Industry, Huzhou), pas à 杭州红星链条制造有限公司 (Hangzhou Hongxing Chain, Hangzhou). Nom et ville différents, seul le secteur (chaînes vélo) coïncide."
+ },
+ "official_41": {
+  "url": "https://www.arisesports.com",
+  "reason": "mismatch (website-verifier) : Le site arisesports.com appartient à « Arise Sports », entreprise pakistanaise (numéro de téléphone +92, Sialkot), en activité depuis plus de 30 ans — sans rapport avec TIANJIN ARISE BIKE CO., LTD. Seule la marque/nom coïncide par homonymie."
+ },
+ "official_42": {
+  "url": "https://www.idealbike.com",
+  "reason": "mismatch (website-verifier) : Le site idealbike.com appartient à « Ideal Bike, Inc. », un magasin de vélos/loueur basé à Belleville, Ontario (Canada) — sans rapport avec IDEAL (DONGGUAN) BIKE CO., LTD en Chine. Le domaine contient la marque mais désigne une autre entreprise."
+ },
+ "official_124": {
+  "url": "http://www.justek.cn",
+  "reason": "mismatch (website-verifier) : Le site justek.cn appartient à 无锡市顺跃电镀涂装有限公司 (Wuxi Shunyue Electroplating & Coating Co., Ltd.), à Wuxi — sans rapport avec 天津嘉思特车业股份有限公司 (Tianjin, marque UDING). Même secteur générique (électroplacage/revêtement) mais nom et ville différents."
+ },
+ "official_202": {
+  "url": "https://alphabicycle.com",
+  "reason": "mismatch (website-verifier) : Site d'un magasin de vélos sur mesure à Littleton, Colorado (Alpha Bicycle Studio) — aucun rapport avec le fabricant chinois de plaquettes/disques/chaînes"
+ },
+ "official_479": {
+  "url": "https://www.sigmasports.com",
+  "reason": "mismatch (website-verifier) : Site de Sigma Sports Limited, détaillant cycliste basé au Royaume-Uni (Hampton Wick) — aucun rapport avec le fabricant de composants métalliques de Wuxi, coïncidence de nom de domaine avec la marque SIGMA"
+ },
+ "official_480": {
+  "url": "https://www.reflective.cn",
+  "reason": "mismatch (website-verifier) : Site de Yuyao Kean Reflective Products Co., Ltd (marque Yolite), basé à Yuyao — nom et marque différents de SAFETY REFLECTIVE CO. / 上海承粒国际贸易有限公司, seul le secteur (accessoires réfléchissants) coïncide"
+ },
+ "official_503": {
+  "url": "https://www.jieanda.com.cn",
+  "reason": "mismatch (website-verifier) : Site d'une société de logistique/transitaire (fret maritime/aérien/routier/ferroviaire Chine-Russie, contenu bilingue CN/RU, « 我们提供快捷、强大的物流解决方案 »), page /about inexistante (404) — aucun rapport avec un fabricant d'équipements sportifs à Zhongshan malgré le nom similaire 捷安达"
+ },
+ "official_662": {
+  "url": "https://www.ryderbikes.com",
+  "reason": "mismatch (website-verifier) : ryderbikes.com est un magasin de vélos/accessoires basé en Floride (USA), aucun rapport avec 深圳市瑞鼎电子有限公司 (BMS/chargeurs chinois)"
+ },
+ "official_729": {
+  "url": "https://www.corsabike.com",
+  "reason": "mismatch (website-verifier) : corsabike.com est la marque italienne « Corsa Bike » basée à Rimini (Italie), vélos personnalisés — aucun rapport avec 东莞酷飒运动器材有限公司 (Dongguan, Chine)"
+ },
+ "official_968": {
+  "url": "http://www.aerotibike.com",
+  "reason": "unreachable (website-verifier) : WebFetch (accueil et /about) et curl renvoient contenu vide ou redirection anti-bot (sgcaptcha) sur aerotibike.com"
+ },
+ "official_1131": {
+  "url": "http://www.newcanghai.com",
+  "reason": "unreachable (website-verifier) : DNS ne résout pas (ENOTFOUND) en WebFetch ; curl ne renvoie aucun contenu. Budget de 2 tentatives épuisé."
+ },
+ "official_1137": {
+  "url": "https://www.microshift.com/",
+  "reason": "unreachable (website-verifier) : WebFetch n'a renvoyé aucun contenu exploitable ; curl est redirigé vers une page de vérification anti-bot (sgcaptcha). Budget de 2 tentatives épuisé."
+ },
+ "official_1607": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1608": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1609": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1610": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1611": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1612": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1613": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1614": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1615": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1616": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1617": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1618": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1619": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1620": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1621": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1622": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1623": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1624": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1625": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1626": {
+  "url": "http://www.aftershokz.com.cn",
+  "reason": "unreachable (website-verifier) : Domaine www.aftershokz.com.cn : échec DNS (ENOTFOUND / résolution impossible)"
+ },
+ "official_1090": {
+  "url": "https://abc.com",
+  "reason": "mismatch (website-verifier) : abc.com est le site de The Walt Disney Company / réseau de télévision ABC (Burbank, CA), diffusion TV et streaming — aucun rapport avec un exposant de trading à Shenzhen"
+ },
+ "official_110": {
+  "url": "https://kinesis-ergo.com",
+  "reason": "mismatch (website-verifier) : kinesis-ergo.com est Kinesis Corporation (USA), fabricant de claviers ergonomiques, souris et pédales — aucun rapport avec des cadres de vélo en alliage de Guangzhou"
+ },
+ "official_1147": {
+  "url": "https://www.forever.com",
+  "reason": "mismatch (website-verifier) : forever.com est FOREVER®, Inc. (Pittsburgh, PA), service de stockage cloud de photos/vidéos — aucun rapport avec un fabricant chinois de vélos électriques"
+ },
+ "official_1211": {
+  "url": "https://www.greatbike.com",
+  "reason": "mismatch (website-verifier) : greatbike.com appartient à GrandBrands.com, réseau de publication de contenu (auto/véhicules) sans rapport avec l'exposant taïwanais GREAT COMBINATION ENTERPRISE"
+ },
+ "official_1241": {
+  "url": "https://milan-at.squarespace.com",
+  "reason": "mismatch (website-verifier) : milan-at.squarespace.com est un site vitrine de l'agence web Purple Giraffe Designs (\"SITE BY: PGD\"), sans rapport avec le fabricant de vélos HEBEI AMANI VEHICLE INDUSTRY"
+ },
+ "official_1256": {
+  "url": "https://www.honor.com/fr/?host=honor.com",
+  "reason": "mismatch (website-verifier) : honor.com/fr est le site de la marque de smartphones/électronique grand public HONOR, aucun lien avec le mouliste industriel HEBEI HONOR MECHANICAL MOULD INC."
+ },
+ "official_1345": {
+  "url": "https://www.teacherspayteachers.com",
+  "reason": "mismatch (website-verifier) : teacherspayteachers.com est \"Teachers Pay Teachers\" (groupe IXL Learning), marketplace de ressources pédagogiques — sigle TPT coïncident mais aucun rapport avec le fabricant de vélos TPT CYCLE (TIANJIN)"
+ },
+ "official_1458": {
+  "url": "https://www.honor.com/fr/?host=honor.com",
+  "reason": "mismatch (website-verifier) : honor.com/fr est le site de la marque de smartphones/électronique grand public HONOR, aucun lien avec BEIJING HONOR TRADE CO., LTD. (pompes et kits de réparation vélo, marque DALISHI)"
+ },
+ "official_348": {
+  "url": "https://www.power.com/?segment=none",
+  "reason": "mismatch (website-verifier) : power.com est Power Integrations, fabricant américain de semi-conducteurs et solutions de gestion d'énergie — nom \"POWER\" coïncident mais aucun rapport avec le fabricant de jantes JINHUA POWER RIM"
+ },
+ "official_536": {
+  "url": "https://digitech.com",
+  "reason": "mismatch (website-verifier) : digitech.com est la marque DigiTech (pédales d'effets guitare, groupe Cort), San Jose CA — aucun rapport avec SHENZHEN DIGITECH CO., LTD."
+ },
+ "official_790": {
+  "url": "https://limabike.com",
+  "reason": "mismatch (website-verifier) : limabike.com est \"LimaBIKE\", un groupe communautaire de sorties vélo à Lima (Pérou) — nom \"Lima\" coïncident mais aucun rapport avec le fabricant chinois HEBEI LIMMA ELECTRIC VEHICLE (vélos/tricycles/motos électriques)"
+ },
+ "official_836": {
+  "url": "https://www.klite.com",
+  "reason": "mismatch (website-verifier) : klite.com est la station de radio FM américaine \"KLITE 101.7\" — nom coïncident mais aucun rapport avec K-LITE (SHANGHAI) INDUSTRIAL CO., LTD., fabricant d'éclairage vélo"
+ },
+ "official_86": {
+  "url": "https://www.novich.com",
+  "reason": "mismatch (website-verifier) : novich.com est le site personnel de Chadd Novich (voyages à moto, apiculture Knox Cellars), aucun lien avec un fabricant de machines pour vélos"
+ },
+ "official_902": {
+  "url": "https://www.honor.com/fr/?host=honor.com",
+  "reason": "mismatch (website-verifier) : honor.com est le site officiel de la marque de smartphones/électronique HONOR, vend téléphones, laptops, tablettes, audio ; aucun lien avec un exposant chinois du secteur vélo/e-bike"
+ },
+ "official_994": {
+  "url": "http://www.evic.cn",
+  "reason": "mismatch (website-verifier) : evic.cn est un portail d'annonces/comparateur de prix de véhicules électriques (titre : 【电车信息网】电车最新报价_电车价格查询), pas le site de la société 惠州市亿瑞科电子有限公司"
+ }
 }
