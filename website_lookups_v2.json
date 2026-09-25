@@ -4,164 +4,171 @@
   "key": "id exposant (RAW[].id)"
  },
  "lookups": {
-  "official_1104": {
-   "url": "http://www.rockbrosbike.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Page 'Contact' du site attribuée explicitement à 义乌洛克体育用品有限公司 ; société éditrice de la marque ROCKBROS"
-  },
-  "official_1608": {
+  "official_1625": {
    "url": "http://www.aftershokz.com.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_1175": {
-   "url": "http://www.kingforce.cc/",
-   "source": "websearch",
-   "confidence": "medium",
-   "evidence": "WebFetch confirme que le site appartient à 太仓劲力商贸有限公司 (même adresse à Taicang, Jiangsu) ; société de trading multi-marques (Selle Italia, Control Tech, BH, etc.), lien avec la marque VAN RASEL non confirmé explicitement"
-  },
-  "official_1129": {
-   "url": "https://www.armor.com.tw",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = marque ARMOR ; ARMOR Manufacturing Co., Ltd (鐵甲工業股份有限公司), fabricant taïwanais de vélos/pièces depuis 40 ans"
-  },
-  "official_780": {
-   "url": "https://klyde.cn",
+  "official_1346": {
+   "url": "https://www.xinwangcycle.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:科莱德电子",
-    "brand-in-body:KLYDE"
+    "brand-in-title:XINWANG",
+    "en-in-title:XINWANG",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:63"
    ]
   },
-  "official_1511": {
-   "url": "http://www.tewsn.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:TEWSN",
-    "en-in-title:TEWSN",
-    "cycling:bicycle,bike,cycling",
-    "reverify:cycling-hits:300"
-   ]
-  },
-  "official_426": {
-   "url": "https://upvine.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "en-in-title:VINE",
-    "cycling:bicycle,bike,cycling",
-    "reverify:cycling-hits:122",
-    "promoted:brand-in-domain"
-   ]
-  },
-  "official_1131": {
-   "url": "http://www.newcanghai.com",
+  "official_1100": {
+   "url": "https://www.apro-tek.com/index_tw.php",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "Domaine reprend le nom de l'entreprise (New Canghai) ; 深圳市新沧海机械有限公司, équipements de fabrication de vélos/motos"
+   "evidence": "Domaine = nom de l'entreprise (APRO / 野寶科技股份有限公司), fabricant de cadres de vélo depuis 1982"
   },
-  "official_811": {
-   "url": "http://www.wheelgiant.com.tw",
+  "official_919": {
+   "url": "https://bicystar.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:BICYSTAR GROUP",
+    "en-in-title:BICYSTAR",
+    "cycling:鞍座,链条,bicycle",
+    "reverify:cycling-hits:90"
+   ]
+  },
+  "official_304": {
+   "url": "https://www.henlonbicycle.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:宁波恒隆车业",
+    "cycling:自行车,电动车,骑行"
+   ]
+  },
+  "official_1165": {
+   "url": "http://www.sellesmp.com",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_1111": {
-   "url": "https://www.ask-bike.com/",
-   "source": "websearch",
-   "confidence": "medium",
-   "evidence": "WebFetch confirme la mention de la marque MARUISHI (丸石, rachetée) et la vente de vélos/VAE, mais la raison sociale du site (天津爱赛克车业有限公司) diffère de celle du lot (天津玛瑞仕自行车有限公司) — probable société sœur/liée produisant la même marque"
+  "official_758": {
+   "url": "https://www.codifice.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:CODIFICE",
+    "en-in-title:CODIFICE",
+    "cycling:bike,bikes,e-bike",
+    "reverify:cycling-hits:28"
+   ]
   },
-  "official_100": {
+  "official_1199": {
+   "url": "https://www.meilancycling.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirme : page appartient à Meilan (HongKong) Co., Limited, fabricant des produits NAVIHOOD (GPS bike computers, capteurs, éclairages)."
+  },
+  "official_1114": {
+   "url": "https://www.colmax.com.tw/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = marque COLMAX, correspond à 香港商歌美斯国际股份有限公司"
+  },
+  "official_616": {
+   "url": "https://www.jimiiot.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:几米物联",
+    "brand-in-body:JIMI",
+    "cycling:电动车"
+   ]
+  },
+  "official_1423": {
+   "url": "https://sendelocks.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-body:SENDE LOCKS",
+    "en-in-title:SENDE",
+    "cycling:bicycle,bike,cyclists",
+    "reverify:cycling-hits:6"
+   ]
+  },
+  "official_1168": {
+   "url": "https://www.sensahsmart.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Site officiel avec pages 关于我们/产品介绍/联系我们, correspond exactement à 广东顺德顺泰智能运动器材有限公司 (marque SENSAH, groupes de transmission vélo)"
+  },
+  "official_1080": {
    "url": "",
-   "storefront": "https://wotaizixingche.1688.com",
+   "storefront": "https://www.1688.com/factory/b2b-2218387261297ee222.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_419": {
+   "url": "http://www.tjwanda.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:万达轮胎",
+    "cycling:自行车,电动车,轮胎"
+   ]
+  },
+  "official_1533": {
+   "url": "https://www.montonsports.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:MONTON",
+    "en-in-title:MONTON",
+    "cycling:bike,cycling,helmet",
+    "reverify:cycling-hits:260"
+   ]
+  },
+  "official_442": {
+   "url": "https://www.nedong.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:广州市耐动信息科技",
+    "cycling:自行车,电动车,单车"
+   ]
+  },
+  "ocr_tunap": {
+   "url": "https://www.tunap.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:TUNAP",
+    "brand-in-title:TUNAP",
+    "en-in-title:TUNAP"
+   ]
+  },
+  "official_852": {
+   "url": "",
+   "storefront": "https://m.tb.cn/h.5wrVpOCiHXEzuZC",
    "source": "official_api",
    "confidence": "none"
   },
-  "official_216": {
-   "url": "http://www.baisike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:河北佰思克车业",
-    "brand-in-body:BAISIKE",
-    "cycling:自行车,鞍座,童车"
-   ]
+  "official_1132": {
+   "url": "https://honesh.com/",
+   "source": "websearch",
+   "confidence": "medium",
+   "evidence": "Pages du site (公司简介, 公司新闻) portent explicitement le nom 昆山市三海机电有限公司【官网】 ; WebFetch impossible (certificat expiré)"
   },
-  "official_210": {
-   "url": "https://www.lidrop.cn",
+  "official_705": {
+   "url": "https://www.finkibike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:一丁点",
-    "brand-in-title:LIDROP",
-    "en-in-title:LIDROP",
-    "cycling:bike"
-   ]
-  },
-  "official_1135": {
-   "url": "https://www.ralson.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:RALSON",
-    "en-in-title:RALSON",
-    "cycling:bicycle,bike",
-    "reverify:cycling-hits:15"
-   ]
-  },
-  "official_1176": {
-   "url": "http://www.tianzhengbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:邢台天正自行车",
-    "brand-in-title:TIANZHENG",
-    "en-in-title:TIANZHENG",
-    "cycling:自行车,bicycle,bicycles"
-   ]
-  },
-  "official_1173": {
-   "url": "https://tenvelsbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:TENVELS",
-    "en-in-title:TENVELS",
-    "cycling:bike,e-bike,e-bikes",
-    "reverify:cycling-hits:77"
-   ]
-  },
-  "official_870": {
-   "url": "https://www.upiot.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:上海量讯物联技术",
-    "brand-in-body:UPIOT"
-   ]
-  },
-  "official_1262": {
-   "url": "http://www.hengchi.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:河北恒驰自行车零件",
-    "cycling:自行车,鞍座,助力车"
-   ]
-  },
-  "official_1522": {
-   "url": "https://www.mogubrothers.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市蘑菇兄弟科技",
-    "cycling:自行车,骑行"
+    "brand-in-title:FINKI",
+    "en-in-title:FINKI",
+    "cycling:bicycle,bikes,e-bikes",
+    "reverify:cycling-hits:26"
    ]
   },
   "official_1158": {
@@ -175,51 +182,212 @@
     "cycling:bike,cycling"
    ]
   },
-  "official_1107": {
-   "url": "http://www.fsdbike.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Résultat de recherche indique explicitement '该公司的官网为 http://www.fsdbike.com/' pour 天津福盛达运动器材有限公司 (marque SORUN)"
-  },
-  "official_652": {
-   "url": "https://www.d-powercore.com",
+  "official_1267": {
+   "url": "https://www.yesfreebike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:D-POWERCORE",
-    "en-in-title:POWERCORE",
-    "cycling:bicycle,e-bike,e-scooter",
+    "cn:河北亿丰童车",
+    "brand-in-body:YESFREE",
+    "cycling:自行车,电动车,童车"
+   ]
+  },
+  "official_124": {
+   "url": "http://www.justek.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:嘉思特",
+    "cycling:自行车"
+   ]
+  },
+  "official_1164": {
+   "url": "https://www.decathlon.com.cn/",
+   "source": "websearch",
+   "confidence": "medium",
+   "evidence": "迪脉（上海）企业管理有限公司 apparaît dans des avis de rappel officiels de Shanghai pour les marques maison Decathlon (DOMYOS, VAN RYSEL, NABAIJI) ; decathlon.cn redirige vers ce domaine, mais fetch direct bloqué (HTTP 406, protection anti-bot) donc non vérifié par WebFetch"
+  },
+  "official_155": {
+   "url": "https://www.cionlli.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:CIONLLI",
+    "en-in-title:CIONLLI",
+    "cycling:bicycle,bike,handlebars",
+    "reverify:cycling-hits:10"
+   ]
+  },
+  "official_1126": {
+   "url": "https://rotorbike.com/en-us/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = marque ROTOR, fabricant espagnol de composants vélo (manivelles, capteurs de puissance)"
+  },
+  "official_1621": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1612": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_280": {
+   "url": "https://everesttgroup.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:EVERESTT",
+    "en-in-title:EVERESTT",
+    "cycling:bike",
+    "reverify:cycling-hits:14"
+   ]
+  },
+  "official_1157": {
+   "url": "https://avoncycles.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:AVON CYCLES",
+    "en-in-title:AVON",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:47"
+   ]
+  },
+  "official_1499": {
+   "url": "http://www.itm.it",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_752": {
+   "url": "https://www.otmarebike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:金华澳特玛科技",
+    "brand-in-title:OTMAR",
+    "en-in-title:OTMAR",
+    "cycling:bicycle,bike,bikes"
+   ]
+  },
+  "official_534": {
+   "url": "https://www.cusmade.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:苏州卡斯迈德电子科技",
+    "brand-in-title:CUSMADE",
+    "en-in-title:CUSMADE",
+    "cycling:自行车,电动车,e-bike"
+   ]
+  },
+  "official_430": {
+   "url": "https://www.timetecbike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:TIMETEC",
+    "en-in-title:TIMETEC",
+    "cycling:bicycle,bike,wheelset",
+    "reverify:cycling-hits:208"
+   ]
+  },
+  "official_581": {
+   "url": "http://www.wxdpower.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:无锡大派电子",
+    "cycling:自行车,电动车,骑行"
+   ]
+  },
+  "official_1443": {
+   "url": "https://www.becoolbike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:BECOOL",
+    "cycling:bicycle,bike,cycling",
+    "reverify:cycling-hits:349",
+    "promoted:brand-in-domain"
+   ]
+  },
+  "official_1085": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/b2b-292903769129970.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_1034": {
+   "url": "http://www.simoer.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:邢台丝摩尔钢球",
+    "cycling:自行车"
+   ]
+  },
+  "official_17": {
+   "url": "https://www.rollingstonebikes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:上海唯德自行车",
+    "brand-in-body:ROLLING STONE",
+    "cycling:自行车,crankset,pedal"
+   ]
+  },
+  "official_736": {
+   "url": "http://www.kixin.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市开心电子",
+    "brand-in-body:KIXIN",
+    "cycling:自行车,电动车,骑行"
+   ]
+  },
+  "official_1349": {
+   "url": "http://www.hongtengbicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:河北鸿腾自行车",
+    "cycling:自行车,电动车,鞍座"
+   ]
+  },
+  "official_761": {
+   "url": "https://www.ansbernbikes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:ANSBERN",
+    "en-in-title:ANSBERN",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:235"
+   ]
+  },
+  "official_1602": {
+   "url": "https://www.farsports.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:FARSPORTS",
+    "en-in-title:FARSPORTS",
+    "cycling:bike,cyclist,cyclists",
     "reverify:cycling-hits:12"
    ]
   },
-  "official_1181": {
-   "url": "https://www.weiwangda.com",
-   "source": "domain_guess",
+  "official_788": {
+   "url": "http://www.bglbike.com",
+   "source": "official_api",
    "confidence": "high",
-   "evidence": [
-    "cn:伟旺达",
-    "brand-in-body:WEIWANGDA"
-   ]
-  },
-  "official_409": {
-   "url": "https://www.jianlibike.com.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:邢台市健力车业",
-    "cycling:自行车,骑行,车架"
-   ]
-  },
-  "official_1337": {
-   "url": "https://www.hengrunbicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:HENGRUN",
-    "en-in-title:HENGRUN",
-    "cycling:bicycle,bike,e-bike",
-    "reverify:cycling-hits:97"
-   ]
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
   "official_1626": {
    "url": "http://www.aftershokz.com.cn",
@@ -227,51 +395,269 @@
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_1051": {
-   "url": "https://riduck.com",
+  "official_1173": {
+   "url": "https://tenvelsbike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:RIDUCK",
-    "en-in-title:RIDUCK",
-    "cycling:cycling",
-    "reverify:cycling-hits:4"
+    "brand-in-title:TENVELS",
+    "en-in-title:TENVELS",
+    "cycling:bike,e-bike,e-bikes",
+    "reverify:cycling-hits:77"
    ]
   },
-  "official_1452": {
-   "url": "https://www.goldenkeylock.com",
+  "official_127": {
+   "url": "http://www.solon-hub.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_478": {
+   "url": "http://www.onlyrim.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_611": {
+   "url": "https://www.huiye.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:温州金钥匙锁业"
+    "brand-in-title:HUIYE",
+    "en-in-title:HUIYE",
+    "cycling:bike,e-bike,e-scooter",
+    "reverify:cycling-hits:47"
    ]
   },
-  "official_1168": {
-   "url": "https://www.sensahsmart.com/",
+  "official_702": {
+   "url": "https://hyleton.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市海龙通科技"
+   ]
+  },
+  "official_1084": {
+   "url": "https://u-scooters.com/",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "Site officiel avec pages 关于我们/产品介绍/联系我们, correspond exactement à 广东顺德顺泰智能运动器材有限公司 (marque SENSAH, groupes de transmission vélo)"
+   "evidence": "WebFetch échoué (certificat expiré) mais vérifié via curl -k : titre de la page = \"上海伦景和科技有限公司\" (correspondance exacte), site de trottinettes électriques pliables"
   },
-  "official_41": {
-   "url": "https://www.arisesports.com",
+  "official_1350": {
+   "url": "http://www.tieniubike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:ARISE",
-    "en-in-title:ARISE",
-    "cycling:cycling",
-    "reverify:cycling-hits:8"
+    "cn:河北铁牛自行车业",
+    "cycling:自行车,滑板车,童车"
    ]
   },
-  "official_1539": {
-   "url": "https://www.ravemen.com",
+  "official_1142": {
+   "url": "https://hollandmechanics.com/en/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = raison sociale Holland Mechanics, fabricant néerlandais de machines pour jantes/roues de vélo"
+  },
+  "official_360": {
+   "url": "https://www.mostsport.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:RAVEMEN",
-    "en-in-title:RAVEMEN",
+    "brand-in-body:MOSTSPORT COMPOSITE",
+    "en-in-title:MOSTSPORT",
     "cycling:bicycle,bike,cycling",
-    "reverify:cycling-hits:67"
+    "reverify:cycling-hits:33"
+   ]
+  },
+  "official_1135": {
+   "url": "https://www.ralson.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:RALSON",
+    "en-in-title:RALSON",
+    "cycling:bicycle,bike",
+    "reverify:cycling-hits:15"
+   ]
+  },
+  "official_695": {
+   "url": "https://www.zhaowei.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市兆威机电"
+   ]
+  },
+  "official_389": {
+   "url": "https://jiluertyre.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:JILUER TYRE",
+    "cycling:bicycle,bike,e-bike",
+    "reverify:cycling-hits:65",
+    "promoted:brand-in-domain"
+   ]
+  },
+  "official_1217": {
+   "url": "https://intertek.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_194": {
+   "url": "http://www.joodbike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:天津钜德成金属制品",
+    "cycling:自行车,电动车,单车"
+   ]
+  },
+  "official_811": {
+   "url": "http://www.wheelgiant.com.tw",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1479": {
+   "url": "http://www.stanley-foam.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1129": {
+   "url": "https://www.armor.com.tw",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = marque ARMOR ; ARMOR Manufacturing Co., Ltd (鐵甲工業股份有限公司), fabricant taïwanais de vélos/pièces depuis 40 ans"
+  },
+  "official_336": {
+   "url": "",
+   "storefront": "https://cato2021.1688.com",
+   "source": "official_api",
+   "confidence": "none"
+  },
+  "official_1078": {
+   "url": "",
+   "storefront": "https://cn.rbgloves.com/",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_102": {
+   "url": "https://www.ltwoo.com/cn/ltwoo",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:珠海蓝图运动科技",
+    "brand-in-title:L-TWOO",
+    "en-in-title:TWOO",
+    "cycling:自行车,骑行,变速"
+   ]
+  },
+  "official_875": {
+   "url": "https://www.biosled.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市研色科技",
+    "brand-in-body:BIOSLED"
+   ]
+  },
+  "official_672": {
+   "url": "https://www.macfrey.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:MACFREY",
+    "en-in-title:MACFREY",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:186"
+   ]
+  },
+  "official_112": {
+   "url": "http://www.summarui.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:SUMMARUI",
+    "en-in-title:SUMMARUI",
+    "cycling:bicycle",
+    "reverify:cycling-hits:13"
+   ]
+  },
+  "official_234": {
+   "url": "https://checkout.momabikes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:MOMA",
+    "en-in-title:MOMA",
+    "cycling:bicycle,bikes,e-bikes",
+    "reverify:cycling-hits:35"
+   ]
+  },
+  "official_1607": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1059": {
+   "url": "https://www.sutebearing.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:常州苏特轴承制造"
+   ]
+  },
+  "official_1411": {
+   "url": "http://www.hbgoodpump.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_780": {
+   "url": "https://klyde.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:科莱德电子",
+    "brand-in-body:KLYDE"
+   ]
+  },
+  "official_849": {
+   "url": "http://www.leapao.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_251": {
+   "url": "http://www.filel.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_664": {
+   "url": "https://www.ncyclebike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:NCYCLEBIKE",
+    "en-in-title:NCYCLEBIKE",
+    "cycling:bicycle,bike,bikes",
+    "reverify:cycling-hits:114"
+   ]
+  },
+  "official_773": {
+   "url": "https://www.mobimaxbike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:MOBIMAX",
+    "en-in-title:MOBIMAX",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:101"
    ]
   },
   "official_1169": {
@@ -280,29 +666,17 @@
    "confidence": "high",
    "evidence": "Domaine = marque TOPRIGHT, correspond à 宁波途锐达休闲用品有限公司 (vélos enfants, VTT, route)"
   },
-  "official_1197": {
-   "url": "https://cn.hangyicycle.com/",
-   "source": "websearch",
+  "official_1576": {
+   "url": "https://hongtubike.com",
+   "source": "domain_guess",
    "confidence": "high",
-   "evidence": "Domaine contient le nom de l'entreprise (杭依 = Hangyi) ; recherche CN confirme correspondance avec 浙江杭依自行车制造有限公司, fabricant de vélos à Hangzhou depuis 1980."
-  },
-  "official_788": {
-   "url": "http://www.bglbike.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_568": {
-   "url": "http://www.xofomotor.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_763": {
-   "url": "http://www.lhzn85.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+   "evidence": [
+    "cn2:宏途",
+    "brand-in-title:HONGTU",
+    "en-in-title:HONGTU",
+    "cycling:车架,bicycle,bicycles",
+    "reverify:cycling-hits:96"
+   ]
   },
   "official_200": {
    "url": "https://www.zeitbike.com",
@@ -315,71 +689,145 @@
     "reverify:cycling-hits:168"
    ]
   },
-  "official_792": {
-   "url": "https://www.cyclisport.com",
+  "official_332": {
+   "url": "http://www.hsin-tech.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:昆山赛克力运动产品",
+    "cn:深圳信碟科技",
+    "brand-in-body:HSIN-TECH",
+    "cycling:自行车,碟刹,刹车"
+   ]
+  },
+  "official_265": {
+   "url": "https://www.cixikangyue.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:慈溪市康跃车业",
+    "brand-in-body:KANGYUE",
+    "cycling:自行车,电动车,骑行"
+   ]
+  },
+  "official_1028": {
+   "url": "https://www.chamrider.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:CHAMRIDER",
+    "en-in-title:CHAMRIDER",
+    "cycling:bike,e-bike,e-bikes",
+    "reverify:cycling-hits:69"
+   ]
+  },
+  "official_1233": {
+   "url": "https://www.jinshidabicycle.com/index.html",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:JINSHIDA",
+    "en-in-title:JINSHIDA",
+    "cycling:bicycles,bike,cycling",
+    "reverify:cycling-hits:11"
+   ]
+  },
+  "official_1081": {
+   "url": "https://cn.rbgloves.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch (via curl, decompression manuelle) : titre de la page = \"湖州瑞邦手套有限公司\" (correspondance exacte), meta description \"Huzhou Ruibang Gloves Co., Ltd.\""
+  },
+  "official_1118": {
+   "url": "https://www.china-yonghua.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirme la mention explicite de 杭州勇华车业有限公司 et la vente de pédales de vélo/véhicule électrique (site du groupe 建德市勇华电器)"
+  },
+  "official_854": {
+   "url": "https://gaerne.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Marque italienne connue de bottes moto/chaussures cyclisme, domaine gaerne.com = marque GAERNE SPA exactement"
+  },
+  "official_1295": {
+   "url": "https://odier.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳偶地运动科技",
+    "brand-in-title:ODIER",
+    "en-in-title:ODIER",
+    "cycling:自行车,单车,骑行"
+   ]
+  },
+  "official_399": {
+   "url": "https://h-works.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:厦门毂声科技",
+    "brand-in-title:H-WORKS",
+    "en-in-title:WORKS",
+    "cycling:bicycle,bike,cycling"
+   ]
+  },
+  "official_1182": {
+   "url": "https://www.gbcunited.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:GBC UNITED",
+    "en-in-title:UNITED",
+    "cycling:bicycle,bicycles",
+    "reverify:cycling-hits:5"
+   ]
+  },
+  "official_409": {
+   "url": "https://www.jianlibike.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:邢台市健力车业",
     "cycling:自行车,骑行,车架"
    ]
   },
-  "official_1094": {
-   "url": "https://www.ytchp.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirme la page comme site de 烟台长虹塑料制品有限公司 : réflecteurs avant/arrière, pédales réfléchissantes pour vélos. Marque AMAZINGZYN non mentionnée explicitement sur le site."
-  },
-  "official_294": {
-   "url": "http://WWW.CPI-CN.COM",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1625": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1133": {
-   "url": "https://hartex.in/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine proche de la marque Hartex ; Hartex Rubber Pvt Ltd, fabricant indien de pneus/chambres à air vélo depuis 1961"
-  },
-  "official_223": {
-   "url": "https://dafengbike.com",
+  "official_1035": {
+   "url": "https://www.czfound.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:慈溪大丰车业",
-    "brand-in-body:DAFENG",
-    "cycling:自行车,电动车,碟刹"
+    "brand-in-body:FOUND ENVIRONMENTAL",
+    "en-in-title:FOUND",
+    "cycling:bicycle,bike,e-bike",
+    "reverify:cycling-hits:118"
    ]
   },
-  "official_345": {
-   "url": "http://www.cn-nbbrake.com",
+  "official_10": {
+   "url": "http://hzfxcy.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_6": {
-   "url": "https://www.eastsunsports.com",
+  "official_763": {
+   "url": "http://www.lhzn85.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_870": {
+   "url": "https://www.upiot.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:EAST SUN",
-    "en-in-title:EAST",
-    "cycling:cycling",
-    "reverify:cycling-hits:6"
+    "cn:上海量讯物联技术",
+    "brand-in-body:UPIOT"
    ]
   },
-  "official_1309": {
-   "url": "http://www.ywbicycle.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  "official_1088": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/b2b-29072924860eb83.html",
+   "source": "websearch",
+   "confidence": "none"
   },
   "official_40": {
    "url": "https://kesporbicycle.com",
@@ -392,44 +840,843 @@
     "reverify:cycling-hits:80"
    ]
   },
-  "official_1609": {
+  "official_1537": {
+   "url": "http://www.overflybike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:OVERFLY",
+    "en-in-title:OVERFLY",
+    "cycling:bike,bikes,e-bike",
+    "reverify:cycling-hits:11"
+   ]
+  },
+  "official_1140": {
+   "url": "https://irefox.net/cn/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Pages 关于我们/联系我们 confirment 深圳市聚创车业有限公司, marque propre IREFOX (火之狐), fabricant de vélos tout-terrain"
+  },
+  "official_1309": {
+   "url": "http://www.ywbicycle.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_871": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/nbzlj2008.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_661": {
+   "url": "https://www.mdacharger.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市麦迪瑞科技",
+    "brand-in-title:MODIARY",
+    "en-in-title:MODIARY",
+    "cycling:bicycle,bike,e-bike"
+   ]
+  },
+  "official_1419": {
+   "url": "http://www.newanlun.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1187": {
+   "url": "https://www.dolomiti-pads.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirme le site officiel de Dolomiti Pads Srl, fabricant italien de patins/coussinets de selle pour cyclisme (MTB, gravel, route, triathlon)"
+  },
+  "official_277": {
+   "url": "https://www.wheeltop.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:兰溪轮峰车料",
+    "brand-in-body:WHEELTOP",
+    "cycling:自行车,电动车,骑行"
+   ]
+  },
+  "official_1108": {
+   "url": "https://www.gates.com",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = marque GATES ; 盖茨贸易（上海）有限公司 est la filiale commerciale chinoise du groupe mondial Gates Corporation (confirmé via qcc/tianyancha). Sites gateschina.cn et gates.com/cn inaccessibles (certificat expiré / 403) donc non vérifiés par WebFetch."
+  },
+  "official_1452": {
+   "url": "https://www.goldenkeylock.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:温州金钥匙锁业"
+   ]
+  },
+  "official_1124": {
+   "url": "https://www.batchbicycle.club/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirmé : page appartient à 宁波百琦科技有限公司, marque Batch, vend vélos et vélos électriques dans 50+ pays"
+  },
+  "official_1022": {
+   "url": "http://www.0769logos.com",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch : page confirmée comme appartenant à 东莞市欧艺标牌有限公司, fabricant de plaques/badges (标牌)"
+  },
+  "official_851": {
+   "url": "http://www.tripeakbearing.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1175": {
+   "url": "http://www.kingforce.cc/",
+   "source": "websearch",
+   "confidence": "medium",
+   "evidence": "WebFetch confirme que le site appartient à 太仓劲力商贸有限公司 (même adresse à Taicang, Jiangsu) ; société de trading multi-marques (Selle Italia, Control Tech, BH, etc.), lien avec la marque VAN RASEL non confirmé explicitement"
+  },
+  "official_1200": {
+   "url": "https://aaf.ust.hk/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine institutionnel officiel de la Aerodynamics and Acoustics Facility (AAF) de la Hong Kong University of Science and Technology (sous-domaine ust.hk)."
+  },
+  "official_1053": {
+   "url": "https://airseatliyida.com/air-seat-25/",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_14": {
+   "url": "https://kesporbicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:KESPOR",
+    "en-in-title:KESPOR",
+    "cycling:bicycle,bike,bikes",
+    "reverify:cycling-hits:80"
+   ]
+  },
+  "official_1197": {
+   "url": "https://cn.hangyicycle.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine contient le nom de l'entreprise (杭依 = Hangyi) ; recherche CN confirme correspondance avec 浙江杭依自行车制造有限公司, fabricant de vélos à Hangzhou depuis 1980."
+  },
+  "official_246": {
+   "url": "http://www.ciximixier.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:MIXIER",
+    "en-in-title:CIXI",
+    "cycling:bicycle,pedals",
+    "reverify:cycling-hits:6"
+   ]
+  },
+  "ocr_aventon": {
+   "url": "https://www.aventon.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:Aventon",
+    "brand-in-title:AVENTON",
+    "en-in-title:AVENTON",
+    "cycling:bike,bikes,ebike"
+   ]
+  },
+  "official_1186": {
+   "url": "https://www.moonbikes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:MOON",
+    "en-in-title:MOON",
+    "cycling:bike,bikes,handlebar",
+    "reverify:cycling-hits:11"
+   ]
+  },
+  "official_652": {
+   "url": "https://www.d-powercore.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:D-POWERCORE",
+    "en-in-title:POWERCORE",
+    "cycling:bicycle,e-bike,e-scooter",
+    "reverify:cycling-hits:12"
+   ]
+  },
+  "official_729": {
+   "url": "https://www.corsabike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:CORSA",
+    "en-in-title:CORSA",
+    "cycling:bike,bikes,cycling",
+    "reverify:cycling-hits:28"
+   ]
+  },
+  "official_1618": {
    "url": "http://www.aftershokz.com.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_332": {
-   "url": "http://www.hsin-tech.com",
+  "official_1308": {
+   "url": "http://www.peerlessbike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:深圳信碟科技",
-    "brand-in-body:HSIN-TECH",
-    "cycling:自行车,碟刹,刹车"
+    "brand-in-title:PEERLESS",
+    "en-in-title:PEERLESS",
+    "cycling:bicycle",
+    "reverify:cycling-hits:17"
    ]
   },
-  "official_705": {
-   "url": "https://www.finkibike.com",
+  "official_857": {
+   "url": "https://www.tunap.cn",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:FINKI",
-    "en-in-title:FINKI",
-    "cycling:bicycle,bikes,e-bikes",
-    "reverify:cycling-hits:26"
+    "cn:统耐保",
+    "brand-in-title:TUNAP",
+    "en-in-title:TUNAP",
+    "cycling:自行车,刹车,bike"
    ]
   },
-  "official_1036": {
-   "url": "http://www.jintachina.com",
+  "official_480": {
+   "url": "https://www.reflective.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:REFLECTIVE",
+    "en-in-title:REFLECTIVE",
+    "cycling:bicycle,bikes,cycling",
+    "reverify:cycling-hits:9"
+   ]
+  },
+  "official_1206": {
+   "url": "https://lightskin.co.kr/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = nom de la marque LIGHTSKIN. Recherche confirme LightSKIN (Evergreen I&D), fabricant coréen d'éclairages intégrés pour vélo."
+  },
+  "official_1468": {
+   "url": "https://www.nbkaisheng.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:凯盛电器",
+    "en-in-title:KAISHENG",
+    "cycling:bicycle"
+   ]
+  },
+  "official_1107": {
+   "url": "http://www.fsdbike.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Résultat de recherche indique explicitement '该公司的官网为 http://www.fsdbike.com/' pour 天津福盛达运动器材有限公司 (marque SORUN)"
+  },
+  "official_1560": {
+   "url": "https://www.yihebicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:YIHE",
+    "en-in-title:YIHE",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:105"
+   ]
+  },
+  "official_1040": {
+   "url": "http://zomart.cn/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebSearch : résultat direct http://zomart.cn/ pour \"南通卓玛特运动科技有限公司\", description confirme fabrication de fourches vélo/VAE, domaine = marque ZOMART"
+  },
+  "official_691": {
+   "url": "http://www.overflybike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:OVERFLY",
+    "en-in-title:OVERFLY",
+    "cycling:bike,bikes,e-bike",
+    "reverify:cycling-hits:11"
+   ]
+  },
+  "official_1622": {
+   "url": "http://www.aftershokz.com.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_968": {
-   "url": "http://www.aerotibike.com",
+  "official_42": {
+   "url": "https://www.idealbike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:IDEAL",
+    "en-in-title:IDEAL",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:267"
+   ]
+  },
+  "official_660": {
+   "url": "https://bisekcycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:BISEK",
+    "en-in-title:BISEK",
+    "cycling:bike,bikes,e-bike",
+    "reverify:cycling-hits:38"
+   ]
+  },
+  "official_1130": {
+   "url": "https://www.rbcarbon.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirmé : page appartient à 山东泰山瑞豹复合材料有限公司, marque PARDUS/瑞豹, vend vélos carbone et composites"
+  },
+  "official_1076": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/b2b-396378017766046.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_633": {
+   "url": "https://tritekbattery.com",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_275": {
+   "url": "https://www.sanhewlett.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:三合利",
+    "brand-in-body:SANHEWLETT",
+    "cycling:bicycle"
+   ]
+  },
+  "official_1094": {
+   "url": "https://www.ytchp.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirme la page comme site de 烟台长虹塑料制品有限公司 : réflecteurs avant/arrière, pédales réfléchissantes pour vélos. Marque AMAZINGZYN non mentionnée explicitement sur le site."
+  },
+  "official_6": {
+   "url": "https://www.eastsunsports.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:EAST SUN",
+    "en-in-title:EAST",
+    "cycling:cycling",
+    "reverify:cycling-hits:6"
+   ]
+  },
+  "official_294": {
+   "url": "http://WWW.CPI-CN.COM",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1106": {
+   "url": "http://www.zglbike.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Site officiel de 连云港神鹰碳纤维自行车有限公司 (marque ZGL/神鹰=Shenying), confirmé par Baidu Baike et pages du site elles-mêmes"
+  },
+  "official_212": {
+   "url": "https://www.safortbikes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:SAFORT",
+    "en-in-title:SAFORT",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:49"
+   ]
+  },
+  "official_864": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/whzlsw.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_647": {
+   "url": "https://www.tjxianzhong.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:天津先众新能源科技",
+    "cycling:自行车,电动车,助力车"
+   ]
+  },
+  "official_1188": {
+   "url": "https://www.zuatu.com",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch confirme le site officiel de ZUATU, chaussures de cyclisme sur mesure à semelle carbone, correspond à ZUATU CYCLING INTERNATIONAL D.O.O."
+  },
+  "official_1181": {
+   "url": "https://www.weiwangda.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:伟旺达",
+    "brand-in-body:WEIWANGDA"
+   ]
+  },
+  "official_1611": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1139": {
+   "url": "https://www.rudychina.com",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Site trouvé avec adresse correspondant exactement à XM Rudy Sporting Goods Co., Ltd. (Huli District, Xiamen)"
+  },
+  "official_1297": {
+   "url": "http://www.young-star.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_969": {
+   "url": "https://www.naibaolock.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:温州耐保锁业",
+    "cycling:自行车,头盔,链条"
+   ]
+  },
+  "official_566": {
+   "url": "http://www.sinclithiumbattery.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-body:SINC LITHIUM BATTERY",
+    "en-in-title:XINCHI",
+    "cycling:bike,ebike,ebikes",
+    "reverify:cycling-hits:8"
+   ]
+  },
+  "official_406": {
+   "url": "https://www.gzfeixuan.com/main.aspx",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:广州飞旋橡胶",
+    "brand-in-body:FEIXUAN",
+    "cycling:自行车,内胎,外胎"
+   ]
+  },
+  "official_1473": {
+   "url": "http://www.enchess.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_535": {
+   "url": "https://www.julet.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:昆山君磊电器",
+    "brand-in-body:JUNLEI",
+    "cycling:自行车,电动车,单车"
+   ]
+  },
+  "official_1502": {
+   "url": "https://www.alu-mega.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1620": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1134": {
+   "url": "https://speedwaystyres.com",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = marque SPEEDWAYS ; Speedways Tyres Ltd, fabricant indien de pneus vélo à Jalandhar"
+  },
+  "official_1155": {
+   "url": "https://www.szjiankun.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市健坤运动器材",
+    "brand-in-title:JIANKUN",
+    "en-in-title:JIANKUN",
+    "cycling:自行车,链条,变速"
+   ]
+  },
+  "official_1610": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1121": {
+   "url": "https://www.cst.com.tw/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "正新橡胶工业股份公司 / CHENG SHIN RUBBER IND. CO., LTD. = groupe mondial Cheng Shin Tyre / Maxxis, confirmé par Wikipédia et sources professionnelles multiples"
+  },
+  "official_1015": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/b2b-2207967922940579f7.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_619": {
+   "url": "http://www.daisaku.jp",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1148": {
+   "url": "http://qtour-cn.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Site porte explicitement le nom 江苏祺洋航碳纤科技有限公司, vélos et pièces en fibre de carbone, usine à Sihong"
+  },
+  "official_1017": {
+   "url": "https://allen.bike",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:ALLEN",
+    "en-in-title:ALLEN",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:852"
+   ]
+  },
+  "official_1051": {
+   "url": "https://riduck.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:RIDUCK",
+    "en-in-title:RIDUCK",
+    "cycling:cycling",
+    "reverify:cycling-hits:4"
+   ]
+  },
+  "official_426": {
+   "url": "https://upvine.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "en-in-title:VINE",
+    "cycling:bicycle,bike,cycling",
+    "reverify:cycling-hits:122",
+    "promoted:brand-in-domain"
+   ]
+  },
+  "official_101": {
+   "url": "http://www.juronggood.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:句容市固德五金制品",
+    "brand-in-body:GOOD",
+    "cycling:自行车,电动车,bicycles"
+   ]
+  },
+  "official_1152": {
+   "url": "http://www.china-karasawa.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine/nom correspond à Karasawa (唐泽), page 关于公司 confirme 唐泽交通器材（泰州）有限公司, freins et équipements sportifs"
+  },
+  "official_894": {
+   "url": "http://www.evopute.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1617": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1123": {
+   "url": "https://www.sovereignexports.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:SOVEREIGN EXPORTS",
+    "brand-in-title:SOVEREIGN EXPORTS",
+    "en-in-title:SOVEREIGN",
+    "cycling:bicycle,bicycles,bike"
+   ]
+  },
+  "official_1623": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1170": {
+   "url": "https://www.javabikes.com/",
+   "source": "websearch",
+   "confidence": "medium",
+   "evidence": "Caractères chinois 佳沃 (marque JAVA/Jiawo) identiques à ceux du lot, mais WebFetch n'a pas pu confirmer la raison sociale exacte '深圳市佳沃自行车厂' (le site mentionne 深圳市创新维自行车有限公司, entité potentiellement liée mais distincte)"
+  },
+  "official_792": {
+   "url": "https://www.cyclisport.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:昆山赛克力运动产品",
+    "cycling:自行车,骑行,车架"
+   ]
+  },
+  "official_125": {
+   "url": "http://www.fdkobe.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市锋达科技",
+    "brand-in-body:FDKOBE",
+    "cycling:自行车,车架,链条"
+   ]
+  },
+  "official_1274": {
+   "url": "http://www.jiuqibicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:邢台市久骐车业",
+    "cycling:自行车,鞍座,脚踏"
+   ]
+  },
+  "official_278": {
+   "url": "http://www.china-sshine.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1133": {
+   "url": "https://hartex.in/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine proche de la marque Hartex ; Hartex Rubber Pvt Ltd, fabricant indien de pneus/chambres à air vélo depuis 1961"
+  },
+  "official_59": {
+   "url": "http://www.gammabicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:天津捷马电动科技",
+    "brand-in-body:GAMMA",
+    "cycling:自行车,车架"
+   ]
+  },
+  "official_457": {
+   "url": "https://www.yunclever.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:厦门云聪网络科技"
+   ]
+  },
+  "official_538": {
+   "url": "https://www.ukriver.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:天津英河科技",
+    "brand-in-body:UKRIVER",
+    "cycling:自行车,电动车"
+   ]
+  },
+  "official_1471": {
+   "url": "http://www.haotubasket.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:常州新区昊图自行车配件",
+    "cycling:自行车"
+   ]
+  },
+  "official_1613": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_589": {
+   "url": "https://www.chogori.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳乔合里科技",
+    "brand-in-body:CHOGORI",
+    "cycling:自行车,滑板车"
+   ]
+  },
+  "official_877": {
+   "url": "https://www.gtb-bearing.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch : page confirme Shanghai Lianyi Bearing Technology Co., Ltd., roulements lisses/autolubrifiants"
+  },
+  "official_1285": {
+   "url": "https://www.zhongzhoubike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "en-in-title:ZHONGZHOU",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:123",
+    "promoted:brand-in-domain"
+   ]
+  },
+  "official_818": {
+   "url": "https://www.vodofo.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1104": {
+   "url": "http://www.rockbrosbike.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Page 'Contact' du site attribuée explicitement à 义乌洛克体育用品有限公司 ; société éditrice de la marque ROCKBROS"
+  },
+  "official_224": {
+   "url": "https://www.cemabearing.com/cn/products.php",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_775": {
+   "url": "https://www.zispeed.com/zh",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:智速传动科技",
+    "cycling:自行车,单车,骑行"
+   ]
+  },
+  "official_1120": {
+   "url": "http://www.grbike.com.cn/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Page 'Dealers' du site intitulée 'GR BIKE-吉热（温州）商贸有限公司', correspond exactement à l'entreprise du lot"
+  },
+  "official_1013": {
+   "url": "http://cn621.com",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch : page confirme Guangzhou 621 Garment Co., Ltd., fabricant de serviettes de sport, bandeaux, buffs, chapeaux, OEM/ODM"
+  },
+  "official_202": {
+   "url": "https://alphabicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:ALPHA",
+    "en-in-title:ALPHA",
+    "cycling:bicycle,bike,bikes",
+    "reverify:cycling-hits:73"
+   ]
+  },
+  "official_1624": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1176": {
+   "url": "http://www.tianzhengbike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:邢台天正自行车",
+    "brand-in-title:TIANZHENG",
+    "en-in-title:TIANZHENG",
+    "cycling:自行车,bicycle,bicycles"
+   ]
+  },
+  "official_1341": {
+   "url": "https://www.xiaotianhang.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:XIAOTIANHANG",
+    "en-in-title:XIAOTIANHANG",
+    "cycling:bicycle,bicycles,bike",
+    "reverify:cycling-hits:96"
+   ]
+  },
+  "official_62": {
+   "url": "https://www.safewaysports.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:SAFEWAY",
+    "en-in-title:SAFEWAY",
+    "cycling:bike,bikes,e-bike",
+    "reverify:cycling-hits:49"
+   ]
+  },
+  "official_1280": {
+   "url": "http://www.oumeiya.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:邢台欧美亚车业",
+    "cycling:自行车,鞍座,童车"
+   ]
+  },
+  "official_1540": {
+   "url": "https://www.yonglu-textile.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:南京永禄纺织品"
+   ]
+  },
+  "official_18": {
+   "url": "http://www.sinbaobike.com/cn/",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:惠州市信宝自行车",
+    "brand-in-body:SINBAO",
+    "cycling:自行车,电动车,骑行"
+   ]
+  },
+  "official_1082": {
+   "url": "http://www.cx-jinniu.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch (via curl) : titre de la page = \"慈溪市金牛车轴配件厂\" (correspondance exacte)"
   },
   "official_20": {
    "url": "https://www.lebycle.com",
@@ -452,403 +1699,18 @@
     "reverify:cycling-hits:61"
    ]
   },
-  "ocr_tunap": {
-   "url": "https://www.tunap.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:TUNAP",
-    "brand-in-title:TUNAP",
-    "en-in-title:TUNAP"
-   ]
-  },
-  "official_758": {
-   "url": "https://www.codifice.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:CODIFICE",
-    "en-in-title:CODIFICE",
-    "cycling:bike,bikes,e-bike",
-    "reverify:cycling-hits:28"
-   ]
-  },
-  "official_1346": {
-   "url": "https://www.xinwangcycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:XINWANG",
-    "en-in-title:XINWANG",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:63"
-   ]
-  },
-  "official_1044": {
-   "url": "http://www.gve.com.cn",
-   "source": "websearch",
-   "confidence": "medium",
-   "evidence": "Plusieurs sources indépendantes (cnpp.cn, cps800.com, 21ejob.com) confirment www.gve.com.cn comme site de 佛山市顺德区冠宇达电源有限公司 (fabricant d'alimentations/chargeurs depuis 1999) ; WebFetch a échoué (DNS injoignable au moment du test), non vérifié directement"
-  },
-  "official_1118": {
-   "url": "https://www.china-yonghua.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirme la mention explicite de 杭州勇华车业有限公司 et la vente de pédales de vélo/véhicule électrique (site du groupe 建德市勇华电器)"
-  },
-  "official_62": {
-   "url": "https://www.safewaysports.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:SAFEWAY",
-    "en-in-title:SAFEWAY",
-    "cycling:bike,bikes,e-bike",
-    "reverify:cycling-hits:49"
-   ]
-  },
-  "official_729": {
-   "url": "https://www.corsabike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:CORSA",
-    "en-in-title:CORSA",
-    "cycling:bike,bikes,cycling",
-    "reverify:cycling-hits:28"
-   ]
-  },
-  "official_1350": {
-   "url": "http://www.tieniubike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:河北铁牛自行车业",
-    "cycling:自行车,滑板车,童车"
-   ]
-  },
-  "official_1615": {
-   "url": "http://www.aftershokz.com.cn",
+  "official_1167": {
+   "url": "https://ttn-bearing.com",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_68": {
-   "url": "http://www.gub.cn",
+  "official_985": {
+   "url": "https://www.iriding.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:深圳市金盟自行车贸易",
-    "brand-in-title:GUB",
-    "cycling:自行车,骑行,车架"
-   ]
-  },
-  "official_339": {
-   "url": "http://www.hengyi-pump.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_36": {
-   "url": "https://kesporbicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:KESPOR",
-    "cycling:bicycle,bike,bikes",
-    "reverify:cycling-hits:80",
-    "promoted:brand-in-domain"
-   ]
-  },
-  "official_406": {
-   "url": "https://www.gzfeixuan.com/main.aspx",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:广州飞旋橡胶",
-    "brand-in-body:FEIXUAN",
-    "cycling:自行车,内胎,外胎"
-   ]
-  },
-  "official_773": {
-   "url": "https://www.mobimaxbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:MOBIMAX",
-    "en-in-title:MOBIMAX",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:101"
-   ]
-  },
-  "official_127": {
-   "url": "http://www.solon-hub.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_849": {
-   "url": "http://www.leapao.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1619": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1144": {
-   "url": "https://www.csttires.com.cn/home.aspx",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Site officiel 正新轮胎 (marque CST/Cheng Shin), correspond à 厦门正新橡胶工业有限公司"
-  },
-  "official_783": {
-   "url": "http://unitedebike.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1206": {
-   "url": "https://lightskin.co.kr/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = nom de la marque LIGHTSKIN. Recherche confirme LightSKIN (Evergreen I&D), fabricant coréen d'éclairages intégrés pour vélo."
-  },
-  "official_10": {
-   "url": "http://hzfxcy.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1164": {
-   "url": "https://www.decathlon.com.cn/",
-   "source": "websearch",
-   "confidence": "medium",
-   "evidence": "迪脉（上海）企业管理有限公司 apparaît dans des avis de rappel officiels de Shanghai pour les marques maison Decathlon (DOMYOS, VAN RYSEL, NABAIJI) ; decathlon.cn redirige vers ce domaine, mais fetch direct bloqué (HTTP 406, protection anti-bot) donc non vérifié par WebFetch"
-  },
-  "official_774": {
-   "url": "http://www.haying.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:浙江哈鹰智能科技",
-    "cycling:电动车,滑板车"
-   ]
-  },
-  "official_611": {
-   "url": "https://www.huiye.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:HUIYE",
-    "en-in-title:HUIYE",
-    "cycling:bike,e-bike,e-scooter",
-    "reverify:cycling-hits:47"
-   ]
-  },
-  "official_581": {
-   "url": "http://www.wxdpower.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:无锡大派电子",
-    "cycling:自行车,电动车,骑行"
-   ]
-  },
-  "official_1123": {
-   "url": "https://www.sovereignexports.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:SOVEREIGN EXPORTS",
-    "brand-in-title:SOVEREIGN EXPORTS",
-    "en-in-title:SOVEREIGN",
-    "cycling:bicycle,bicycles,bike"
-   ]
-  },
-  "official_204": {
-   "url": "http://www.shhuimei.com.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:上海汇美塑料制品",
-    "brand-in-body:HUIMEI",
-    "cycling:自行车,电动车,车灯"
-   ]
-  },
-  "official_1080": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/b2b-2218387261297ee222.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_875": {
-   "url": "https://www.biosled.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市研色科技",
-    "brand-in-body:BIOSLED"
-   ]
-  },
-  "official_1024": {
-   "url": "http://www.tchgdz.com",
-   "source": "websearch",
-   "confidence": "medium",
-   "evidence": "Baidu : domaine cité comme site officiel de 天长市宏光电子有限责任公司 (abréviation pinyin tchgdz cohérente avec le nom) ; non vérifié par WebFetch (erreur de certificat TLS)"
-  },
-  "official_18": {
-   "url": "http://www.sinbaobike.com/cn/",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:惠州市信宝自行车",
-    "brand-in-body:SINBAO",
-    "cycling:自行车,电动车,骑行"
-   ]
-  },
-  "official_1016": {
-   "url": "https://euro-cycles.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-body:EURO-CYCLES",
-    "en-in-title:EURO",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:26"
-   ]
-  },
-  "official_616": {
-   "url": "https://www.jimiiot.com.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:几米物联",
-    "brand-in-body:JIMI",
-    "cycling:电动车"
-   ]
-  },
-  "official_1190": {
-   "url": "https://www.vsip.com.vn",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirme VSIP Group (développeur de parcs industriels au Vietnam depuis 1996), correspond à VIETNAM-SINGAPORE INDUSTRIAL PARK J.V. CO., LTD. / 越南-新加坡工业园区集团"
-  },
-  "official_1502": {
-   "url": "https://www.alu-mega.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1152": {
-   "url": "http://www.china-karasawa.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine/nom correspond à Karasawa (唐泽), page 关于公司 confirme 唐泽交通器材（泰州）有限公司, freins et équipements sportifs"
-  },
-  "official_1139": {
-   "url": "https://www.rudychina.com",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Site trouvé avec adresse correspondant exactement à XM Rudy Sporting Goods Co., Ltd. (Huli District, Xiamen)"
-  },
-  "official_661": {
-   "url": "https://www.mdacharger.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市麦迪瑞科技",
-    "brand-in-title:MODIARY",
-    "en-in-title:MODIARY",
-    "cycling:bicycle,bike,e-bike"
-   ]
-  },
-  "official_155": {
-   "url": "https://www.cionlli.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:CIONLLI",
-    "en-in-title:CIONLLI",
-    "cycling:bicycle,bike,handlebars",
-    "reverify:cycling-hits:10"
-   ]
-  },
-  "official_1081": {
-   "url": "https://cn.rbgloves.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch (via curl, decompression manuelle) : titre de la page = \"湖州瑞邦手套有限公司\" (correspondance exacte), meta description \"Huzhou Ruibang Gloves Co., Ltd.\""
-  },
-  "official_1212": {
-   "url": "https://www.velomarche.it/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirme : page appartient à VELOMARCHE DI DANIELE OLIVA & C. SAS, fabricant italien de vélos (\"passione per le biciclette da 35 anni\")."
-  },
-  "official_1088": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/b2b-29072924860eb83.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_1182": {
-   "url": "https://www.gbcunited.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:GBC UNITED",
-    "en-in-title:UNITED",
-    "cycling:bicycle,bicycles",
-    "reverify:cycling-hits:5"
-   ]
-  },
-  "official_1622": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_619": {
-   "url": "http://www.daisaku.jp",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_894": {
-   "url": "http://www.evopute.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1423": {
-   "url": "https://sendelocks.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-body:SENDE LOCKS",
-    "en-in-title:SENDE",
-    "cycling:bicycle,bike,cyclists",
-    "reverify:cycling-hits:6"
-   ]
-  },
-  "official_876": {
-   "url": "https://china.cn-electricbicycle.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch : page confirme 山东京品电动车科技有限公司 (JINGPIN), vélos et tricycles électriques"
-  },
-  "official_795": {
-   "url": "https://www.wheelive.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:广州唯轮信息科技",
-    "en-in-title:WHEELIVE",
-    "cycling:自行车,电动车,骑行"
+    "cn:骑记科技"
    ]
   },
   "official_1514": {
@@ -862,138 +1724,35 @@
     "reverify:cycling-hits:121"
    ]
   },
-  "official_1499": {
-   "url": "http://www.itm.it",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1143": {
-   "url": "https://www.selleroyalgroup.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = raison sociale Selle Royal Group, groupe italien fabricant de selles vélo (marque QYH en Chine)"
-  },
-  "official_396": {
-   "url": "https://www.owenlan.com",
+  "official_1518": {
+   "url": "http://www.hongchibike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:佛山市中鑫奥联精密科技",
-    "brand-in-body:OWENLAN",
-    "cycling:链条"
+    "cn:河北宏驰自行车",
+    "brand-in-body:HONGCHI",
+    "cycling:自行车,bicycle,bike"
    ]
   },
-  "official_59": {
-   "url": "http://www.gammabicycle.com",
+  "official_795": {
+   "url": "https://www.wheelive.cn",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:天津捷马电动科技",
-    "brand-in-body:GAMMA",
-    "cycling:自行车,车架"
+    "cn:广州唯轮信息科技",
+    "en-in-title:WHEELIVE",
+    "cycling:自行车,电动车,骑行"
    ]
   },
-  "official_969": {
-   "url": "https://www.naibaolock.com",
+  "official_216": {
+   "url": "http://www.baisike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:温州耐保锁业",
-    "cycling:自行车,头盔,链条"
+    "cn:河北佰思克车业",
+    "brand-in-body:BAISIKE",
+    "cycling:自行车,鞍座,童车"
    ]
-  },
-  "official_1157": {
-   "url": "https://avoncycles.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:AVON CYCLES",
-    "en-in-title:AVON",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:47"
-   ]
-  },
-  "official_1059": {
-   "url": "https://www.sutebearing.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:常州苏特轴承制造"
-   ]
-  },
-  "official_1137": {
-   "url": "https://www.microshift.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = marque MICROSHIFT, fabricant taïwanais de composants de transmission vélo"
-  },
-  "official_864": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/whzlsw.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_1274": {
-   "url": "http://www.jiuqibicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:邢台市久骐车业",
-    "cycling:自行车,鞍座,脚踏"
-   ]
-  },
-  "official_851": {
-   "url": "http://www.tripeakbearing.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1624": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1602": {
-   "url": "https://www.farsports.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:FARSPORTS",
-    "en-in-title:FARSPORTS",
-    "cycling:bike,cyclist,cyclists",
-    "reverify:cycling-hits:12"
-   ]
-  },
-  "official_1623": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_399": {
-   "url": "https://h-works.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:厦门毂声科技",
-    "brand-in-title:H-WORKS",
-    "en-in-title:WORKS",
-    "cycling:bicycle,bike,cycling"
-   ]
-  },
-  "official_1082": {
-   "url": "http://www.cx-jinniu.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch (via curl) : titre de la page = \"慈溪市金牛车轴配件厂\" (correspondance exacte)"
-  },
-  "official_1120": {
-   "url": "http://www.grbike.com.cn/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Page 'Dealers' du site intitulée 'GR BIKE-吉热（温州）商贸有限公司', correspond exactement à l'entreprise du lot"
   },
   "official_1606": {
    "url": "https://www.monusports.com",
@@ -1006,88 +1765,214 @@
     "reverify:cycling-hits:175"
    ]
   },
-  "official_17": {
-   "url": "https://www.rollingstonebikes.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:上海唯德自行车",
-    "brand-in-body:ROLLING STONE",
-    "cycling:自行车,crankset,pedal"
-   ]
-  },
-  "official_1076": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/b2b-396378017766046.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_1200": {
-   "url": "https://aaf.ust.hk/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine institutionnel officiel de la Aerodynamics and Acoustics Facility (AAF) de la Hong Kong University of Science and Technology (sous-domaine ust.hk)."
-  },
-  "official_1126": {
-   "url": "https://rotorbike.com/en-us/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = marque ROTOR, fabricant espagnol de composants vélo (manivelles, capteurs de puissance)"
-  },
-  "official_251": {
-   "url": "http://www.filel.cn",
+  "official_1036": {
+   "url": "http://www.jintachina.com",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_1084": {
-   "url": "https://u-scooters.com/",
+  "official_1163": {
+   "url": "https://magura.com/",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "WebFetch échoué (certificat expiré) mais vérifié via curl -k : titre de la page = \"上海伦景和科技有限公司\" (correspondance exacte), site de trottinettes électriques pliables"
+   "evidence": "玛古拉商贸（上海）有限公司 est confirmée comme filiale chinoise de MAGURA GmbH (freins/fourches vélo, fondée en Allemagne en 1893), domaine = marque"
   },
-  "official_1132": {
-   "url": "https://honesh.com/",
+  "official_1131": {
+   "url": "http://www.newcanghai.com",
    "source": "websearch",
-   "confidence": "medium",
-   "evidence": "Pages du site (公司简介, 公司新闻) portent explicitement le nom 昆山市三海机电有限公司【官网】 ; WebFetch impossible (certificat expiré)"
+   "confidence": "high",
+   "evidence": "Domaine reprend le nom de l'entreprise (New Canghai) ; 深圳市新沧海机械有限公司, équipements de fabrication de vélos/motos"
   },
-  "official_1078": {
+  "official_1154": {
+   "url": "https://www.satelitebikelight.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = marque SATE-LITE, fabricant (usine à Foshan depuis 1998) d'éclairages et réflecteurs vélo"
+  },
+  "official_100": {
    "url": "",
-   "storefront": "https://cn.rbgloves.com/",
-   "source": "websearch",
+   "storefront": "https://wotaizixingche.1688.com",
+   "source": "official_api",
    "confidence": "none"
   },
-  "official_1233": {
-   "url": "https://www.jinshidabicycle.com/index.html",
+  "official_1418": {
+   "url": "https://oskar-bebehut.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:JINSHIDA",
-    "en-in-title:JINSHIDA",
-    "cycling:bicycles,bike,cycling",
-    "reverify:cycling-hits:11"
+    "brand-in-title:OSKAR-BEBEHUT",
+    "en-in-title:OSKAR",
+    "cycling:bicycle,bike,cycling",
+    "reverify:cycling-hits:27"
    ]
   },
-  "official_534": {
-   "url": "https://www.cusmade.com.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:苏州卡斯迈德电子科技",
-    "brand-in-title:CUSMADE",
-    "en-in-title:CUSMADE",
-    "cycling:自行车,电动车,e-bike"
-   ]
-  },
-  "official_1142": {
-   "url": "https://hollandmechanics.com/en/",
+  "official_1137": {
+   "url": "https://www.microshift.com/",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "Domaine = raison sociale Holland Mechanics, fabricant néerlandais de machines pour jantes/roues de vélo"
+   "evidence": "Domaine = marque MICROSHIFT, fabricant taïwanais de composants de transmission vélo"
   },
-  "official_278": {
-   "url": "http://www.china-sshine.com",
+  "official_662": {
+   "url": "https://www.ryderbikes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:RYDER",
+    "en-in-title:RYDER",
+    "cycling:bicycle,bike,bikes",
+    "reverify:cycling-hits:111"
+   ]
+  },
+  "official_1113": {
+   "url": "https://www.santic.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:森地客",
+    "brand-in-body:SANTIC",
+    "cycling:自行车,骑行,bike"
+   ]
+  },
+  "official_68": {
+   "url": "http://www.gub.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:深圳市金盟自行车贸易",
+    "brand-in-title:GUB",
+    "cycling:自行车,骑行,车架"
+   ]
+  },
+  "official_1615": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_181": {
+   "url": "https://www.sunstart.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:唐山盛斯拓金属制品",
+    "brand-in-body:SUNSTART",
+    "cycling:自行车,电动车,车把"
+   ]
+  },
+  "official_1539": {
+   "url": "https://www.ravemen.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:RAVEMEN",
+    "en-in-title:RAVEMEN",
+    "cycling:bicycle,bike,cycling",
+    "reverify:cycling-hits:67"
+   ]
+  },
+  "official_1143": {
+   "url": "https://www.selleroyalgroup.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Domaine = raison sociale Selle Royal Group, groupe italien fabricant de selles vélo (marque QYH en Chine)"
+  },
+  "official_1619": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1262": {
+   "url": "http://www.hengchi.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:河北恒驰自行车零件",
+    "cycling:自行车,鞍座,助力车"
+   ]
+  },
+  "official_170": {
+   "url": "http://www.leonis.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:广州市银三环机械",
+    "brand-in-body:LEONIS",
+    "cycling:自行车,电动车,车架"
+   ]
+  },
+  "official_408": {
+   "url": "https://www.jiluer.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:山东吉路尔轮胎",
+    "brand-in-body:JILUER",
+    "cycling:自行车,电动车,轮胎"
+   ]
+  },
+  "official_1334": {
+   "url": "https://hongtubike.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:HONGTU",
+    "en-in-title:HONGTU",
+    "cycling:车架,bicycle,bicycles",
+    "reverify:cycling-hits:96"
+   ]
+  },
+  "official_876": {
+   "url": "https://china.cn-electricbicycle.com/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "WebFetch : page confirme 山东京品电动车科技有限公司 (JINGPIN), vélos et tricycles électriques"
+  },
+  "official_36": {
+   "url": "https://kesporbicycle.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "brand-in-title:KESPOR",
+    "cycling:bicycle,bike,bikes",
+    "reverify:cycling-hits:80",
+    "promoted:brand-in-domain"
+   ]
+  },
+  "official_869": {
+   "url": "https://www.sheenbowpigment.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:广州鑫铂颜料科技",
+    "brand-in-title:SHEENBOW PIGMENT",
+    "en-in-title:SHEENBOW"
+   ]
+  },
+  "official_345": {
+   "url": "http://www.cn-nbbrake.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1156": {
+   "url": "https://www.fullspeedahead.com/en/",
+   "source": "websearch",
+   "confidence": "high",
+   "evidence": "Marque FSA = Full Speed Ahead, fabricant reconnu de composants vélo haut de gamme"
+  },
+  "official_204": {
+   "url": "http://www.shhuimei.com.cn",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:上海汇美塑料制品",
+    "brand-in-body:HUIMEI",
+    "cycling:自行车,电动车,车灯"
+   ]
+  },
+  "official_1616": {
+   "url": "http://www.aftershokz.com.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
@@ -1101,472 +1986,43 @@
     "cycling:自行车"
    ]
   },
-  "official_655": {
-   "url": "http://www.sdpytes.com",
+  "official_774": {
+   "url": "http://www.haying.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:上海派智能源",
-    "en-in-title:PYTES",
-    "cycling:自行车,锂电池"
+    "cn:浙江哈鹰智能科技",
+    "cycling:电动车,滑板车"
    ]
   },
-  "official_212": {
-   "url": "https://www.safortbikes.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:SAFORT",
-    "en-in-title:SAFORT",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:49"
-   ]
-  },
-  "official_1165": {
-   "url": "http://www.sellesmp.com",
+  "official_1494": {
+   "url": "http://www.topowsports.com",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_275": {
-   "url": "https://www.sanhewlett.com",
+  "official_41": {
+   "url": "https://www.arisesports.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:三合利",
-    "brand-in-body:SANHEWLETT",
-    "cycling:bicycle"
+    "brand-in-title:ARISE",
+    "en-in-title:ARISE",
+    "cycling:cycling",
+    "reverify:cycling-hits:8"
    ]
   },
-  "official_1411": {
-   "url": "http://www.hbgoodpump.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  "official_1044": {
+   "url": "http://www.gve.com.cn",
+   "source": "websearch",
+   "confidence": "medium",
+   "evidence": "Plusieurs sources indépendantes (cnpp.cn, cps800.com, 21ejob.com) confirment www.gve.com.cn comme site de 佛山市顺德区冠宇达电源有限公司 (fabricant d'alimentations/chargeurs depuis 1999) ; WebFetch a échoué (DNS injoignable au moment du test), non vérifié directement"
   },
-  "official_304": {
-   "url": "https://www.henlonbicycle.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:宁波恒隆车业",
-    "cycling:自行车,电动车,骑行"
-   ]
-  },
-  "official_389": {
-   "url": "https://jiluertyre.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:JILUER TYRE",
-    "cycling:bicycle,bike,e-bike",
-    "reverify:cycling-hits:65",
-    "promoted:brand-in-domain"
-   ]
-  },
-  "official_538": {
-   "url": "https://www.ukriver.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:天津英河科技",
-    "brand-in-body:UKRIVER",
-    "cycling:自行车,电动车"
-   ]
-  },
-  "official_1108": {
-   "url": "https://www.gates.com",
+  "official_1144": {
+   "url": "https://www.csttires.com.cn/home.aspx",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "Domaine = marque GATES ; 盖茨贸易（上海）有限公司 est la filiale commerciale chinoise du groupe mondial Gates Corporation (confirmé via qcc/tianyancha). Sites gateschina.cn et gates.com/cn inaccessibles (certificat expiré / 403) donc non vérifiés par WebFetch."
-  },
-  "official_1040": {
-   "url": "http://zomart.cn/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebSearch : résultat direct http://zomart.cn/ pour \"南通卓玛特运动科技有限公司\", description confirme fabrication de fourches vélo/VAE, domaine = marque ZOMART"
-  },
-  "official_1134": {
-   "url": "https://speedwaystyres.com",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = marque SPEEDWAYS ; Speedways Tyres Ltd, fabricant indien de pneus vélo à Jalandhar"
-  },
-  "official_1614": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1130": {
-   "url": "https://www.rbcarbon.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirmé : page appartient à 山东泰山瑞豹复合材料有限公司, marque PARDUS/瑞豹, vend vélos carbone et composites"
-  },
-  "official_857": {
-   "url": "https://www.tunap.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:统耐保",
-    "brand-in-title:TUNAP",
-    "en-in-title:TUNAP",
-    "cycling:自行车,刹车,bike"
-   ]
-  },
-  "official_1035": {
-   "url": "https://www.czfound.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-body:FOUND ENVIRONMENTAL",
-    "en-in-title:FOUND",
-    "cycling:bicycle,bike,e-bike",
-    "reverify:cycling-hits:118"
-   ]
-  },
-  "official_430": {
-   "url": "https://www.timetecbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:TIMETEC",
-    "en-in-title:TIMETEC",
-    "cycling:bicycle,bike,wheelset",
-    "reverify:cycling-hits:208"
-   ]
-  },
-  "official_1607": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1102": {
-   "url": "https://asiabicycle.com/en",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:ASIA",
-    "en-in-title:ASIA",
-    "cycling:花鼓,外胎,bicycle",
-    "reverify:cycling-hits:75"
-   ]
-  },
-  "official_408": {
-   "url": "https://www.jiluer.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:山东吉路尔轮胎",
-    "brand-in-body:JILUER",
-    "cycling:自行车,电动车,轮胎"
-   ]
-  },
-  "official_280": {
-   "url": "https://everesttgroup.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:EVERESTT",
-    "en-in-title:EVERESTT",
-    "cycling:bike",
-    "reverify:cycling-hits:14"
-   ]
-  },
-  "official_1419": {
-   "url": "http://www.newanlun.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1576": {
-   "url": "https://hongtubike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn2:宏途",
-    "brand-in-title:HONGTU",
-    "en-in-title:HONGTU",
-    "cycling:车架,bicycle,bicycles",
-    "reverify:cycling-hits:96"
-   ]
-  },
-  "official_1217": {
-   "url": "https://intertek.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_170": {
-   "url": "http://www.leonis.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:广州市银三环机械",
-    "brand-in-body:LEONIS",
-    "cycling:自行车,电动车,车架"
-   ]
-  },
-  "official_202": {
-   "url": "https://alphabicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:ALPHA",
-    "en-in-title:ALPHA",
-    "cycling:bicycle,bike,bikes",
-    "reverify:cycling-hits:73"
-   ]
-  },
-  "official_1167": {
-   "url": "https://ttn-bearing.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1620": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1034": {
-   "url": "http://www.simoer.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:邢台丝摩尔钢球",
-    "cycling:自行车"
-   ]
-  },
-  "official_1560": {
-   "url": "https://www.yihebicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:YIHE",
-    "en-in-title:YIHE",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:105"
-   ]
-  },
-  "official_1297": {
-   "url": "http://www.young-star.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1022": {
-   "url": "http://www.0769logos.com",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch : page confirmée comme appartenant à 东莞市欧艺标牌有限公司, fabricant de plaques/badges (标牌)"
-  },
-  "official_861": {
-   "url": "https://www.jcadi.com",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch : \"Oui, cette page appartient à JCADI Technology. L'entreprise fabrique des motos électriques haute puissance, comme le modèle ALEX-P équipé d'un moteur de 12kw pour patrouille policière\" — domaine = marque JCADI exactement"
-  },
-  "official_1285": {
-   "url": "https://www.zhongzhoubike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "en-in-title:ZHONGZHOU",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:123",
-    "promoted:brand-in-domain"
-   ]
-  },
-  "official_1616": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_336": {
-   "url": "",
-   "storefront": "https://cato2021.1688.com",
-   "source": "official_api",
-   "confidence": "none"
-  },
-  "official_1577": {
-   "url": "https://www.cylion.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市赛领车业科技",
-    "cycling:自行车,链条,碟刹"
-   ]
-  },
-  "official_457": {
-   "url": "https://www.yunclever.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:厦门云聪网络科技"
-   ]
-  },
-  "official_852": {
-   "url": "",
-   "storefront": "https://m.tb.cn/h.5wrVpOCiHXEzuZC",
-   "source": "official_api",
-   "confidence": "none"
-  },
-  "official_818": {
-   "url": "https://www.vodofo.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_14": {
-   "url": "https://kesporbicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:KESPOR",
-    "en-in-title:KESPOR",
-    "cycling:bicycle,bike,bikes",
-    "reverify:cycling-hits:80"
-   ]
-  },
-  "official_664": {
-   "url": "https://www.ncyclebike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:NCYCLEBIKE",
-    "en-in-title:NCYCLEBIKE",
-    "cycling:bicycle,bike,bikes",
-    "reverify:cycling-hits:114"
-   ]
-  },
-  "official_1121": {
-   "url": "https://www.cst.com.tw/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "正新橡胶工业股份公司 / CHENG SHIN RUBBER IND. CO., LTD. = groupe mondial Cheng Shin Tyre / Maxxis, confirmé par Wikipédia et sources professionnelles multiples"
-  },
-  "official_752": {
-   "url": "https://www.otmarebike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:金华澳特玛科技",
-    "brand-in-title:OTMAR",
-    "en-in-title:OTMAR",
-    "cycling:bicycle,bike,bikes"
-   ]
-  },
-  "official_647": {
-   "url": "https://www.tjxianzhong.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:天津先众新能源科技",
-    "cycling:自行车,电动车,助力车"
-   ]
-  },
-  "official_1518": {
-   "url": "http://www.hongchibike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:河北宏驰自行车",
-    "brand-in-body:HONGCHI",
-    "cycling:自行车,bicycle,bike"
-   ]
-  },
-  "official_1155": {
-   "url": "https://www.szjiankun.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市健坤运动器材",
-    "brand-in-title:JIANKUN",
-    "en-in-title:JIANKUN",
-    "cycling:自行车,链条,变速"
-   ]
-  },
-  "official_1163": {
-   "url": "https://magura.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "玛古拉商贸（上海）有限公司 est confirmée comme filiale chinoise de MAGURA GmbH (freins/fourches vélo, fondée en Allemagne en 1893), domaine = marque"
-  },
-  "official_702": {
-   "url": "https://hyleton.com.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市海龙通科技"
-   ]
-  },
-  "official_1154": {
-   "url": "https://www.satelitebikelight.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = marque SATE-LITE, fabricant (usine à Foshan depuis 1998) d'éclairages et réflecteurs vélo"
-  },
-  "official_1114": {
-   "url": "https://www.colmax.com.tw/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Domaine = marque COLMAX, correspond à 香港商歌美斯国际股份有限公司"
-  },
-  "official_535": {
-   "url": "https://www.julet.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:昆山君磊电器",
-    "brand-in-body:JUNLEI",
-    "cycling:自行车,电动车,单车"
-   ]
-  },
-  "official_277": {
-   "url": "https://www.wheeltop.com.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:兰溪轮峰车料",
-    "brand-in-body:WHEELTOP",
-    "cycling:自行车,电动车,骑行"
-   ]
-  },
-  "official_1156": {
-   "url": "https://www.fullspeedahead.com/en/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Marque FSA = Full Speed Ahead, fabricant reconnu de composants vélo haut de gamme"
-  },
-  "official_124": {
-   "url": "http://www.justek.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:嘉思特",
-    "cycling:自行车"
-   ]
-  },
-  "official_877": {
-   "url": "https://www.gtb-bearing.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch : page confirme Shanghai Lianyi Bearing Technology Co., Ltd., roulements lisses/autolubrifiants"
-  },
-  "official_1267": {
-   "url": "https://www.yesfreebike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:河北亿丰童车",
-    "brand-in-body:YESFREE",
-    "cycling:自行车,电动车,童车"
-   ]
+   "evidence": "Site officiel 正新轮胎 (marque CST/Cheng Shin), correspond à 厦门正新橡胶工业有限公司"
   },
   "official_284": {
    "url": "http://www.aifeit.com",
@@ -1579,15 +2035,11 @@
     "reverify:cycling-hits:11"
    ]
   },
-  "official_125": {
-   "url": "http://www.fdkobe.com",
-   "source": "domain_guess",
+  "official_968": {
+   "url": "http://www.aerotibike.com",
+   "source": "official_api",
    "confidence": "high",
-   "evidence": [
-    "cn:深圳市锋达科技",
-    "brand-in-body:FDKOBE",
-    "cycling:自行车,车架,链条"
-   ]
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
   "official_972": {
    "url": "http://www.czdasen.com",
@@ -1598,158 +2050,41 @@
     "cycling:链条,变速,碟刹"
    ]
   },
-  "official_1612": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1617": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1017": {
-   "url": "https://allen.bike",
+  "official_223": {
+   "url": "https://dafengbike.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:ALLEN",
-    "en-in-title:ALLEN",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:852"
+    "cn:慈溪大丰车业",
+    "brand-in-body:DAFENG",
+    "cycling:自行车,电动车,碟刹"
    ]
   },
-  "official_1124": {
-   "url": "https://www.batchbicycle.club/",
+  "official_655": {
+   "url": "http://www.sdpytes.com",
+   "source": "domain_guess",
+   "confidence": "high",
+   "evidence": [
+    "cn:上海派智能源",
+    "en-in-title:PYTES",
+    "cycling:自行车,锂电池"
+   ]
+  },
+  "official_861": {
+   "url": "https://www.jcadi.com",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "WebFetch confirmé : page appartient à 宁波百琦科技有限公司, marque Batch, vend vélos et vélos électriques dans 50+ pays"
+   "evidence": "WebFetch : \"Oui, cette page appartient à JCADI Technology. L'entreprise fabrique des motos électriques haute puissance, comme le modèle ALEX-P équipé d'un moteur de 12kw pour patrouille policière\" — domaine = marque JCADI exactement"
   },
-  "official_419": {
-   "url": "http://www.tjwanda.com.cn",
+  "official_396": {
+   "url": "https://www.owenlan.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:万达轮胎",
-    "cycling:自行车,电动车,轮胎"
+    "cn:佛山市中鑫奥联精密科技",
+    "brand-in-body:OWENLAN",
+    "cycling:链条"
    ]
-  },
-  "official_1540": {
-   "url": "https://www.yonglu-textile.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:南京永禄纺织品"
-   ]
-  },
-  "official_695": {
-   "url": "https://www.zhaowei.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市兆威机电"
-   ]
-  },
-  "official_1479": {
-   "url": "http://www.stanley-foam.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_662": {
-   "url": "https://www.ryderbikes.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:RYDER",
-    "en-in-title:RYDER",
-    "cycling:bicycle,bike,bikes",
-    "reverify:cycling-hits:111"
-   ]
-  },
-  "official_1015": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/b2b-2207967922940579f7.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_872": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/b2b-221643926147920bba.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_1199": {
-   "url": "https://www.meilancycling.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirme : page appartient à Meilan (HongKong) Co., Limited, fabricant des produits NAVIHOOD (GPS bike computers, capteurs, éclairages)."
-  },
-  "official_1028": {
-   "url": "https://www.chamrider.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:CHAMRIDER",
-    "en-in-title:CHAMRIDER",
-    "cycling:bike,e-bike,e-bikes",
-    "reverify:cycling-hits:69"
-   ]
-  },
-  "official_1148": {
-   "url": "http://qtour-cn.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Site porte explicitement le nom 江苏祺洋航碳纤科技有限公司, vélos et pièces en fibre de carbone, usine à Sihong"
-  },
-  "official_1611": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1308": {
-   "url": "http://www.peerlessbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:PEERLESS",
-    "en-in-title:PEERLESS",
-    "cycling:bicycle",
-    "reverify:cycling-hits:17"
-   ]
-  },
-  "official_1613": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1610": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1618": {
-   "url": "http://www.aftershokz.com.cn",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1188": {
-   "url": "https://www.zuatu.com",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch confirme le site officiel de ZUATU, chaussures de cyclisme sur mesure à semelle carbone, correspond à ZUATU CYCLING INTERNATIONAL D.O.O."
-  },
-  "official_224": {
-   "url": "https://www.cemabearing.com/cn/products.php",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
   "official_614": {
    "url": "https://kingclean.com",
@@ -1761,292 +2096,77 @@
     "en-in-title:KING"
    ]
   },
-  "official_1113": {
-   "url": "https://www.santic.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:森地客",
-    "brand-in-body:SANTIC",
-    "cycling:自行车,骑行,bike"
-   ]
-  },
-  "official_1418": {
-   "url": "https://oskar-bebehut.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:OSKAR-BEBEHUT",
-    "en-in-title:OSKAR",
-    "cycling:bicycle,bike,cycling",
-    "reverify:cycling-hits:27"
-   ]
-  },
-  "official_985": {
-   "url": "https://www.iriding.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:骑记科技"
-   ]
-  },
-  "official_101": {
-   "url": "http://www.juronggood.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:句容市固德五金制品",
-    "brand-in-body:GOOD",
-    "cycling:自行车,电动车,bicycles"
-   ]
-  },
-  "official_871": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/nbzlj2008.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_672": {
-   "url": "https://www.macfrey.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:MACFREY",
-    "en-in-title:MACFREY",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:186"
-   ]
-  },
-  "official_1085": {
-   "url": "",
-   "storefront": "https://www.1688.com/factory/b2b-292903769129970.html",
-   "source": "websearch",
-   "confidence": "none"
-  },
-  "official_1187": {
-   "url": "https://www.dolomiti-pads.com/",
+  "official_1212": {
+   "url": "https://www.velomarche.it/",
    "source": "websearch",
    "confidence": "high",
-   "evidence": "WebFetch confirme le site officiel de Dolomiti Pads Srl, fabricant italien de patins/coussinets de selle pour cyclisme (MTB, gravel, route, triathlon)"
+   "evidence": "WebFetch confirme : page appartient à VELOMARCHE DI DANIELE OLIVA & C. SAS, fabricant italien de vélos (\"passione per le biciclette da 35 anni\")."
   },
-  "official_854": {
-   "url": "https://gaerne.com/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Marque italienne connue de bottes moto/chaussures cyclisme, domaine gaerne.com = marque GAERNE SPA exactement"
-  },
-  "official_265": {
-   "url": "https://www.cixikangyue.com",
+  "official_1522": {
+   "url": "https://www.mogubrothers.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:慈溪市康跃车业",
-    "brand-in-body:KANGYUE",
-    "cycling:自行车,电动车,骑行"
+    "cn:深圳市蘑菇兄弟科技",
+    "cycling:自行车,骑行"
    ]
   },
-  "official_102": {
-   "url": "https://www.ltwoo.com/cn/ltwoo",
+  "official_783": {
+   "url": "http://unitedebike.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1608": {
+   "url": "http://www.aftershokz.com.cn",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1577": {
+   "url": "https://www.cylion.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:珠海蓝图运动科技",
-    "brand-in-title:L-TWOO",
-    "en-in-title:TWOO",
-    "cycling:自行车,骑行,变速"
+    "cn:深圳市赛领车业科技",
+    "cycling:自行车,链条,碟刹"
    ]
   },
-  "official_566": {
-   "url": "http://www.sinclithiumbattery.com",
+  "official_210": {
+   "url": "https://www.lidrop.cn",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-body:SINC LITHIUM BATTERY",
-    "en-in-title:XINCHI",
-    "cycling:bike,ebike,ebikes",
-    "reverify:cycling-hits:8"
+    "cn:一丁点",
+    "brand-in-title:LIDROP",
+    "en-in-title:LIDROP",
+    "cycling:bike"
    ]
   },
-  "official_660": {
-   "url": "https://bisekcycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:BISEK",
-    "en-in-title:BISEK",
-    "cycling:bike,bikes,e-bike",
-    "reverify:cycling-hits:38"
-   ]
-  },
-  "official_112": {
-   "url": "http://www.summarui.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:SUMMARUI",
-    "en-in-title:SUMMARUI",
-    "cycling:bicycle",
-    "reverify:cycling-hits:13"
-   ]
-  },
-  "official_1186": {
-   "url": "https://www.moonbikes.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:MOON",
-    "en-in-title:MOON",
-    "cycling:bike,bikes,handlebar",
-    "reverify:cycling-hits:11"
-   ]
-  },
-  "official_1170": {
-   "url": "https://www.javabikes.com/",
+  "official_1024": {
+   "url": "http://www.tchgdz.com",
    "source": "websearch",
    "confidence": "medium",
-   "evidence": "Caractères chinois 佳沃 (marque JAVA/Jiawo) identiques à ceux du lot, mais WebFetch n'a pas pu confirmer la raison sociale exacte '深圳市佳沃自行车厂' (le site mentionne 深圳市创新维自行车有限公司, entité potentiellement liée mais distincte)"
+   "evidence": "Baidu : domaine cité comme site officiel de 天长市宏光电子有限责任公司 (abréviation pinyin tchgdz cohérente avec le nom) ; non vérifié par WebFetch (erreur de certificat TLS)"
   },
-  "official_1334": {
-   "url": "https://hongtubike.com",
+  "official_1511": {
+   "url": "http://www.tewsn.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:HONGTU",
-    "en-in-title:HONGTU",
-    "cycling:车架,bicycle,bicycles",
-    "reverify:cycling-hits:96"
+    "brand-in-title:TEWSN",
+    "en-in-title:TEWSN",
+    "cycling:bicycle,bike,cycling",
+    "reverify:cycling-hits:300"
    ]
   },
-  "ocr_aventon": {
-   "url": "https://www.aventon.com",
+  "official_503": {
+   "url": "https://www.jieanda.com.cn",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "cn:Aventon",
-    "brand-in-title:AVENTON",
-    "en-in-title:AVENTON",
-    "cycling:bike,bikes,ebike"
-   ]
-  },
-  "official_736": {
-   "url": "http://www.kixin.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳市开心电子",
-    "brand-in-body:KIXIN",
-    "cycling:自行车,电动车,骑行"
-   ]
-  },
-  "official_478": {
-   "url": "http://www.onlyrim.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_589": {
-   "url": "https://www.chogori.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳乔合里科技",
-    "brand-in-body:CHOGORI",
-    "cycling:自行车,滑板车"
-   ]
-  },
-  "official_1295": {
-   "url": "https://odier.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:深圳偶地运动科技",
-    "brand-in-title:ODIER",
-    "en-in-title:ODIER",
-    "cycling:自行车,单车,骑行"
-   ]
-  },
-  "official_1537": {
-   "url": "http://www.overflybike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:OVERFLY",
-    "en-in-title:OVERFLY",
-    "cycling:bike,bikes,e-bike",
-    "reverify:cycling-hits:11"
-   ]
-  },
-  "official_234": {
-   "url": "https://checkout.momabikes.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:MOMA",
-    "en-in-title:MOMA",
-    "cycling:bicycle,bikes,e-bikes",
-    "reverify:cycling-hits:35"
-   ]
-  },
-  "official_761": {
-   "url": "https://www.ansbernbikes.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:ANSBERN",
-    "en-in-title:ANSBERN",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:235"
-   ]
-  },
-  "official_1013": {
-   "url": "http://cn621.com",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "WebFetch : page confirme Guangzhou 621 Garment Co., Ltd., fabricant de serviettes de sport, bandeaux, buffs, chapeaux, OEM/ODM"
-  },
-  "official_1053": {
-   "url": "https://airseatliyida.com/air-seat-25/",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_633": {
-   "url": "https://tritekbattery.com",
-   "source": "official_api",
-   "confidence": "high",
-   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
-  },
-  "official_1140": {
-   "url": "https://irefox.net/cn/",
-   "source": "websearch",
-   "confidence": "high",
-   "evidence": "Pages 关于我们/联系我们 confirment 深圳市聚创车业有限公司, marque propre IREFOX (火之狐), fabricant de vélos tout-terrain"
-  },
-  "official_1280": {
-   "url": "http://www.oumeiya.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:邢台欧美亚车业",
-    "cycling:自行车,鞍座,童车"
-   ]
-  },
-  "official_194": {
-   "url": "http://www.joodbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:天津钜德成金属制品",
-    "cycling:自行车,电动车,单车"
-   ]
-  },
-  "official_1471": {
-   "url": "http://www.haotubasket.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:常州新区昊图自行车配件",
-    "cycling:自行车"
+    "cn:捷安达",
+    "brand-in-body:JIEANDA"
    ]
   },
   "official_479": {
@@ -2060,200 +2180,230 @@
     "reverify:cycling-hits:434"
    ]
   },
-  "official_1621": {
+  "official_339": {
+   "url": "http://www.hengyi-pump.com",
+   "source": "official_api",
+   "confidence": "high",
+   "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
+  },
+  "official_1609": {
    "url": "http://www.aftershokz.com.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_1443": {
-   "url": "https://www.becoolbike.com",
+  "official_1337": {
+   "url": "https://www.hengrunbicycle.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:BECOOL",
-    "cycling:bicycle,bike,cycling",
-    "reverify:cycling-hits:349",
-    "promoted:brand-in-domain"
+    "brand-in-title:HENGRUN",
+    "en-in-title:HENGRUN",
+    "cycling:bicycle,bike,e-bike",
+    "reverify:cycling-hits:97"
    ]
   },
-  "official_480": {
-   "url": "https://www.reflective.cn",
+  "official_1102": {
+   "url": "https://asiabicycle.com/en",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:REFLECTIVE",
-    "en-in-title:REFLECTIVE",
-    "cycling:bicycle,bikes,cycling",
-    "reverify:cycling-hits:9"
+    "brand-in-title:ASIA",
+    "en-in-title:ASIA",
+    "cycling:花鼓,外胎,bicycle",
+    "reverify:cycling-hits:75"
    ]
   },
-  "official_1341": {
-   "url": "https://www.xiaotianhang.com",
+  "official_1016": {
+   "url": "https://euro-cycles.com",
    "source": "domain_guess",
    "confidence": "high",
    "evidence": [
-    "brand-in-title:XIAOTIANHANG",
-    "en-in-title:XIAOTIANHANG",
+    "brand-in-body:EURO-CYCLES",
+    "en-in-title:EURO",
     "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:96"
+    "reverify:cycling-hits:26"
    ]
   },
-  "official_1473": {
-   "url": "http://www.enchess.com",
+  "official_1111": {
+   "url": "https://www.ask-bike.com/",
+   "source": "websearch",
+   "confidence": "medium",
+   "evidence": "WebFetch confirme la mention de la marque MARUISHI (丸石, rachetée) et la vente de vélos/VAE, mais la raison sociale du site (天津爱赛克车业有限公司) diffère de celle du lot (天津玛瑞仕自行车有限公司) — probable société sœur/liée produisant la même marque"
+  },
+  "official_872": {
+   "url": "",
+   "storefront": "https://www.1688.com/factory/b2b-221643926147920bba.html",
+   "source": "websearch",
+   "confidence": "none"
+  },
+  "official_568": {
+   "url": "http://www.xofomotor.com",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_360": {
-   "url": "https://www.mostsport.com",
-   "source": "domain_guess",
+  "official_1190": {
+   "url": "https://www.vsip.com.vn",
+   "source": "websearch",
    "confidence": "high",
-   "evidence": [
-    "brand-in-body:MOSTSPORT COMPOSITE",
-    "en-in-title:MOSTSPORT",
-    "cycling:bicycle,bike,cycling",
-    "reverify:cycling-hits:33"
-   ]
+   "evidence": "WebFetch confirme VSIP Group (développeur de parcs industriels au Vietnam depuis 1996), correspond à VIETNAM-SINGAPORE INDUSTRIAL PARK J.V. CO., LTD. / 越南-新加坡工业园区集团"
   },
-  "official_1468": {
-   "url": "https://www.nbkaisheng.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:凯盛电器",
-    "en-in-title:KAISHENG",
-    "cycling:bicycle"
-   ]
-  },
-  "official_691": {
-   "url": "http://www.overflybike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:OVERFLY",
-    "en-in-title:OVERFLY",
-    "cycling:bike,bikes,e-bike",
-    "reverify:cycling-hits:11"
-   ]
-  },
-  "official_1349": {
-   "url": "http://www.hongtengbicycle.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:河北鸿腾自行车",
-    "cycling:自行车,电动车,鞍座"
-   ]
-  },
-  "official_42": {
-   "url": "https://www.idealbike.com",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "brand-in-title:IDEAL",
-    "en-in-title:IDEAL",
-    "cycling:bicycle,bicycles,bike",
-    "reverify:cycling-hits:267"
-   ]
-  },
-  "official_181": {
-   "url": "https://www.sunstart.cn",
-   "source": "domain_guess",
-   "confidence": "high",
-   "evidence": [
-    "cn:唐山盛斯拓金属制品",
-    "brand-in-body:SUNSTART",
-    "cycling:自行车,电动车,车把"
-   ]
-  },
-  "official_1494": {
-   "url": "http://www.topowsports.com",
+  "official_1614": {
+   "url": "http://www.aftershokz.com.cn",
    "source": "official_api",
    "confidence": "high",
    "evidence": "website déclaré par l'exposant (api.e-chinacycle.com)"
   },
-  "official_775": {
-   "url": "https://www.zispeed.com/zh",
-   "source": "domain_guess",
+  "official_1030": {
+   "url": "https://www.cn-bottle.com",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "cn:智速传动科技",
-    "cycling:自行车,单车,骑行"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_1106": {
-   "url": "http://www.zglbike.com/",
-   "source": "websearch",
+  "official_106": {
+   "url": "https://www.trama.com.cn",
+   "source": "manual",
    "confidence": "high",
-   "evidence": "Site officiel de 连云港神鹰碳纤维自行车有限公司 (marque ZGL/神鹰=Shenying), confirmé par Baidu Baike et pages du site elles-mêmes"
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_246": {
-   "url": "http://www.ciximixier.com",
-   "source": "domain_guess",
+  "official_114": {
+   "url": "https://www.ltwoo.com/cn/ltwoo",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "brand-in-title:MIXIER",
-    "en-in-title:CIXI",
-    "cycling:bicycle,pedals",
-    "reverify:cycling-hits:6"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_442": {
-   "url": "https://www.nedong.cn",
-   "source": "domain_guess",
+  "official_1209": {
+   "url": "https://asiabicycle.com/en",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "cn:广州市耐动信息科技",
-    "cycling:自行车,电动车,单车"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_869": {
-   "url": "https://www.sheenbowpigment.com",
-   "source": "domain_guess",
+  "official_1478": {
+   "url": "https://www.coospo.com",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "cn:广州鑫铂颜料科技",
-    "brand-in-title:SHEENBOW PIGMENT",
-    "en-in-title:SHEENBOW"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_1100": {
-   "url": "https://www.apro-tek.com/index_tw.php",
-   "source": "websearch",
+  "official_149": {
+   "url": "http://www.sunrunbicycle.com",
+   "source": "manual",
    "confidence": "high",
-   "evidence": "Domaine = nom de l'entreprise (APRO / 野寶科技股份有限公司), fabricant de cadres de vélo depuis 1982"
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_1533": {
-   "url": "https://www.montonsports.com",
-   "source": "domain_guess",
+  "official_1498": {
+   "url": "http://www.tewsn.com",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "brand-in-title:MONTON",
-    "en-in-title:MONTON",
-    "cycling:bike,cycling,helmet",
-    "reverify:cycling-hits:260"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_919": {
-   "url": "https://bicystar.com",
-   "source": "domain_guess",
+  "official_1512": {
+   "url": "https://www.montasen.com",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "brand-in-title:BICYSTAR GROUP",
-    "en-in-title:BICYSTAR",
-    "cycling:鞍座,链条,bicycle",
-    "reverify:cycling-hits:90"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   },
-  "official_503": {
-   "url": "https://www.jieanda.com.cn",
-   "source": "domain_guess",
+  "official_1513": {
+   "url": "https://www.feishen.com",
+   "source": "manual",
    "confidence": "high",
-   "evidence": [
-    "cn:捷安达",
-    "brand-in-body:JIEANDA"
-   ]
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_1583": {
+   "url": "https://www.cybrei.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_1585": {
+   "url": "http://www.durmas.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_1592": {
+   "url": "http://www.eastparts.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_225": {
+   "url": "https://roadupbike.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_230": {
+   "url": "https://rixinbikes.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_391": {
+   "url": "https://lightbike.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_422": {
+   "url": "https://thinkrider.com/zh",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_434": {
+   "url": "https://www.tandellbikes.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_528": {
+   "url": "https://www.lgc.cn",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_540": {
+   "url": "https://www.topband.com/cn/",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_545": {
+   "url": "https://panaracer.com/en/",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_706": {
+   "url": "https://www.finkibike.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_8": {
+   "url": "https://dfscycle.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_819": {
+   "url": "https://endlessbikes.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_845": {
+   "url": "https://www.motovelo.com.cn",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+  },
+  "official_92": {
+   "url": "https://www.xonbikes.com",
+   "source": "manual",
+   "confidence": "high",
+   "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
   }
  }
 }

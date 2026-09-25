@@ -1,0 +1,153 @@
+{
+ "_meta": "Sites validés à la main. Clé = id exposant. Prioritaire sur toutes les couches (scripts/websites/merge_results.py).",
+ "official_1030": {
+  "url": "https://www.cn-bottle.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_106": {
+  "url": "https://www.trama.com.cn",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_114": {
+  "url": "https://www.ltwoo.com/cn/ltwoo",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1209": {
+  "url": "https://asiabicycle.com/en",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1478": {
+  "url": "https://www.coospo.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_149": {
+  "url": "http://www.sunrunbicycle.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1498": {
+  "url": "http://www.tewsn.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1512": {
+  "url": "https://www.montasen.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1513": {
+  "url": "https://www.feishen.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1583": {
+  "url": "https://www.cybrei.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1585": {
+  "url": "http://www.durmas.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_1592": {
+  "url": "http://www.eastparts.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_225": {
+  "url": "https://roadupbike.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_230": {
+  "url": "https://rixinbikes.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_391": {
+  "url": "https://lightbike.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_422": {
+  "url": "https://thinkrider.com/zh",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_434": {
+  "url": "https://www.tandellbikes.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_528": {
+  "url": "https://www.lgc.cn",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_540": {
+  "url": "https://www.topband.com/cn/",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_545": {
+  "url": "https://panaracer.com/en/",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_706": {
+  "url": "https://www.finkibike.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_8": {
+  "url": "https://dfscycle.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_819": {
+  "url": "https://endlessbikes.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_845": {
+  "url": "https://www.motovelo.com.cn",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ },
+ "official_92": {
+  "url": "https://www.xonbikes.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "validé par Lucas le 2026-09-25 (revue to_review.csv)"
+ }
+}

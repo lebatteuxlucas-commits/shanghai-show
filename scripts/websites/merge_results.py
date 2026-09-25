@@ -81,6 +81,12 @@ for eid in set(guess) | set(agent) | set(official) | set(official_store):
         stats["storefront_only"] += 1
     else:
         stats["none"] += 1
+MANUAL = ROOT / "data/websites/manual_accepted.json"
+if MANUAL.exists():
+    for eid, m in json.loads(MANUAL.read_text()).items():
+        if eid.startswith("_"): continue
+        out[eid] = {"url": m["url"], "source": "manual", "confidence": "high", "evidence": m.get("evidence", "validé à la main")}
+        review.pop(eid, None); stats["manual"] = stats.get("manual", 0) + 1
 BLOCK = ROOT / "data/websites/blocklist.json"
 if BLOCK.exists():
     blocked = {k: v for k, v in json.loads(BLOCK.read_text()).items() if not k.startswith("_")}
