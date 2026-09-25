@@ -1,0 +1,18 @@
+{
+  "official_862": { "status": "none", "method": "websearch" },
+  "official_863": { "status": "none", "method": "websearch" },
+  "official_864": { "status": "none", "storefront": "https://www.1688.com/factory/whzlsw.html", "method": "websearch" },
+  "official_865": { "status": "none", "method": "websearch" },
+  "official_866": { "status": "none", "method": "websearch" },
+  "official_867": { "status": "none", "method": "websearch" },
+  "official_868": { "status": "none", "method": "websearch" },
+  "official_869": { "status": "found", "url": "https://www.sheenbowpigment.com/", "confidence": "high", "evidence": "Domaine correspond au nom de marque SHEENBOW PIGMENT ; site présente les produits pigments effet de 广州鑫铂颜料科技有限公司", "method": "websearch" },
+  "official_870": { "status": "found", "url": "https://www.upiot.net/", "confidence": "high", "evidence": "WebFetch : page confirme 上海量讯物联技术有限公司 (UPIoT), solutions IoT", "method": "websearch" },
+  "official_871": { "status": "none", "storefront": "https://www.1688.com/factory/nbzlj2008.html", "method": "websearch" },
+  "official_872": { "status": "none", "storefront": "https://www.1688.com/factory/b2b-221643926147920bba.html", "method": "websearch" },
+  "official_873": { "status": "none", "method": "websearch" },
+  "official_874": { "status": "none", "method": "websearch" },
+  "official_875": { "status": "found", "url": "http://www.popled.cn", "confidence": "high", "evidence": "WebFetch : page confirme 深圳市研色科技有限公司 (BIOSLED), produits LED (sacs à dos, gilets, écrans)", "method": "websearch" },
+  "official_876": { "status": "found", "url": "https://china.cn-electricbicycle.com/", "confidence": "high", "evidence": "WebFetch : page confirme 山东京品电动车科技有限公司 (JINGPIN), vélos et tricycles électriques", "method": "websearch" },
+  "official_877": { "status": "found", "url": "https://www.gtb-bearing.com/", "confidence": "high", "evidence": "WebFetch : page confirme Shanghai Lianyi Bearing Technology Co., Ltd., roulements lisses/autolubrifiants", "method": "websearch" }
+}

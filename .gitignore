@@ -24,3 +24,8 @@ mobile-*.png
 node_modules/
 .env*.local
 .env*
+
+# Recherche de sites web — état de travail régénérable (scripts/websites/)
+data/websites/batches/
+data/websites/*.log
+data/websites/official_details.json

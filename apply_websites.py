@@ -20,6 +20,7 @@ ROOT = Path("/Users/lucaslebatteux/Developer/Clauderie/shanghai-show")
 HTML = ROOT / "china_cycle_suppliers.html"
 CSV  = ROOT / "exhibitors.csv"
 LOOKUPS = ROOT / "website_lookups.json"
+LOOKUPS_V2 = ROOT / "website_lookups_v2.json"   # clé = id exposant, produit par scripts/websites/merge_results.py
 
 def main():
     lookup_data = json.loads(LOOKUPS.read_text(encoding="utf-8"))["lookups"]
@@ -55,15 +56,23 @@ def main():
     objects = json.loads("[" + html[open_br + 1 : end] + "]")
     print(f"Loaded {len(objects)} entries")
 
-    matched = 0
+    v2 = json.loads(LOOKUPS_V2.read_text(encoding="utf-8"))["lookups"] if LOOKUPS_V2.exists() else {}
+
+    matched = 0; matched_v2 = 0
     for o in objects:
         url = resolve(o.get("brand", ""))
         if url:
             o["website"] = url
             o["website_source"] = "auto_search"
             matched += 1
+        elif v2.get(o.get("id", ""), {}).get("url"):
+            hit = v2[o["id"]]
+            o["website"] = hit["url"]
+            o["website_source"] = hit.get("source", "v2")
+            matched_v2 += 1
         elif "website" in o and not o["website"]:
             del o["website"]
+    print(f"Populated website for {matched_v2} entries from website_lookups_v2.json (by id)")
     print(f"Populated website for {matched} entries")
 
     new_array = ",".join(json.dumps(o, ensure_ascii=False) for o in objects)
