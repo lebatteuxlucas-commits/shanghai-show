@@ -1318,6 +1318,9 @@
   .site-footer-inner { padding: 16px 14px; flex-direction: column; align-items: flex-start; }
 }
 </style>
+<!-- Vercel Web Analytics : pages vues et visiteurs, sans cookie. À activer dans le dashboard Vercel (onglet Analytics). -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -2112,8 +2115,16 @@ function updateCatalogHeaderCounts() {
 // ── TABS ──────────────────────────────────────────────────────────────────────
 let currentTab = 'suppliers';
 
+// Chaque onglet compte comme une page dans Vercel Analytics (/?view=map, /?view=dashboard…).
+function trackView(tab) {
+  const path = tab === 'suppliers' ? '/' : '/?view=' + tab;
+  try { history.replaceState(null, '', path); } catch {}
+  try { window.va('pageview', { route: path, path }); } catch {}
+}
+
 function switchTab(tab) {
   currentTab = tab;
+  trackView(tab);
   ['suppliers','map','dashboard','discover'].forEach(t => {
     const view = document.getElementById('view-' + t);
     const btn  = document.getElementById('tab-' + t);
@@ -2128,6 +2139,11 @@ function switchTab(tab) {
   if (tab === 'discover')  renderDiscover();
   if (tab === 'dashboard') renderDashboard();
 }
+
+(function openRequestedView() {
+  const v = new URLSearchParams(location.search).get('view');
+  if (v && v !== 'suppliers' && document.getElementById('tab-' + v)) window.addEventListener('DOMContentLoaded', () => switchTab(v));
+})();
 
 function updateTabCounts(supplierCount) {
   if (supplierCount !== undefined) {
@@ -2148,6 +2164,7 @@ function openPanel(idx) {
     _resetEditState();
   }
   panelIdx = idx;
+  try { const e = RAW[idx]; if (e) window.va('event', { name: 'supplier_detail', data: { supplier: e.en, hall: e.hall } }); } catch {}
   const raw = RAW[idx];
   const e = getDisplayEntry(idx) || raw;
   const hc = HALL_COLORS[e.hall] || {bg:'#f0f0f0', c:'#9e9e9e'};
@@ -3451,6 +3468,7 @@ async function submitCatalogueRequest(ev) {
     }
     document.getElementById('catreqForm').hidden = true;
     document.getElementById('catreqDone').hidden = false;
+    try { window.va('event', { name: 'catalogue_request', data: { supplier: e.en, hall: e.hall } }); } catch {}
   } catch {
     errEl.textContent = CATREQ_ERRORS.send_failed;
   } finally {
