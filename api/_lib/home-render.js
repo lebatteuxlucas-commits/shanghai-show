@@ -80,7 +80,7 @@ export function rowHTML(e, idx, rowNum, { HALL_COLORS, CAT_COLORS, CAT_DEFAULT }
     '<td>' + brandLine +
       '<div class="co-en">' + esc(e.en || '—') + '</div>' +
       (e.cn ? '<div class="co-cn">' + esc(e.cn) + '</div>' : '') +
-      (hasCatalogue(e) ? '<div><span class="co-catalogue" title="Catalogue collected at the show">Catalogue</span></div>' : '') +
+      (hasCatalogue(e) ? '<div><button type="button" class="co-catalogue co-catalogue-btn" title="Request this catalogue" onclick="event.stopPropagation();openCatalogueRequest(' + idx + ')">Catalogue · Request</button></div>' : '') +
       siteLink + '</td>' +
     '<td>' + hallPills +
       '<div class="hall-sub">' + esc(e.hallEn || 'Unassigned') + '</div></td>' +

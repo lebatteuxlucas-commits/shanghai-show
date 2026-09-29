@@ -229,6 +229,9 @@
   }
   .hall-hint button:hover { background: var(--bg); }
   @media (max-width: 700px) { .hall-hint { padding: 8px 14px; } }
+  .co-catalogue-btn { font: inherit; cursor: pointer; border-style: solid; }
+  .co-catalogue-btn:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+  .intro-line { color: var(--mid); font-size: 13px; line-height: 1.5; margin: 6px 0 0; max-width: 720px; }
 
   .chip-wing {
     display: inline-flex; align-items: center;
@@ -853,7 +856,7 @@
     h1 { font-size: 22px; }
     .subtitle { display: none; }
     .nav-tagline, .nav-label, .nav-divider { display: none; }
-    .header-row1 { gap: 10px; margin-bottom: 12px; }
+    .header-row1 { gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }   /* badge au-dessus du titre sur téléphone */
     .stats-row { gap: 6px; margin-bottom: 12px; }
     .stat { padding: 6px 12px; }
     .stat-num { font-size: 16px; }
@@ -865,6 +868,9 @@
     table { border-radius: 0; border-left: none; border-right: none; }
     thead th { padding: 8px 10px; font-size: 10px; letter-spacing: 0.8px; }
     tbody td { padding: 10px 8px; }
+    /* Cible tactile : le bouton « Catalogue · Request » doit se toucher au pouce. */
+    .co-catalogue-btn { padding: 7px 10px; font-size: 11px; margin-top: 7px; }
+    .search-suggest { display: none; }   /* les suggestions produit encombrent l'écran d'un téléphone */
     /* Allow long supplier names to wrap inside the cell so the table
        doesn't widen past the viewport (which would knock out the
        sticky thead's anchor). */
@@ -1314,6 +1320,7 @@
   display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 12px;
 }
 .catreq-done p { font-size: 14px; color: var(--charcoal); line-height: 1.55; margin-bottom: 16px; }
+.catreq-done .catreq-done-sub { font-size: 12px; color: var(--mid); margin: -8px 0 14px; }
 @media (max-width: 700px) { .catreq-card { padding: 22px 16px 16px; } }
 
 /* ── CONTACT DEPUIS LA FICHE ─────────────────────────────────────────── */
@@ -1374,6 +1381,7 @@
     <div>
       <h1>Supplier <span>Directory</span></h1>
       <div class="subtitle">34th China International Bicycle Exhibition · Shanghai</div>
+      <p class="intro-line">Every exhibitor of China Cycle 2026 (Shanghai), inventoried on site by FutureMotion. Catalogues available on request.</p>
     </div>
   </div>
   <div class="stats-row">
@@ -1641,7 +1649,8 @@
     </form>
     <div class="catreq-done" id="catreqDone" hidden>
       <div class="catreq-done-icon">✓</div>
-      <p>Request sent — you'll receive the catalogue by email within one business day.</p>
+      <p>Request sent. You'll receive it by email within one business day from FutureMotion.</p>
+      <p class="catreq-done-sub">This window closes by itself in <span id="catreqCountdown">5</span> s.</p>
       <button type="button" class="catreq-btn secondary" onclick="closeCatalogueRequest()">Close</button>
     </div>
   </div>
@@ -1999,7 +2008,7 @@ function render() {
         '<td>'+brandLine+
           '<div class="co-en">'+esc(d.en||'—')+'</div>'+
           (d.cn?'<div class="co-cn">'+esc(d.cn)+'</div>':'')+
-          (hasCatalogue(e)?'<div><span class="co-catalogue" title="Catalogue collected at the show">Catalogue</span></div>':'')+
+          (hasCatalogue(e)?'<div><button type="button" class="co-catalogue co-catalogue-btn" title="Request this catalogue" onclick="event.stopPropagation();openCatalogueRequest('+idx+')">Catalogue · Request</button></div>':'')+
           siteLink+'</td>'+
         '<td>'+hallPills+
           '<div class="hall-sub">'+esc(e.hallEn||'Unassigned')+'</div></td>'+
@@ -2582,7 +2591,7 @@ function discoverCard(idx, toks) {
   const hc = HALL_COLORS[e.hall] || { bg: '#f0f0f0', c: '#9e9e9e' };
   const cats = (e.cats || []).map(catTagHTML).join('');
   const badges = [];
-  if (hasCatalogue(e)) badges.push('<span class="co-catalogue">Catalogue</span>');
+  if (hasCatalogue(e)) badges.push('<button type="button" class="co-catalogue co-catalogue-btn" title="Request this catalogue" onclick="event.stopPropagation();openCatalogueRequest(' + idx + ')">Catalogue · Request</button>');
   if (e.website) badges.push('<span>🔗 ' + esc(e.website.replace(/^https?:\/\//, '').split('/')[0]) + '</span>');
   return '<div class="dcard" onclick="openPanel(' + idx + ')">' +
     '<div class="dcard-top">' + (d.brand ? '<span class="co-brand">' + esc(d.brand) + '</span>' : '') +
@@ -3613,7 +3622,22 @@ function openCatalogueRequest(idx) {
   }, 30);
 }
 
+// Après envoi : la confirmation reste lisible 5 s, puis la fenêtre se ferme seule.
+let catreqTimer = null;
+function catreqStartCountdown(seconds) {
+  clearInterval(catreqTimer);
+  const el = document.getElementById('catreqCountdown');
+  let left = seconds;
+  if (el) el.textContent = left;
+  catreqTimer = setInterval(() => {
+    left -= 1;
+    if (el) el.textContent = Math.max(left, 0);
+    if (left <= 0) { clearInterval(catreqTimer); catreqTimer = null; closeCatalogueRequest(); }
+  }, 1000);
+}
+
 function closeCatalogueRequest() {
+  clearInterval(catreqTimer); catreqTimer = null;
   document.getElementById('catreqOverlay').hidden = true;
 }
 
@@ -3681,6 +3705,7 @@ async function submitCatalogueRequest(ev) {
     }
     document.getElementById('catreqForm').hidden = true;
     document.getElementById('catreqDone').hidden = false;
+    catreqStartCountdown(5);
     try { window.va('event', { name: 'catalogue_request', data: { supplier: e.en, hall: e.hall } }); } catch {}
   } catch {
     errEl.textContent = CATREQ_ERRORS.send_failed;
