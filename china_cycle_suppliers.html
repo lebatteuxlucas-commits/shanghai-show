@@ -646,6 +646,26 @@
   .tag-btn.t-shortlisted { background:#dcfce7; border-color:var(--teal-dark); color:var(--teal-dark); }
 
   .discover-empty { text-align:center; padding:60px 20px; color:var(--mid); }
+  .discover-sub { color:rgba(238,240,244,0.55); font-size:13px; margin:-6px 0 14px; }
+  .discover-toolbar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:20px 40px 12px; max-width:1200px; color:var(--mid); font-size:13px; }
+  .discover-toolbar strong { color:var(--black); }
+  .discover-results { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:12px; padding:0 40px 24px; max-width:1200px; }
+  .dcard { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:14px 16px; cursor:pointer; display:flex; flex-direction:column; gap:6px; transition:border-color .15s, box-shadow .15s; }
+  .dcard:hover { border-color:var(--teal); box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+  .dcard-top { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .dcard-name { font-weight:600; font-size:13px; line-height:1.35; }
+  .dcard-cn { color:var(--mid); font-size:12px; }
+  .dcard-scope { color:var(--mid); font-size:12px; line-height:1.55; }
+  .dcard-scope mark { background:var(--teal-light); color:var(--teal-dark); padding:0 2px; border-radius:2px; }
+  .dcard-badges { display:flex; gap:8px; align-items:center; font-size:11px; color:var(--mid); margin-top:2px; }
+  .discover-more { margin:0 40px 40px; }
+  .search-suggest { display:flex; align-items:center; gap:6px; flex-wrap:wrap; padding:8px 0 0; font-size:12px; color:var(--mid); }
+  .search-suggest button { font:inherit; font-size:12px; padding:3px 10px; border-radius:999px; border:1px solid var(--border); background:var(--white); color:var(--charcoal); cursor:pointer; }
+  .search-suggest button:hover { border-color:var(--teal); color:var(--teal-dark); background:var(--teal-light); }
+  @media (max-width: 700px) {
+    .discover-toolbar, .discover-results { padding-left:16px; padding-right:16px; }
+    .discover-more { margin:0 16px 32px; }
+  }
   .discover-empty-icon { width:40px; height:40px; margin:0 auto 12px; color:var(--light); display:block; }
 
   /* ── SUPPLIER DETAIL PANEL ───────────────────────────────────────────────── */
@@ -1387,6 +1407,17 @@
     <button type="button" id="exportEditsBtn" class="map-clear" onclick="exportOverrides()" style="display:none">Export edits</button>
     <button type="button" id="clearEditsBtn" class="map-clear" onclick="clearOverrides()" style="display:none" title="Remove all local edits">Clear local edits</button>
   </div>
+  <div class="search-suggest" id="searchSuggest">Try a product:
+    <button type="button" onclick="applySuggestion('hub motor')">hub motors</button>
+    <button type="button" onclick="applySuggestion('carbon')">carbon rims &amp; frames</button>
+    <button type="button" onclick="applySuggestion('saddle')">saddles</button>
+    <button type="button" onclick="applySuggestion('helmet')">helmets</button>
+    <button type="button" onclick="applySuggestion('batter')">e-bike batteries</button>
+    <button type="button" onclick="applySuggestion('light')">lights</button>
+    <button type="button" onclick="applySuggestion('children')">kids bikes</button>
+    <button type="button" onclick="applySuggestion('chain')">chains</button>
+    <button type="button" onclick="applySuggestion('tire')">tires</button>
+  </div>
 </header>
 
 <div id="view-suppliers">
@@ -1495,6 +1526,7 @@
       <div class="panel-catalogue-badge" id="panel-catalogue-badge" hidden><span class="co-catalogue">Catalogue</span></div>
       <div class="panel-origin" id="panel-origin" hidden>Added from on-site catalogue collection</div>
     </div>
+    <button class="panel-edit-toggle" type="button" onclick="copySupplierLink()" title="Copy a direct link to this supplier">Link</button>
     <button class="panel-edit-toggle" type="button" onclick="panelEnterEditMode()">Edit</button>
     <button class="panel-close" onclick="closePanel()">✕</button>
   </div>
@@ -1971,6 +2003,7 @@ function render() {
     }).join('');
   }
   renderPagination(pages, total);
+  syncUrl();
 }
 
 // Bandeau visible uniquement sur la vue d'arrivée (hall par défaut, sans
@@ -2115,11 +2148,65 @@ function updateCatalogHeaderCounts() {
 // ── TABS ──────────────────────────────────────────────────────────────────────
 let currentTab = 'suppliers';
 
+// ── URL = état de la vue (liens partageables) ─────────────────
+// /?view=map · /?hall=W4&cat=Accessories&q=saddle&catalogue=1 · /?supplier=official_12 · /?view=discover&q=hub+motor
+function currentPath() {
+  const p = new URLSearchParams();
+  const tab = (typeof currentTab === 'string' && currentTab) || 'suppliers';
+  if (tab !== 'suppliers') p.set('view', tab);
+  if (tab === 'suppliers') {
+    if (curHall && (hallChosenByUser || curHall !== DEFAULT_HALL)) p.set('hall', curHall);
+    if (curCat) p.set('cat', curCat);
+    if (curQ) p.set('q', curQ);
+    if (curCatalogueOnly) p.set('catalogue', '1');
+  }
+  if (tab === 'discover' && typeof _discoverQuery === 'string' && _discoverQuery) p.set('q', _discoverQuery);
+  if (typeof panelIdx === 'number' && panelIdx >= 0 && RAW[panelIdx]) p.set('supplier', RAW[panelIdx].id);
+  const qs = p.toString();
+  return qs ? '/?' + qs : '/';
+}
+function syncUrl() {
+  try { history.replaceState(null, '', currentPath()); } catch {}
+}
 // Chaque onglet compte comme une page dans Vercel Analytics (/?view=map, /?view=dashboard…).
 function trackView(tab) {
   const path = tab === 'suppliers' ? '/' : '/?view=' + tab;
-  try { history.replaceState(null, '', path); } catch {}
+  syncUrl();
   try { window.va('pageview', { route: path, path }); } catch {}
+}
+function supplierLink(idx) {
+  const e = RAW[idx];
+  return e ? location.origin + '/?supplier=' + encodeURIComponent(e.id) : location.href;
+}
+function copySupplierLink() {
+  if (panelIdx < 0) return;
+  const url = supplierLink(panelIdx);
+  const done = () => showToast('Link copied');
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => prompt('Copy this link:', url));
+  else prompt('Copy this link:', url);
+}
+function applySuggestion(q) {
+  const inp = document.getElementById('searchInput');
+  inp.value = q; inp.focus();
+  onSearch();
+}
+// Lecture des paramètres à l'ouverture (remplace la vue d'arrivée par défaut si un filtre est demandé).
+function applyUrlState() {
+  const p = new URLSearchParams(location.search);
+  const hall = (p.get('hall') || '').toUpperCase();
+  const cat = p.get('cat') || '', q = (p.get('q') || '').trim(), catalogue = p.get('catalogue') === '1';
+  const view = p.get('view') || '';
+  const hasFilter = (hall && HALL_META[hall]) || cat || q || catalogue;
+  if (hall && HALL_META[hall]) setHall(hall, true);
+  else if (hasFilter) setHall('', false);
+  else setHall(DEFAULT_HALL, false);
+  if (cat) { const sel = document.getElementById('catFilter'); sel.value = cat; curCat = sel.value; }
+  if (q && view !== 'discover') { document.getElementById('searchInput').value = q; curQ = q.toLowerCase(); }
+  if (catalogue) { curCatalogueOnly = true; const b = document.getElementById('catalogueToggle'); b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); }
+  if (view === 'discover' && q) _discoverQuery = q;
+  if (hasFilter) render();
+  const sid = p.get('supplier');
+  if (sid) { const idx = RAW.findIndex(e => e.id === sid); if (idx >= 0) setTimeout(() => openPanel(idx), 0); }
 }
 
 function switchTab(tab) {
@@ -2164,6 +2251,7 @@ function openPanel(idx) {
     _resetEditState();
   }
   panelIdx = idx;
+  syncUrl();
   try { const e = RAW[idx]; if (e) window.va('event', { name: 'supplier_detail', data: { supplier: e.en, hall: e.hall } }); } catch {}
   const raw = RAW[idx];
   const e = getDisplayEntry(idx) || raw;
@@ -2248,6 +2336,7 @@ function closePanel() {
   document.getElementById('detailPanel').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
   panelIdx = -1;
+  syncUrl();
 }
 
 function panelSetStatus() {
@@ -2409,13 +2498,107 @@ function clearOverrides() {
 // ── DISCOVER VIEW ─────────────────────────────────────────────────────────────
 let _discoverQuery = '';
 const DISCOVER_PRESETS = [
-  'Top 5 EU hub motor suppliers',
-  'Premium aftermarket pedals',
-  'Aftermarket bottle cages',
-  'OEM budget tires EU',
-  'Battery lock OEM Bosch compatible',
-  'Sporty urban eyewear',
+  'Hub motors', 'Carbon rims and wheelsets', 'Saddles', 'Bottle cages', 'Helmets',
+  'E-bike batteries', 'Bike lights', 'Kids bikes', 'Chains and cassettes', 'Suspension forks',
 ];
+// Recherche produit locale : on découpe la question en mots utiles, on les cherche dans le
+// scope, les catégories, la marque et le nom, et on classe par nombre et qualité des correspondances.
+const DISCOVER_STOP = new Set(('top best premium cheap budget quality high low end oem odm aftermarket supplier manufacturer factory maker brand ' +
+  'company eu europe european china chinese asia for of and the a an in with compatible list find me show who make sell ' +
+  'bike bicycle cycling ebike e-bike e bikes 5 10 20 25 50 100').split(' '));
+const DISCOVER_SYN = { kid: 'children', child: 'children', tyre: 'tire', wheelset: 'wheel', eyewear: 'glasses', sunglass: 'glasses',
+  sunglasses: 'glasses', lamp: 'light', lighting: 'light', headlight: 'light', taillight: 'light', battery: 'batter', batteries: 'batter',
+  cassette: 'cassette', accumulator: 'batter', ergonomic: 'grip', seat: 'saddle', seatpost: 'seat post', mudguard: 'fender', pannier: 'bag',
+  cage: 'cage', bottle: 'bottle', motor: 'motor', motors: 'motor', trainer: 'trainer', computer: 'computer', gps: 'gps', bell: 'bell',
+  lock: 'lock', locks: 'lock', scooter: 'scooter', folding: 'folding', gravel: 'gravel', road: 'road', mtb: 'mountain', bmx: 'bmx' };
+const DISCOVER_CAT_HINT = { motor: 'E-Bike Parts & Accessories', batter: 'E-Bike Parts & Accessories', controller: 'E-Bike Parts & Accessories',
+  display: 'E-Bike Parts & Accessories', charger: 'E-Bike Parts & Accessories', sensor: 'E-Bike Parts & Accessories',
+  pedal: 'Transmissions & Parts', chain: 'Transmissions & Parts', crank: 'Transmissions & Parts', cassette: 'Transmissions & Parts',
+  derailleur: 'Transmissions & Parts', freewheel: 'Transmissions & Parts', bearing: 'Transmissions & Parts',
+  cage: 'Accessories', bottle: 'Accessories', light: 'Accessories', lock: 'Accessories', rack: 'Accessories', fender: 'Accessories',
+  bag: 'Accessories', pump: 'Accessories', bell: 'Accessories', computer: 'Accessories', kickstand: 'Accessories',
+  tire: 'Tires, Rims & Parts', rim: 'Tires, Rims & Parts', wheel: 'Tires, Rims & Parts', hub: 'Tires, Rims & Parts', spoke: 'Tires, Rims & Parts', tube: 'Tires, Rims & Parts',
+  saddle: 'Steering & Components', handlebar: 'Steering & Components', stem: 'Steering & Components', brake: 'Steering & Components', grip: 'Steering & Components', headset: 'Steering & Components',
+  frame: 'Frames, Forks & Parts', fork: 'Frames, Forks & Parts', carbon: 'Frames, Forks & Parts', suspension: 'Frames, Forks & Parts',
+  helmet: 'Cycling/Outdoor Products', glasses: 'Cycling/Outdoor Products', glove: 'Cycling/Outdoor Products', jersey: 'Cycling/Outdoor Products',
+  apparel: 'Cycling/Outdoor Products', shoe: 'Cycling/Outdoor Products', trainer: 'Cycling/Outdoor Products', clothing: 'Cycling/Outdoor Products',
+  children: 'Complete Bikes', folding: 'Complete Bikes', mountain: 'Complete Bikes', road: 'Complete Bikes', gravel: 'Complete Bikes', bmx: 'Complete Bikes', tricycle: 'Complete Bikes',
+  scooter: 'Electric Bicycle', pedelec: 'Electric Bicycle', cargo: 'Electric Bicycle' };
+
+function discoverTokens(query) {
+  return (query || '').toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff\s-]/g, ' ').split(/\s+/)
+    .map(t => t.replace(/^-+|-+$/g, ''))
+    .filter(t => t && !DISCOVER_STOP.has(t))
+    .map(t => DISCOVER_SYN[t] || (t.length > 3 && /s$/.test(t) && !/ss$/.test(t) ? t.slice(0, -1) : t))
+    .filter((t, i, a) => t.length >= 2 && a.indexOf(t) === i);
+}
+
+function discoverResults(query) {
+  const toks = discoverTokens(query);
+  if (!toks.length) return { toks, hits: [] };
+  const hits = [];
+  RAW.forEach((e, idx) => {
+    const scope = (e.scope || '').toLowerCase(), cats = (e.cats || []).join(' ').toLowerCase();
+    const names = ((e.brand || '') + ' ' + (e.en || '') + ' ' + (e.cn || '')).toLowerCase();
+    let score = 0, matched = 0;
+    for (const t of toks) {
+      let sc = 0;
+      if (scope.includes(t)) sc = 3;
+      else if (cats.includes(t)) sc = 2;
+      else if (names.includes(t)) sc = 1;
+      const hint = DISCOVER_CAT_HINT[t];
+      if (hint && (e.cats || []).includes(hint)) sc += 1;
+      if (sc) matched++;
+      score += sc;
+    }
+    if (!matched) return;
+    if (toks.length > 1 && matched === toks.length) score += 2;   // tous les mots présents
+    if (hasCatalogue(e)) score += 0.5;
+    if (e.website) score += 0.25;
+    if ((e.scope_confidence || '') === 'low') score -= 0.5;
+    hits.push({ idx, score, matched });
+  });
+  hits.sort((a, b) => b.score - a.score || a.idx - b.idx);
+  return { toks, hits };
+}
+
+function discoverHighlight(text, toks) {
+  let out = esc(text || '');
+  for (const t of toks) {
+    if (t.length < 3) continue;
+    out = out.replace(new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[a-z]*)', 'gi'), '<mark>$1</mark>');
+  }
+  return out;
+}
+
+let _discoverShown = 40;
+function discoverCard(idx, toks) {
+  const e = RAW[idx], d = getDisplayEntry(idx) || e;
+  const hc = HALL_COLORS[e.hall] || { bg: '#f0f0f0', c: '#9e9e9e' };
+  const cats = (e.cats || []).map(catTagHTML).join('');
+  const badges = [];
+  if (hasCatalogue(e)) badges.push('<span class="co-catalogue">Catalogue</span>');
+  if (e.website) badges.push('<span>🔗 ' + esc(e.website.replace(/^https?:\/\//, '').split('/')[0]) + '</span>');
+  return '<div class="dcard" onclick="openPanel(' + idx + ')">' +
+    '<div class="dcard-top">' + (d.brand ? '<span class="co-brand">' + esc(d.brand) + '</span>' : '') +
+      '<span class="hall-pill" style="background:' + hc.bg + ';color:' + hc.c + '">' + esc(e.hall || '—') + '</span>' +
+      (d.booth ? '<code class="booth-code">' + esc(d.booth) + '</code>' : '') + '</div>' +
+    '<div class="dcard-name">' + esc(d.en || '—') + '</div>' +
+    (d.cn ? '<div class="dcard-cn">' + esc(d.cn) + '</div>' : '') +
+    (cats ? '<div class="cat-tags">' + cats + '</div>' : '') +
+    (e.scope ? '<div class="dcard-scope">' + discoverHighlight(e.scope, toks) + '</div>' : '') +
+    (badges.length ? '<div class="dcard-badges">' + badges.join('') + '</div>' : '') +
+  '</div>';
+}
+
+function discoverOpenInList() {
+  const inp = document.getElementById('searchInput');
+  inp.value = _discoverQuery;
+  switchTab('suppliers');
+  onSearch();
+}
+
+function discoverShowMore() { _discoverShown += 40; renderDiscover(); }
 
 // ── DASHBOARD ─────────────────────────────────────────────────────────────────
 // Tableau de bord des catalogues : couverture calculée depuis les données
@@ -2627,7 +2810,27 @@ function renderDiscover() {
   const view = document.getElementById('view-discover');
   if (!view) return;
 
-  view.innerHTML =
+  let body;
+  if (!_discoverQuery) {
+    body = '<div class="discover-section"><div class="discover-empty">' +
+      '<div style="font-size:15px;color:var(--charcoal);margin-bottom:6px">Type a product to find who makes it.</div>' +
+      '<div>Results come from each exhibitor\'s product scope, categories, brand and company name.</div></div></div>';
+  } else {
+    const { toks, hits } = discoverResults(_discoverQuery);
+    if (!hits.length) {
+      body = '<div class="discover-section"><div class="discover-empty">No exhibitor scope mentions “' + esc(_discoverQuery) + '”.' +
+        '<div style="margin-top:8px;font-size:12px">Try a simpler product word (e.g. “motor”, “saddle”, “helmet”).</div></div></div>';
+    } else {
+      const shown = hits.slice(0, _discoverShown);
+      body = '<div class="discover-toolbar"><span><strong>' + hits.length.toLocaleString() + '</strong> exhibitor' + (hits.length > 1 ? 's' : '') +
+          ' match “' + esc(_discoverQuery) + '”' + (toks.length ? ' <span style="color:var(--light)">· ' + esc(toks.join(', ')) + '</span>' : '') + '</span>' +
+          '<button type="button" class="map-clear" onclick="discoverOpenInList()">Open in Suppliers list</button></div>' +
+        '<div class="discover-results">' + shown.map(h => discoverCard(h.idx, toks)).join('') + '</div>' +
+        (hits.length > shown.length ? '<div class="discover-more"><button type="button" class="map-clear" onclick="discoverShowMore()">Show ' + Math.min(40, hits.length - shown.length) + ' more</button></div>' : '');
+    }
+  }
+  view.innerHTML = _renderDiscoverHero() + body;
+  if (false) view.innerHTML =
     _renderDiscoverHero() +
     '<div class="discover-section"><div class="discover-empty"><svg class="discover-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="15.5,8.5 13.5,13.5 8.5,15.5 10.5,10.5" fill="currentColor" stroke="none"/></svg><p>Discover is offline — backoffice is being rebuilt.</p></div></div>';
 
@@ -2635,7 +2838,7 @@ function renderDiscover() {
   const inp = document.getElementById('discover-input');
   if (inp) {
     inp.value = _discoverQuery;
-    inp.focus();
+    if (!_discoverQuery) inp.focus();
     // Restore cursor position
     const len = inp.value.length;
     inp.setSelectionRange(len, len);
@@ -2648,9 +2851,10 @@ function _renderDiscoverHero() {
   ).join('');
   return '<div class="discover-hero">'+
     '<div class="discover-title">Sourcing Intelligence</div>'+
+    '<div class="discover-sub">Search '+RAW.length.toLocaleString()+' exhibitors by product. Ranked by how well their product scope matches.</div>'+
     '<div class="discover-input-wrap">'+
       '<input class="discover-input" id="discover-input" type="text"'+
-        ' placeholder="e.g. top 5 premium EU hub motor suppliers"'+
+        ' placeholder="e.g. hub motors, carbon rims, saddles, helmets…"'+
         ' onkeydown="if(event.key===\'Enter\')discoverRun(this.value)"'+
         ' oninput="_discoverQuery=this.value">'+
       '<button class="discover-submit" onclick="discoverRun(document.getElementById(\'discover-input\').value)">→</button>'+
@@ -2662,7 +2866,10 @@ function _renderDiscoverHero() {
 
 function discoverRun(query) {
   _discoverQuery = (query || '').trim();
+  _discoverShown = 40;
   renderDiscover();
+  syncUrl();
+  if (_discoverQuery) { try { window.va('event', { name: 'discover_search', data: { query: _discoverQuery } }); } catch {} }
 }
 
 // ── TOAST ──────────────────────────────────────────────────────────────────────
@@ -2755,7 +2962,7 @@ function applyFloorPlan() {
   wrap.classList.add('fp-loading');
   wrap.innerHTML = `<img src="${src}" alt="${fpCurrentHall} floor plan (${fpCurrentLang.toUpperCase()})" decoding="async" onload="this.parentElement.classList.remove('fp-loading')" onerror="this.parentElement.classList.remove('fp-loading')" onclick="document.getElementById('fpImageWrap').classList.toggle('zoomed')">`;
 }
-setHall(DEFAULT_HALL, false);   // vue d'arrivée : hall le mieux doté en catalogues
+applyUrlState();   // vue d'arrivée : hall le mieux doté en catalogues, sauf si l'URL demande autre chose
 updateCatalogHeaderCounts();
 _syncEditButtons();
 
