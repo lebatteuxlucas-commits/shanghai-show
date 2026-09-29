@@ -32,27 +32,26 @@ export function esc(s) {
 const normalizeUrl = (u) => (u && !/^https?:\/\//i.test(u)) ? 'https://' + u : (u || '');
 const hasCatalogue = (e) => Array.isArray(e.catalogues) && e.catalogues.length > 0;
 
-// Vue d'arrivée : hall le mieux doté en catalogues. Même calcul que le client
-// (bestCatalogueHall dans china_cycle_suppliers.html) et même règle de filtre
-// que `filtered()`, qui compare le hall principal.
-export function defaultHall(raw) {
-  const stats = {};
-  for (const e of raw) {
-    if (!e.hall) continue;
-    const s = stats[e.hall] || (stats[e.hall] = { n: 0, cat: 0 });
-    s.n++;
-    if (hasCatalogue(e)) s.cat++;
-  }
-  const ranked = Object.entries(stats).sort((a, b) =>
-    b[1].cat - a[1].cat || b[1].n - a[1].n || a[0].localeCompare(b[0]));
-  return ranked.length && ranked[0][1].cat ? ranked[0][0] : '';
+// Vue d'arrivée : la liste complète (aucun hall imposé). Conservé pour les
+// appels existants ; renvoie toujours « tous les halls ».
+export function defaultHall() {
+  return '';
 }
 
-// Tri par défaut du client (nom anglais, ordre croissant, comparaison < / >).
+// Tri par défaut du client : exposants documentés d'abord (catalogue + site,
+// catalogue, site, rien), puis hall et stand — l'ordre de visite sur le salon.
+export function richTier(e) {
+  const c = hasCatalogue(e), w = !!e.website;
+  return c && w ? 0 : c ? 1 : w ? 2 : 3;
+}
 export function defaultOrder(raw) {
   return raw.map((e, idx) => ({ e, idx })).sort((a, b) => {
-    const av = (a.e.en || '').toLowerCase(), bv = (b.e.en || '').toLowerCase();
-    return av < bv ? -1 : av > bv ? 1 : 0;
+    const t = richTier(a.e) - richTier(b.e);
+    if (t) return t;
+    const ah = (a.e.hall || '').toLowerCase(), bh = (b.e.hall || '').toLowerCase();
+    if (ah !== bh) return ah < bh ? -1 : 1;
+    const ab = (a.e.booth || '').toLowerCase(), bb = (b.e.booth || '').toLowerCase();
+    return ab < bb ? -1 : ab > bb ? 1 : 0;
   });
 }
 
@@ -141,17 +140,22 @@ export function renderHome(template, { contactEmail, siteUrl } = {}) {
     CAT_COLORS: extractConst(template, 'CAT_COLORS'),
     CAT_DEFAULT: extractConst(template, 'CAT_DEFAULT'),
   };
-  const hall = defaultHall(raw);
-  const visible = defaultOrder(raw).filter(({ e }) => !hall || e.hall === hall);
+  const visible = defaultOrder(raw);
   const rows = visible.slice(0, PAGE_SIZE)
     .map(({ e, idx }, i) => rowHTML(e, idx, i + 1, consts)).join('');
   const catalogueCount = raw.filter(hasCatalogue).length;
+  const hallCount = new Set(raw.map(e => e.hall).filter(Boolean)).size;
 
   let html = template;
   html = replaceOnce(html, '<tbody id="tbody"></tbody>', `<tbody id="tbody">${rows}</tbody>`);
+  // Compteurs d'en-tête : la base complète, jamais la vue filtrée.
+  html = replaceById(html, 'statSuppliers', raw.length.toLocaleString('en-US'));
+  html = replaceById(html, 'statHalls', hallCount.toLocaleString('en-US'));
+  html = replaceById(html, 'statWebsites', raw.filter(e => e.website).length.toLocaleString('en-US'));
+  html = replaceById(html, 'statProducts', raw.filter(e => e.scope).length.toLocaleString('en-US'));
   html = replaceById(html, 'statCatalogues', catalogueCount.toLocaleString('en-US'));
   html = replaceById(html, 'tc-dashboard', `${catalogueCount}/${raw.length}`);
-  // Comme le client après son premier rendu : les compteurs reflètent la vue affichée.
+  // Comme le client après son premier rendu : la liste complète.
   html = replaceById(html, 'tc-suppliers', visible.length.toLocaleString('en-US'));
   html = replaceById(html, 'countPill',
     `<strong>${visible.length.toLocaleString('en-US')}</strong> result${visible.length !== 1 ? 's' : ''}`);

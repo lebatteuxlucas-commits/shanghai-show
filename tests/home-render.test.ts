@@ -8,28 +8,32 @@ import { parseRaw } from '../api/_lib/raw-data.js';
 const home = readFileSync(new URL('../china_cycle_suppliers.html', import.meta.url), 'utf8');
 const privacy = readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
 
-test('accueil : vue d’arrivée (hall le mieux doté), lignes et compteurs écrits dans le HTML', () => {
+test('accueil : liste complète au premier rendu, documentés d’abord puis hall et stand', () => {
   const raw = parseRaw(home);
-  const hall = defaultHall(raw);
   const html = renderHome(home, { contactEmail: 'contact@futuremotion.example' });
   const tbody = html.slice(html.indexOf('<tbody id="tbody">'), html.indexOf('</tbody>'));
-  const visible = defaultOrder(raw).filter(({ e }) => e.hall === hall);
+  const visible = defaultOrder(raw);
+  assert.equal(visible.length, raw.length, 'aucun hall imposé à l’arrivée');
   assert.equal((tbody.match(/<tr /g) || []).length, Math.min(PAGE_SIZE, visible.length));
-  assert.ok(tbody.includes(visible[0].e.en.replace(/&/g, '&amp;')), 'première ligne = premier exposant du hall, par ordre alphabétique');
-  // Le compteur reflète la vue affichée, comme après le premier rendu du client.
-  assert.ok(html.includes(`id="countPill"><strong>${visible.length.toLocaleString('en-US')}</strong> results`));
-  assert.ok(html.includes(`id="tc-suppliers">${visible.length.toLocaleString('en-US')}<`));
+  assert.ok(tbody.includes(visible[0].e.en.replace(/&/g, '&amp;')), 'première ligne = premier exposant de l’ordre par défaut');
+  assert.ok(html.includes(`id="countPill"><strong>${raw.length.toLocaleString('en-US')}</strong> results`));
+  assert.ok(html.includes(`id="tc-suppliers">${raw.length.toLocaleString('en-US')}<`));
+  assert.ok(html.includes(`id="statSuppliers">${raw.length.toLocaleString('en-US')}<`));
+  assert.match(html, /id="statHalls">\d/);
   assert.match(html, /id="statCatalogues">\d/);
 });
 
-test('hall d’arrivée : celui qui a le plus de catalogues (hall principal)', () => {
-  assert.equal(defaultHall([
-    { id: 'a', hall: 'E1', catalogues: [] },
-    { id: 'b', hall: 'W4', catalogues: [{ filename: 'x', category_folder: '' }] },
-    { id: 'c', hall: 'W4', catalogues: [] },
-  ] as any), 'W4');
-  // Aucune donnée de catalogue : pas de hall imposé, on reste sur « All Halls ».
-  assert.equal(defaultHall([{ id: 'a', hall: 'E1', catalogues: [] }] as any), '');
+test('ordre par défaut : catalogue + site, catalogue, site, rien ; puis hall et stand', () => {
+  const cat = [{ filename: 'x', category_folder: '' }];
+  const order = defaultOrder([
+    { id: 'a', hall: 'E1', booth: 'E1-0002', catalogues: [] },
+    { id: 'b', hall: 'W4', booth: 'W4-0001', catalogues: cat, website: 'https://b.example' },
+    { id: 'c', hall: 'E1', booth: 'E1-0001', catalogues: [] },
+    { id: 'd', hall: 'E2', booth: 'E2-0001', website: 'https://d.example' },
+    { id: 'e', hall: 'E1', booth: 'E1-0009', catalogues: cat },
+  ] as any).map(({ e }) => e.id);
+  assert.deepEqual(order, ['b', 'e', 'd', 'c', 'a']);
+  assert.equal(defaultHall(), '', 'plus de hall d’arrivée');
 });
 
 test('email de contact injecté dans la meta et le pied de page', () => {

@@ -1377,8 +1377,8 @@
     </div>
   </div>
   <div class="stats-row">
-    <div class="stat"><span class="stat-num">1,633</span><span class="stat-label">Suppliers</span></div>
-    <div class="stat"><span class="stat-num">13</span><span class="stat-label">Halls</span></div>
+    <div class="stat"><span class="stat-num" id="statSuppliers">1,633</span><span class="stat-label">Suppliers</span></div>
+    <div class="stat"><span class="stat-num" id="statHalls">13</span><span class="stat-label">Halls</span></div>
     <div class="stat"><span class="stat-num" id="statWebsites">0</span><span class="stat-label">Websites</span></div>
     <div class="stat"><span class="stat-num" id="statProducts">0</span><span class="stat-label">Products Listed</span></div>
     <div class="stat"><span class="stat-num" id="statCatalogues">0</span><span class="stat-label">Catalogues collected</span></div>
@@ -1433,7 +1433,7 @@
       <tr>
         <th style="width:36px">#</th>
         <th onclick="setSort('en', this)">Company <span class="si">↕</span></th>
-        <th onclick="setSort('hall', this)">Hall <span class="si">↕</span></th>
+        <th class="sorted" onclick="setSort('hall', this)">Hall <span class="si">↕</span></th>
         <th onclick="setSort('booth', this)">Booth <span class="si">↕</span></th>
         <th>Categories</th>
         <th>Products / Scope</th>
@@ -1774,7 +1774,7 @@ function getDisplayEntry(i) {
   return Object.assign({}, e, ov);
 }
 
-let curHall='', curCat='', curQ='', sortKey='en', sortDir=1, page=1;
+let curHall='', curCat='', curQ='', sortKey='hall', sortDir=1, page=1;   // ordre de visite : hall puis stand
 
 // ── Catalogues collectés au salon ─────────────────────────────────────────
 // RAW[].catalogues = [{ filename, category_folder }] (voir
@@ -1787,23 +1787,17 @@ const hasCatalogue = (e) => Array.isArray(e.catalogues) && e.catalogues.length >
 // données (et non figé) pour rester juste quand la collecte s'enrichit.
 // Même règle que le filtre : on compte le hall principal (e.hall).
 // Le rendu serveur applique le même calcul (api/_lib/home-render.js).
-function bestCatalogueHall() {
-  const stats = {};
-  for (const e of RAW) {
-    if (!e.hall) continue;
-    const s = stats[e.hall] || (stats[e.hall] = { n: 0, cat: 0 });
-    s.n++;
-    if (hasCatalogue(e)) s.cat++;
-  }
-  const ranked = Object.entries(stats).sort((a, b) =>
-    b[1].cat - a[1].cat || b[1].n - a[1].n || a[0].localeCompare(b[0]));
-  return ranked.length && ranked[0][1].cat ? ranked[0][0] : '';
-}
-const DEFAULT_HALL = bestCatalogueHall();
+// Vue d'arrivée : la liste complète. (Un visiteur venu d'un lien ne doit pas croire
+// que l'annuaire ne compte que le hall le mieux doté en catalogues.) DEFAULT_HALL reste
+// défini pour les liens ?hall= et le bandeau d'aide, mais vaut « tous les halls ».
+const DEFAULT_HALL = '';
 curHall = DEFAULT_HALL;
 let hallChosenByUser = false;   // vrai dès que l'utilisateur clique une pastille de hall
 let curCatalogueOnly = false;  // filtre « Has catalogue »
 document.getElementById('statCatalogues').textContent = RAW.filter(hasCatalogue).length.toLocaleString();
+// Compteurs d'en-tête : toujours la base complète, jamais la vue filtrée.
+document.getElementById('statSuppliers').textContent = RAW.length.toLocaleString();
+document.getElementById('statHalls').textContent = new Set(RAW.map(e => e.hall).filter(Boolean)).size.toLocaleString();
 document.getElementById('statWebsites').textContent = RAW.filter(e => e.website).length.toLocaleString();
 document.getElementById('statProducts').textContent = RAW.filter(e => e.scope).length.toLocaleString();
 
@@ -1934,7 +1928,12 @@ function filtered() {
     const da = getDisplayEntry(RAW_IDX.get(a)) || a;
     const db = getDisplayEntry(RAW_IDX.get(b)) || b;
     const av=(da[sortKey]||'').toLowerCase(), bv=(db[sortKey]||'').toLowerCase();
-    return av<bv?-sortDir:av>bv?sortDir:0;
+    if (av !== bv) return av<bv?-sortDir:sortDir;
+    if (sortKey === 'hall') {   // même hall : ordre des stands
+      const ab=(da.booth||'').toLowerCase(), bb=(db.booth||'').toLowerCase();
+      if (ab !== bb) return ab<bb?-sortDir:sortDir;
+    }
+    return 0;
   });
 }
 
