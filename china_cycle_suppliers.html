@@ -1904,6 +1904,12 @@ function onFilter() {
   if (curCat && typeof sessionTrack === 'function') sessionTrack('categories', curCat);
 }
 
+// Les exposants documentés (catalogue et/ou site web) remontent en tête de chaque liste.
+function richTier(e) {
+  const c = hasCatalogue(e), w = !!e.website;
+  return c && w ? 0 : c ? 1 : w ? 2 : 3;
+}
+
 function filtered() {
   return RAW.filter((e, i)=>{
     if(curHall && e.hall!==curHall) return false;
@@ -1923,6 +1929,8 @@ function filtered() {
     }
     return true;
   }).sort((a,b)=>{
+    const ta = richTier(a), tb = richTier(b);
+    if (ta !== tb) return ta - tb;
     const da = getDisplayEntry(RAW_IDX.get(a)) || a;
     const db = getDisplayEntry(RAW_IDX.get(b)) || b;
     const av=(da[sortKey]||'').toLowerCase(), bv=(db[sortKey]||'').toLowerCase();
@@ -2553,12 +2561,10 @@ function discoverResults(query) {
     }
     if (!matched) return;
     if (toks.length > 1 && matched === toks.length) score += 2;   // tous les mots présents
-    if (hasCatalogue(e)) score += 0.5;
-    if (e.website) score += 0.25;
     if ((e.scope_confidence || '') === 'low') score -= 0.5;
-    hits.push({ idx, score, matched });
+    hits.push({ idx, score, matched, tier: richTier(e) });
   });
-  hits.sort((a, b) => b.score - a.score || a.idx - b.idx);
+  hits.sort((a, b) => a.tier - b.tier || b.score - a.score || a.idx - b.idx);
   return { toks, hits };
 }
 
@@ -3141,7 +3147,8 @@ function renderMapSidePanel() {
       .map((e, i) => ({ e, d: getDisplayEntry(i) || e, i }))
       .filter(x => x.e.hall === mapSelectedHall
         || (Array.isArray(x.e.halls) && x.e.halls.includes(mapSelectedHall)))
-      .filter(x => !mapCategory || (x.e.cats || []).includes(mapCategory));
+      .filter(x => !mapCategory || (x.e.cats || []).includes(mapCategory))
+      .sort((a, b) => richTier(a.e) - richTier(b.e) || a.i - b.i);   // documentés d'abord, puis ordre du hall
     const q = mapHallFilter.toLowerCase();
     const rows = q
       ? allRows.filter(x => (x.d.en || '').toLowerCase().includes(q)
