@@ -55,7 +55,18 @@ export function defaultOrder(raw) {
   });
 }
 
-export function rowHTML(e, idx, rowNum, { HALL_COLORS, CAT_COLORS, CAT_DEFAULT }) {
+// Couvertures : même clé que le client (coverKey) et que scripts/covers/make_covers.py.
+function fnv1a(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h >>> 0; }
+export function coverKey(f) { const a = f.category_folder + '/' + f.filename, b = f.filename + '/' + f.category_folder; return fnv1a(a).toString(16).padStart(8, '0') + fnv1a(b).toString(16).padStart(8, '0'); }
+function firstCover(e, COVERS) { for (const f of (e.catalogues || [])) { const k = coverKey(f); if (COVERS && COVERS[k]) return 'assets/covers/' + k + '.jpg'; } return ''; }
+function catRowHTML(e, idx, COVERS) {
+  const cov = firstCover(e, COVERS), n = (e.catalogues || []).length;
+  return '<div class="cat-row">' + (cov ? '<img class="cover-sm" loading="lazy" decoding="async" src="' + esc(cov) + '" alt="" onerror="this.remove()">' : '') +
+    '<div><button type="button" class="co-catalogue co-catalogue-btn" title="Request this catalogue" onclick="event.stopPropagation();openCatalogueRequest(' + idx + ')">Catalogue · Request</button>' +
+    (n > 1 ? '<div class="cover-more">' + n + ' files</div>' : '') + '</div></div>';
+}
+
+export function rowHTML(e, idx, rowNum, { HALL_COLORS, CAT_COLORS, CAT_DEFAULT, COVERS = {} }) {
   const catTagHTML = (c) => {
     const cc = CAT_COLORS[c] || CAT_DEFAULT;
     return `<span class="cat-tag" style="background:${cc.bg};color:${cc.fg};border-color:${cc.bg}">${esc(c)}</span>`;
@@ -80,7 +91,7 @@ export function rowHTML(e, idx, rowNum, { HALL_COLORS, CAT_COLORS, CAT_DEFAULT }
     '<td>' + brandLine +
       '<div class="co-en">' + esc(e.en || '—') + '</div>' +
       (e.cn ? '<div class="co-cn">' + esc(e.cn) + '</div>' : '') +
-      (hasCatalogue(e) ? '<div><button type="button" class="co-catalogue co-catalogue-btn" title="Request this catalogue" onclick="event.stopPropagation();openCatalogueRequest(' + idx + ')">Catalogue · Request</button></div>' : '') +
+      (hasCatalogue(e) ? catRowHTML(e, idx, COVERS) : '') +
       siteLink + '</td>' +
     '<td>' + hallPills +
       '<div class="hall-sub">' + esc(e.hallEn || 'Unassigned') + '</div></td>' +
@@ -139,6 +150,7 @@ export function renderHome(template, { contactEmail, siteUrl } = {}) {
     HALL_COLORS: extractConst(template, 'HALL_COLORS'),
     CAT_COLORS: extractConst(template, 'CAT_COLORS'),
     CAT_DEFAULT: extractConst(template, 'CAT_DEFAULT'),
+    COVERS: extractConst(template, 'COVERS'),
   };
   const visible = defaultOrder(raw);
   const rows = visible.slice(0, PAGE_SIZE)
