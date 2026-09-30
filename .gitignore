@@ -33,3 +33,7 @@ data/websites/official_details.json
 # Enrichissement catégories/scope — packs régénérables
 data/enrich/packs/
 data/websites/verify_batches/
+data/review/online/thumbs/
+data/review/online/sheets/
+data/review/online/index.html
+data/review/online/thumbs.log
