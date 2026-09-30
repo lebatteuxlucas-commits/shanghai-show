@@ -25,8 +25,8 @@ HTML = r'''<title>Catalogue Matching</title>
 /* Layout : en-tête collant (progression + filtres), puis une carte par PDF : vignette à gauche, décision à droite. */
 :root {
   --bg: #F4F5F6; --card: #FFFFFF; --fg: #1E262B; --mid: #5A6770; --line: #DCE1E5; --line-strong: #B9C2C8;
-  --slate: #41535D; --slate-fg: #FFFFFF; --green: #179064; --green-soft: #E4F5ED; --green-fg: #0F6B49;
-  --warn-soft: #FDF1DC; --warn-fg: #8A5A00; --skip-soft: #ECEFF1; --thumb-bg: #E9ECEE; --focus: #179064;
+  --slate: #495C68; --slate-fg: #FFFFFF; --green: #009A6F; --green-soft: #E0F3EC; --green-fg: #0F6B49;
+  --warn-soft: #FDF1DC; --warn-fg: #8A5A00; --skip-soft: #ECEFF1; --thumb-bg: #E9ECEE; --focus: #009A6F;
   --display: 'Barlow Condensed', 'Arial Narrow', sans-serif; --body: 'DM Sans', system-ui, sans-serif; --mono: 'DM Mono', ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {

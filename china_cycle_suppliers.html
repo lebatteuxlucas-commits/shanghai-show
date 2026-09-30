@@ -9,7 +9,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#41535D">
+<meta name="theme-color" content="#495C68">
 <!-- Aperçus de lien (LinkedIn, Slack, X…) : URLs absolues, réécrites par le rendu serveur si SITE_URL est défini. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FutureMotion">
@@ -34,16 +34,16 @@
   :root {
     /* FutureMotion brand palette: emerald green + cool slate + white */
     --black:      #0F1419;
-    --charcoal:   #1F2A35;   /* deep slate (replaces warm charcoal) */
-    --dark:       #2A3742;   /* primary slate from brand hero */
+    --charcoal:   #1F2A35;   /* texte : ardoise profonde */
+    --dark:       #2A3742;   /* texte : ardoise */
     --mid:        #5A6770;   /* cool mid-gray */
     --light:      #B8C0C7;   /* cool light gray */
     --bg:         #F4F6F8;   /* cool off-white surface */
     --white:      #FFFFFF;
-    --teal:       #1FA876;   /* logo emerald */
-    --teal-dark:  #16835B;
-    --teal-light: #E4F5ED;
-    --nav-bg:     #2A3742;   /* brand slate (replaces deep navy) */
+    --teal:       #009A6F;   /* logo emerald */
+    --teal-dark:  #007A58;
+    --teal-light: #E0F3EC;
+    --nav-bg:     #495C68;   /* ardoise du site FutureMotion (extra color 1 du thème) */
     --nav-text:   #FFFFFF;
     --border:     #E1E5E8;
     --shadow-sm:  0 1px 3px rgba(31,42,53,0.06);
@@ -65,7 +65,7 @@
   /* ── TOP NAV ─────────────────────────────────── */
   nav {
     background: var(--nav-bg);
-    background-image: linear-gradient(120deg, #2A3742 0%, #354450 100%);
+    background-image: linear-gradient(120deg, #495C68 0%, #57697A 100%);
     padding: 0 40px;
     height: 56px;
     display: flex;
@@ -551,7 +551,7 @@
   /* ── DISCOVER TAB ────────────────────────────────────────────────────────── */
   .discover-hero {
     background: var(--nav-bg);
-    background-image: linear-gradient(135deg, #1F2A35 0%, #2A3742 50%, #354450 100%);
+    background-image: linear-gradient(135deg, #3D4E59 0%, #495C68 50%, #57697A 100%);
     padding: 36px 40px 32px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
@@ -1035,7 +1035,7 @@
 .map-hall-name {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  fill: #1F2A35;
+  fill: #3D4E59;
   pointer-events: none;
   user-select: none;
 }
@@ -1682,7 +1682,7 @@ const HALL_COLORS = {
   E7:{bg:'#fce4ec',c:'#880e4f',label:'E-bike Brands'},
   N1:{bg:'#ede7f6',c:'#4527a0',label:'New Products Hall'},
   W1:{bg:'#e0f7fa',c:'#00695c',label:'International Brands'},
-  W2:{bg:'#E4F5ED',c:'#1FA876',label:'Bicycles & Accessories'},
+  W2:{bg:'#E0F3EC',c:'#009A6F',label:'Bicycles & Accessories'},
   W3:{bg:'#fffde7',c:'#f9a825',label:"Children's Bikes"},
   W4:{bg:'#f1f8e9',c:'#558b2f',label:'Cycling & Outdoor'},
   W5:{bg:'#fbe9e7',c:'#bf360c',label:'Two-Wheel Brands'},
@@ -1690,7 +1690,7 @@ const HALL_COLORS = {
 
 // Category color tints — soft bg + readable fg per supplier category
 const CAT_COLORS = {
-  'Complete Bikes':              { bg:'#E4F5ED', fg:'#16835B' },
+  'Complete Bikes':              { bg:'#E0F3EC', fg:'#007A58' },
   'Frames, Forks & Parts':       { bg:'#E2E8F5', fg:'#3949AB' },
   'Tires, Rims & Parts':         { bg:'#FAEBCE', fg:'#92590B' },
   'Transmissions & Parts':       { bg:'#D9F0F2', fg:'#0F6E78' },
@@ -3099,7 +3099,7 @@ function renderMapSvg() {
         <text x="778" y="380" text-anchor="end"    class="map-compass">↦ EAST</text>
       </g>
       <g id="mapPin" style="display:none">
-        <circle cx="0" cy="0" r="13" fill="#1FA876" stroke="#FFFFFF" stroke-width="3"></circle>
+        <circle cx="0" cy="0" r="13" fill="#009A6F" stroke="#FFFFFF" stroke-width="3"></circle>
         <polygon points="0,-7 1.65,-2.27 6.66,-2.16 2.66,0.87 4.12,5.66 0,2.8 -4.12,5.66 -2.66,0.87 -6.66,-2.16 -1.65,-2.27" fill="#FFFFFF"/>
       </g>
     </svg>
