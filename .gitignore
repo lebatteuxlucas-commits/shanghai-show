@@ -37,3 +37,6 @@ data/review/online/thumbs/
 data/review/online/sheets/
 data/review/online/index.html
 data/review/online/thumbs.log
+data/review/online/db_export/
+data/review/online/decisions_export.json
+data/review/online/catalogue_matches_online.csv
