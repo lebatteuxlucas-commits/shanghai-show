@@ -207,5 +207,9 @@
  "official_994": {
   "url": "http://www.evic.cn",
   "reason": "mismatch (website-verifier) : evic.cn est un portail d'annonces/comparateur de prix de véhicules électriques (titre : 【电车信息网】电车最新报价_电车价格查询), pas le site de la société 惠州市亿瑞科电子有限公司"
+ },
+ "official_524": {
+  "url": "http://www.kevar-plastics.com",
+  "reason": "mauvais site (phase A) : Kunteng Electronics n'est pas Kevar Plastics"
  }
 }

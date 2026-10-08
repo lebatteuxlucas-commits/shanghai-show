@@ -155,5 +155,11 @@
   "source": "manual",
   "confidence": "high",
   "evidence": "vérifié par l'agent website-verifier : Meta description du site : \"Riduck — cycling training analytics platform. Track FTP, training load, power profile...\" — correspond mot pour mot au scope (FTP, power, training load) et à la marque RIDUCK"
+ },
+ "official_524": {
+  "url": "https://www.szktdz.com",
+  "source": "manual",
+  "confidence": "high",
+  "evidence": "indiqué par Lucas le 2026-10-08"
  }
 }
