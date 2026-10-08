@@ -1545,7 +1545,7 @@
       <div class="panel-origin" id="panel-origin" hidden>Added from on-site catalogue collection</div>
     </div>
     <button class="panel-edit-toggle" type="button" onclick="copySupplierLink()" title="Copy a direct link to this supplier">Link</button>
-    <button class="panel-edit-toggle" type="button" onclick="panelEnterEditMode()">Edit</button>
+    <button class="panel-edit-toggle" type="button" id="panelEditBtn" onclick="panelEnterEditMode()" hidden>Edit</button>
     <button class="panel-close" onclick="closePanel()">✕</button>
   </div>
   <div class="panel-body">
@@ -1600,7 +1600,7 @@
       <div class="panel-section-title">Categories</div>
       <div id="panel-cats"></div>
     </div>
-    <div class="panel-section">
+    <div class="panel-section" id="panel-status-wrap" hidden>
       <div class="panel-section-title">Status</div>
       <select class="status-sel status-none" id="panel-status" onchange="panelSetStatus()">
         <option value="">— No status</option>
@@ -1609,7 +1609,7 @@
         <option value="pass">Pass</option>
       </select>
     </div>
-    <div class="panel-section">
+    <div class="panel-section" id="panel-notes-wrap" hidden>
       <div class="panel-section-title">Notes</div>
       <textarea class="notes-area" id="panel-notes" placeholder="Add sourcing notes…"></textarea>
       <button class="notes-save" onclick="panelSaveNote()">Save note</button>
@@ -1814,6 +1814,11 @@ let curHall='', curCat='', curQ='', sortKey='hall', sortDir=1, page=1;   // ordr
 // scripts/import-catalogue-matches.ts). Les noms de fichiers sont à usage
 // interne : affichés dans la fiche uniquement avec ?internal=1.
 const INTERNAL_MODE = new URLSearchParams(location.search).get('internal') === '1';
+// Site public : aucune édition (les modifications ne quittent jamais le navigateur, mais
+// un visiteur n'a pas à les voir). Les outils internes s'activent avec ?internal=1.
+if (INTERNAL_MODE) {
+  for (const id of ['panelEditBtn', 'panel-status-wrap', 'panel-notes-wrap']) { const el = document.getElementById(id); if (el) el.hidden = false; }
+}
 const hasCatalogue = (e) => Array.isArray(e.catalogues) && e.catalogues.length > 0;
 
 // Hall d'arrivée : celui qui a le plus de catalogues, calculé depuis les
@@ -2423,6 +2428,7 @@ function _resetEditState() {
 }
 
 function panelEnterEditMode(focusField) {
+  if (!INTERNAL_MODE) return;
   if (panelIdx < 0) return;
   // Re-entry guard: if already editing, just re-focus the requested field
   // without re-prefilling inputs (would clobber the user's typed values) or
@@ -2507,6 +2513,7 @@ function panelSaveEdits() {
 }
 
 function _syncEditButtons() {
+  if (!INTERNAL_MODE) return;   // boutons Export / Clear réservés au mode interne
   const count = Object.keys(LS.allOverrides()).length;
   const exp = document.getElementById('exportEditsBtn');
   const clr = document.getElementById('clearEditsBtn');
