@@ -43,12 +43,16 @@ def main():
     for e in raw:
         idx.append((e, set(toks(e.get("brand", ""))), set(toks(e["en"])), norm(e.get("brand", "")), norm(e["en"])))
     items = []
+    seen_files = set()   # doublons : même fichier déposé dans plusieurs dossiers (nom normalisé + taille)
     for root in ROOTS:
         for dp, dn, fn in os.walk(BASE / root):
             for f in sorted(fn):
                 if not f.lower().endswith(".pdf") or f.startswith("."): continue
                 folder = os.path.relpath(dp, BASE)
                 if (folder, f) in ref: continue
+                sig = (re.sub(r"[^a-z0-9\u4e00-\u9fff]+", "", f.lower()), os.path.getsize(os.path.join(dp, f)))
+                if sig in seen_files: continue
+                seen_files.add(sig)
                 g = brand_guess(f, folder); gt = set(toks(g)); gn = norm(g)
                 cands = []
                 for e, bt, et, bn, en in idx:
